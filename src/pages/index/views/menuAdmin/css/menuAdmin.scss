@@ -1,0 +1,58 @@
+.organ_menu{
+  height: 100%;
+    .el-header {
+    background-color: #fff;
+    border-bottom: 1px solid #ebeff3;
+    text-align: start;
+    line-height: 57px;
+    font-weight: 600;
+    font-size: 15px;
+  }
+  .el-main {
+    // min-height: 600px;
+    background-color: #fff;
+    .addMenuBtn {
+      margin-top: 19px;
+      margin-left: 2%;
+      width: 100px;
+      height: 32px;
+      padding: 0;
+      font-size: 12px;
+    }
+  }
+  .el-aside {
+    // min-height: 600px;
+    background-color: #fff;
+    border-right: 1px solid #ebeff3;
+    .menu__structure {
+      height: 50px;
+      line-height: 50px;
+      font-size: 14px;
+      font-weight: 500;
+      color: #000;
+      border-bottom: 1px solid #ebeff3;
+      position: relative;
+      #menu__icon {
+        margin-left: 20px;
+        margin-right: 5px;
+        font-size: 10px;
+      }
+      #menu__refresh {
+        color: #b3bbc6;
+        position: absolute;
+        transition: transform .5s;
+        cursor: pointer;
+        right: 15px;
+        top: 17px;
+        font-size: 18px;
+      }
+      .animation {
+          transform: rotate(-180deg);
+      }
+    }
+    .treemenu {
+      margin-top: 10px;
+      margin-left: 10px;
+    }
+  }
+  }
