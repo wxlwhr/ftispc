@@ -1,22 +1,26 @@
 <template>
-   <div>234234</div>
+  <div class="home">
+    <div class="home-header"></div>
+    <div class="home-tabs"></div>
+    <router-view />
+  </div>
 </template>
 
 <script>
 export default {
-   data () {
-      return {
+  data() {
+    return {};
+  },
 
-      };
-   },
+  components: {},
 
-   components: {},
+  computed: {},
 
-   computed: {},
-
-   methods: {}
-}
+  methods: {},
+};
 </script>
 <style lang='scss' scoped>
-
+.home{
+   
+}
 </style>

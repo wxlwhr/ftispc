@@ -9,11 +9,7 @@ export default new Router({
     {
       path: '/',
       component: () =>
-      import(/* webpackChunkName: "pc" */ '@/App.vue'),
-      redirect:'/index',
-      children:[
-        pcrouter
-      ]
+      import(/* webpackChunkName: "pc" */ '@/pages/index')
     }
   ]
 })
