@@ -6,6 +6,7 @@ html{
 body {
   font-size:12px;font-size:1.2rem ;
   height: 100%;
+  font-size: 14px;
 }
 html,
 body,
@@ -45,144 +46,10 @@ nav {
   border: 0;
   font-size:14px;
   font-size:1.4rem;
+  box-sizing: border-box;
 }
 
-input {
-  outline: none;
+ul,ol{
+  list-style: none;
 }
 
-/* 滚动条宽度 */
-::-webkit-scrollbar {
-  width: 7px;
-  height: 10px;
-}
-
-/* 滚动条的滑块 */
-::-webkit-scrollbar-thumb {
-  background-color: #a1a3a9;
-  border-radius: 3px;
-}
-
-.el-dropdown-menu .el-dropdown-menu__item img {
-  width: 16px;
-  height: 16px;
-  margin-right: 8px;
-  vertical-align: middle;
-}
-
-#tab-first,
-#tab-second {
-  width: 205px;
-  padding: 0;
-  text-align: center;
-  font-size: 18px;
-}
-
-#tab-first,
-#tab-second:active {
-  color: #2882fe;
-}
-
-// 重置按钮主题
-.el-button--primary {
-  background-color: #2882fe;
-}
-
-.el-button {
-  border-radius: 2px;
-}
-
-.el-button.searchBtn.el-button--primary {
-  height: 36px;
-  padding: 12px;
-}
-
-.el-input__inner {
-  height: 36px;
-  line-height: 36px;
-}
-
-
-.el-table {
-
-  // 表头样式
-  thead>tr {
-    height: 40px;
-    line-height: 40px;
-
-    >th {
-      background-color: #eef1f5;
-      padding: 0;
-    }
-  }
-
-  .el-table__row {
-    height: 40px;
-  }
-
-  td {
-    padding: 0;
-  }
-}
-
-// 隔行换色
-.blue-row {
-  background-color: #edf4ff !important;
-}
-
-// 限制tooltip最大宽度
-.el-tooltip__popper {
-  max-width: 400px;
-}
-
-.el-dialog {
-  .el-dialog__body {
-    padding: 24px;
-  }
-
-  .el-dialog__footer {
-    padding: 0 24px 24px;
-  }
-}
-
-/* 树导航 */
-.el-submenu .is-opened .el-submenu__title,
-.el-menu-item.is-active.menu-item {
-  background-color: #31394c !important;
-}
-
-.el-submenu.is-opened .el-submenu__title i:first-child {
-  color: #236dd4;
-}
-
-.el-submenu.is-opened .el-submenu__title span,
-.el-menu-item.is-active.menu-item span {
-  color: #fff !important;
-}
-
-.el-menu-item.is-active {
-  background-color: #141a26 !important;
-}
-
-/* 弹出框header */
-.el-dialog {
-  border-radius: 5px;
-
-  .el-dialog__header {
-    background-color: #2882fe;
-    line-height: 54px;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    padding: 0;
-
-    .el-dialog__title {
-      color: #fff;
-      font-size: 16px;
-      margin-left: 15px;
-    }
-
-    .el-dialog__headerbtn .el-dialog__close {
-      color: #fff !important;
-    }
-  }
-}
