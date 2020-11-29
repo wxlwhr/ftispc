@@ -8,8 +8,12 @@ export default new Router({
   routes: [
     {
       path: '/',
+      redirect:pcrouter,
       component: () =>
-      import(/* webpackChunkName: "pc" */ '@/pages/index')
+      import(/* webpackChunkName: "pc" */ '@/pages/index'),
+      children:[
+        pcrouter
+      ]
     }
   ]
 })
