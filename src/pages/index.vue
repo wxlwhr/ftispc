@@ -79,9 +79,9 @@ export default {
 
   &-header {
     height: 21rem;
-   //  padding: 0 360px;
+    padding: 0 360px;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     &-left {
       .header-title {
         font-size: 2rem;
@@ -135,18 +135,19 @@ export default {
     }
   }
   &-tabs {
-    height: 4rem;
-   //  padding: 0 360px;
+    height: 6rem;
+    padding: 0 360px;
     background-color: #ffffff;
     box-shadow: 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     ul {
       display: flex;
       align-items: center;
       height: 100%;
       white-space: nowrap;
+      padding-top: 10px;
       li {
         margin-left: 4rem;
         cursor: pointer;
@@ -171,14 +172,14 @@ export default {
       }
     }
     .el-input {
-      width: 200px;
+      width: 16.43rem;
     }
     /deep/ .el-input__inner {
-      height: 2rem;
-      line-height: 2rem;
+      height: 2.29rem;
+      line-height: 2.29rem;
     }
     /deep/ .el-input__icon {
-      line-height: 2rem;
+      line-height: 2.29rem;
     }
   }
   &-view {
