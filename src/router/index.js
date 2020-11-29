@@ -8,8 +8,9 @@ export default new Router({
   routes: [
     {
       path: '/',
-      component: index,
-      redirect:"Index",
+      component: () =>
+      import(/* webpackChunkName: "pc" */ '@/App.vue'),
+      redirect:'/index',
       children:[
         pcrouter
       ]
