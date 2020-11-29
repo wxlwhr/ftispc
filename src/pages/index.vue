@@ -23,6 +23,7 @@
           :class="activeKey === i ? 'active' : ''"
         >
           {{ item.title }}
+          <div class="line"></div>
         </li>
       </ul>
       <el-input
@@ -150,14 +151,23 @@ export default {
         margin-left: 4rem;
         cursor: pointer;
         padding-bottom: 10px;
+        position: relative;
       }
       li:first-child {
         margin-left: 0;
       }
-      .active {
-        color: #2983fe;
-        border-bottom: 3px solid #2983fe;
+      .line{
+         width: 0;
+         transition: width .3s;
+      }
+      .active .line{
+         width: 100%;
+         height: 3px;
+        background: #2983fe;
         border-radius: 2px;
+        position: absolute;
+        bottom: 0;
+        
       }
     }
     .el-input {
@@ -169,7 +179,6 @@ export default {
     }
     /deep/ .el-input__icon {
       line-height: 2rem;
-      margin-bottom: 10px;
     }
   }
   &-view {
