@@ -36,6 +36,10 @@
     <div class="home-view">
       <router-view />
     </div>
+    <div class="home-footer">
+      ©2019
+      中国互联网金融协会中国互联网金融服务平台金融科技服务能力共享系统版权所有
+    </div>
   </div>
 </template>
 
@@ -44,8 +48,8 @@ export default {
   data() {
     return {
       tabs: [
-        { title: "首页" },
-        { title: "产品" },
+        { title: "首页", path: "/index" },
+        { title: "产品", path: "/product" },
         { title: "解决方案" },
         { title: "入驻机构" },
         { title: "政策信息" },
@@ -56,18 +60,35 @@ export default {
       note: {
         backgroundImage: "url(" + require("../assets/homepage_top.jpg") + ")",
       },
-
       searchValue: "",
     };
   },
-
   components: {},
-
   computed: {},
-
+  created() {
+   //   监听路由变化
+    const path = this.$route.path
+    this.tabs.map((item,i)=>{
+       if(item.path === path){
+          this.activeKey = i
+       }
+    })
+  },
   methods: {
     handleChange(v) {
       this.activeKey = v;
+      let path = "";
+      switch (v) {
+        case 1:
+          path = "product";
+          break;
+        default:
+          path = "index";
+          break;
+      }
+      this.$router.push({
+        path,
+      });
     },
   },
 };
@@ -154,22 +175,29 @@ export default {
         cursor: pointer;
         padding-bottom: 10px;
         position: relative;
+        &:hover {
+          color: #2983fe;
+        }
       }
       li:first-child {
         margin-left: 0;
       }
-      .line{
-         width: 0;
-         transition: width .3s;
+      .line {
+        width: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        transition: width 0.3s;
       }
-      .active .line{
-         width: 100%;
-         height: 3px;
-        background: #2983fe;
-        border-radius: 2px;
-        position: absolute;
-        bottom: 0;
-        
+      .active {
+        color: #2983fe;
+        .line {
+          width: 100%;
+          height: 3px;
+          background: #2983fe;
+          border-radius: 2px;
+          position: absolute;
+          bottom: 0;
+        }
       }
     }
     .el-input {
@@ -185,6 +213,17 @@ export default {
   }
   &-view {
     padding: 0 360px;
+  }
+  &-footer {
+    width: 100%;
+    height: 4.93rem;
+    background-color: #1f1f1f;
+    font-size: 1rem;
+    line-height: 4.93rem;
+    color: #e4e5e8;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
   }
 }
 </style>
