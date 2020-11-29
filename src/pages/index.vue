@@ -118,6 +118,7 @@ export default {
       }
       .login-btn {
         height: 2rem;
+        font-size: 1rem;
         text-align: center;
         background-image: linear-gradient(-90deg, #2468f2 0%, #2493f2 100%),
           linear-gradient(#1d2bc5, #1d2bc5);
