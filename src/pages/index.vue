@@ -222,7 +222,6 @@ export default {
     line-height: 4.93rem;
     color: #e4e5e8;
     text-align: center;
-
   }
 }
 </style>
