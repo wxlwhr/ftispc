@@ -88,9 +88,13 @@ export default {
       if (item.path === path) {
         this.activeKey = i;
       }else{
+        this.activeKey = 0;
         this.$router.push('/index')
       }
     });
+  },
+  updated(){
+
   },
   methods: {
     handleChange(v) {

@@ -42,7 +42,7 @@
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">客户案例</span>
     </div>
-    <img src="@/assets/2_16.jpg" alt="" />
+    <img src="@/assets/2_16.jpg"  style="width:100%" alt="" />
     <div class="productInfo-title">
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">产品评价</span>
