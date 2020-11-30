@@ -109,13 +109,14 @@
       <div class="bottom_wire"></div>
       <!-- <div class="a">ad</div> -->
       <div class="plat_infor">
-        
+        <OrganList/>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import OrganList from '@/components/organList'
 export default {
   components: {},
   name: "Index",
@@ -129,7 +130,9 @@ export default {
     };
   },
 
-  components: {},
+  components: {
+    OrganList
+  },
 
   computed: {},
 
@@ -163,7 +166,7 @@ export default {
     .plat_infor {
       display: flex;
       justify-content: space-between;
-      width: 86rem;
+     
       margin: auto;
       .img_box {
         width: 35.625rem;  //35.625rem
@@ -197,10 +200,10 @@ export default {
     .ul_left {
       list-style: initial !important;
       margin-left: 2rem;
-      width: 35rem;
+      width: 31rem;
       margin-top: 1rem;
       li {
-        width: 34rem;
+        width: 26rem;
         font-size: 1rem;
         height: 2.8125rem;
         line-height: 2.8125rem;
