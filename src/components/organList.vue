@@ -5,14 +5,15 @@
         <div class="organ_logo">
           <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
         </div>
+        <div class="organ_name">蚂蚁科技</div>
       </div>
 
       <!-- <div style="width:2.18rem" v-for="(item,index) in logolist" :key="index"></div> -->
     </el-row>
     <div class="more">
-        <el-button type="primary" class="more_btn"
-              >查看更多<i class="el-icon-arrow-right el-icon--right"></i
-            ></el-button>
+      <el-button type="primary" class="more_btn"
+        >查看更多<i class="el-icon-arrow-right el-icon--right"></i
+      ></el-button>
     </div>
   </div>
 </template>
@@ -85,7 +86,7 @@ export default {
     flex-wrap: wrap;
     .aaa {
       width: 20%;
-      height: 15.625rem;
+      height: 17.625rem;
       .organ_logo {
         width: 13rem;
         height: 13rem;
@@ -101,16 +102,26 @@ export default {
           margin-left: -6.25rem;
         }
       }
+      .organ_name {
+        text-align: center;
+        margin-top: 1rem;
+        font-size: 1rem;
+        font-weight: 600;
+        font-family: MicrosoftYaHei-Bold;
+        font-stretch: normal;
+        letter-spacing: 0;
+        color: #35393f;
+      }
     }
   }
-  .more{
-      text-align: center;
-      .more_btn{
-           width: 98px;
-          height: 32px;
-          padding: 0;
-          font-size: 1rem;
-        }
+  .more {
+    text-align: center;
+    .more_btn {
+      width: 98px;
+      height: 32px;
+      padding: 0;
+      font-size: 1rem;
+    }
   }
 }
 </style>

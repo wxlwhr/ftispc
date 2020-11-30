@@ -71,7 +71,7 @@
       <div class="plat_infor">
         <div class="dynamic">
           <div class="img_box">
-            <img src="@/assets/jd.jpg" style="width: 24rem;height: 16.5rem;" alt="" />
+            <img src="@/assets/jd.jpg" style="width:100%;height: 100%;" alt="" />
           </div>
           <div class="dynamic_infor">
             <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
@@ -82,7 +82,7 @@
         </div>
         <div class="dynamic">
           <div class="img_box">
-            <img src="@/assets/man.jpg" style="width: 24rem;height: 16.5rem;" alt="" />
+            <img src="@/assets/man.jpg" style="width:100%;height: 100%;" alt="" />
           </div>
           <div class="dynamic_infor">
             <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
@@ -93,7 +93,7 @@
         </div>
         <div class="dynamic">
           <div class="img_box">
-            <img src="@/assets/money.jpg" style="width: 24rem;height: 16.5rem;" alt="" />
+            <img src="@/assets/money.jpg" style="width:100%;height: 100%;" alt="" />
           </div>
           <div class="dynamic_infor">
             <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
@@ -232,13 +232,13 @@ export default {
     }
     //   卡片
     .dynamic{
-       width: 24rem;
-       height: 23.125rem;
+       width:31.6667% ;   //24rem
+       height: 100%;          //23.125rem
        font-size: 1rem;
        position: relative;
        .img_box{
-          width: 24rem;
-          height: 16.5rem;
+          width:100% ;   //24rem
+          height: 71.35%;       //16.5rem
        }
       .dynamic_infor{
         p{ 
