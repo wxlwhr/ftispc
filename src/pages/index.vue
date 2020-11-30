@@ -14,7 +14,10 @@
         <div class="login-btn register">注册</div>
       </div>
     </div>
-    <div class="home-tabs">
+    <div
+      :class="activeKey === 1 && path === '/productInfo' ? 'blue-tabs' : ''"
+      class="home-tabs"
+    >
       <ul>
         <li
           v-for="(item, i) in tabs"
@@ -32,6 +35,12 @@
         v-model="searchValue"
       >
       </el-input>
+    </div>
+    <div
+      v-show="activeKey === 1 && path === '/productInfo'"
+      class="productInfo-topImg"
+    >
+      <img src="@/assets/2_02.jpg" alt="" />
     </div>
     <div class="home-view">
       <router-view />
@@ -57,22 +66,31 @@ export default {
         { title: "关于我们" },
       ],
       activeKey: 0,
+      path: "",
       note: {
         backgroundImage: "url(" + require("../assets/homepage_top.jpg") + ")",
       },
       searchValue: "",
     };
   },
+  watch: {
+    $route(to, from) {
+      this.path = to.path;
+    },
+  },
   components: {},
   computed: {},
   created() {
-   //   监听路由变化
-    const path = this.$route.path
-    this.tabs.map((item,i)=>{
-       if(item.path === path){
-          this.activeKey = i
-       }
-    })
+    //   监听路由变化
+    const path = this.$route.path;
+    this.path = path;
+    this.tabs.map((item, i) => {
+      if (item.path === path) {
+        this.activeKey = i;
+      }else{
+        this.$router.push('/index')
+      }
+    });
   },
   methods: {
     handleChange(v) {
@@ -84,6 +102,7 @@ export default {
           break;
         default:
           path = "index";
+          
           break;
       }
       this.$router.push({
@@ -209,6 +228,35 @@ export default {
     }
     /deep/ .el-input__icon {
       line-height: 2.29rem;
+    }
+  }
+  .blue-tabs {
+    background-color: #2882fe;
+    color: #fff;
+    border-top: 1px solid #fff;
+
+    .active {
+      color: #fff;
+      .line {
+        background: #fff;
+      }
+    }
+    ul{
+      
+      li{
+      &:hover{
+        color: #fff;
+      }
+    }
+     
+    }
+  }
+
+  .productInfo-topImg {
+    width: 100%;
+    img {
+      width: 100%;
+      height: 100%;
     }
   }
   &-view {
