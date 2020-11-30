@@ -91,6 +91,7 @@ export default {
         { title: "解决方案名称" },
       ],
       evaluate: "",
+      isOpen:false
     };
   },
   computed: {},
