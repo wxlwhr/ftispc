@@ -5,7 +5,7 @@
         <div class="organ_logo">
           <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
         </div>
-        <div class="organ_name">蚂蚁科技</div>
+        <div class="organ_name">{{item.organ_name}}</div>
       </div>
 
       <!-- <div style="width:2.18rem" v-for="(item,index) in logolist" :key="index"></div> -->
