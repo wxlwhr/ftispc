@@ -9,7 +9,7 @@
           <img
             src="@/assets/plat_img.png"
             alt=""
-            style="width: 35.625; height: 28.375rem"
+            style="width: 100%; height: 100%"
           />
         </div>
         <div class="plat_msg">
@@ -143,6 +143,7 @@ export default {
 .index {
   width: 100%;
   height: 100%;
+  margin: 0 auto;
   .plat_intro {
     margin:30px auto;
     .title {
@@ -166,15 +167,14 @@ export default {
     .plat_infor {
       display: flex;
       justify-content: space-between;
-     
       margin: auto;
       .img_box {
-        width: 35.625rem;  //35.625rem
-        height: 28.375rem;    // 32rem
+        width: 47.5%;  //35.625rem
+        height: 100%;    // 32rem
         margin-top: 1.875rem;
       }
       .plat_msg {
-        width: 43rem;
+        width: 50%;  //43rem
         font-weight: normal;
         font-stretch: normal;
         line-height: 2rem;

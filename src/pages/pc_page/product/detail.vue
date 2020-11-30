@@ -4,17 +4,17 @@
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">产品概述</span>
     </div>
-    <img src="@/assets/2_05.jpg" alt="" />
+    <img src="@/assets/2_05.jpg" style="width:100%" alt="" />
     <div class="productInfo-title">
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">产品功能</span>
     </div>
-    <img src="@/assets/2_09.jpg" alt="" />
+    <img src="@/assets/2_09.jpg"  style="width:100%" alt="" />
     <div class="productInfo-title">
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">产品优势</span>
     </div>
-    <img src="@/assets/2_13.jpg" alt="" />
+    <img src="@/assets/2_13.jpg"  style="width:100%"  alt="" />
     <div class="productInfo-title">
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">关联解决方案</span>
@@ -72,6 +72,7 @@
 
 <script>
 export default {
+  name:"ProductInfo",
   components: {},
   props: {},
   data() {

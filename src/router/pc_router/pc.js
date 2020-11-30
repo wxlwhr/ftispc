@@ -6,13 +6,13 @@ export default [{
   },
   {
     path: '/product',
-    name: 'product',
+    name: 'Product',
     component: () =>
       import(/* webpackChunkName: "pc" */ '@/pages/pc_page/product'),
   },
   {
     path: '/productInfo',
-    name: 'productInfo',
+    name: 'ProductInfo',
     component: () =>
       import(/* webpackChunkName: "pc" */ '@/pages/pc_page/product/detail'),
   },
