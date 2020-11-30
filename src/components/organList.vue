@@ -5,68 +5,36 @@
         <div class="organ_logo">
           <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
         </div>
-        <div class="organ_name">{{item.organ_name}}</div>
+        <div class="organ_name">{{ item.organ_name }}</div>
       </div>
 
       <!-- <div style="width:2.18rem" v-for="(item,index) in logolist" :key="index"></div> -->
     </el-row>
     <div class="more">
-      <el-button type="primary" class="more_btn"
+      <el-button v-if="type === 'btn'" type="primary" class="more_btn"
         >查看更多<i class="el-icon-arrow-right el-icon--right"></i
       ></el-button>
+      <el-pagination v-else background layout="prev, pager, next" :total="1000">
+      </el-pagination>
     </div>
   </div>
 </template>
 
 <script>
-import img1 from "@/assets/du.png";
 export default {
   name: "OrganList",
+  props: {
+    logolist: {
+      type: Array,
+      default: () => [],
+    },
+    type: {
+      type: String,
+      default: "btn",
+    },
+  },
   data() {
-    return {
-      logolist: [
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-      ],
-    };
+    return {};
   },
 
   components: {},
