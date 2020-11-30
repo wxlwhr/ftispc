@@ -20,8 +20,8 @@
       <span class="productInfo-title-tit">关联解决方案</span>
     </div>
     <div class="productInfo-solution">
-      <el-carousel trigger="click" height="15.188rem">
-        <el-carousel-item v-for="item in solutionData" :key="item">
+      <el-carousel :autoplay="false" trigger="click" height="15.188rem">
+        <el-carousel-item v-for="(item, index) in solutionData" :key="index">
           <el-row style="height: 15.188rem">
             <el-col v-for="(v, i) in item" :key="i" :span="6">
               <div>
@@ -37,6 +37,35 @@
           </el-row>
         </el-carousel-item>
       </el-carousel>
+    </div>
+    <div class="productInfo-title">
+      <span class="productInfo-title-tag"></span>
+      <span class="productInfo-title-tit">客户案例</span>
+    </div>
+    <img src="@/assets/2_16.jpg" alt="" />
+    <div class="productInfo-title">
+      <span class="productInfo-title-tag"></span>
+      <span class="productInfo-title-tit">产品评价</span>
+    </div>
+    <div class="productInfo-evaluate">
+      <div class="productInfo-evaluate-num">
+        <span class="number">45</span>
+        <span>条评价</span>
+      </div>
+      <div class="productInfo-evaluate-content">
+        <div style="color: #35393f; margin-bottom: 10px;font-weight: bold;">发表评价</div>
+        <el-input
+          type="textarea"
+          :rows="2"
+          placeholder="请输入内容"
+          v-model="evaluate"
+        >
+        </el-input>
+        <div class="productInfo-evaluate-footer">
+          <el-checkbox v-model="isOpen">是否公开</el-checkbox>
+          <el-button class="footer-btn" type="primary">发表</el-button>
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -58,15 +87,16 @@ export default {
         { title: "解决方案名称" },
         { title: "第九个" },
         { title: "解决方案名称" },
-        { title: "解决方案名称" }
+        { title: "解决方案名称" },
       ],
+      evaluate: "",
     };
   },
   computed: {},
   watch: {},
   created() {},
   mounted() {
-      this.dealSolutionData()
+    this.dealSolutionData();
   },
   methods: {
     dealSolutionData() {
@@ -75,7 +105,7 @@ export default {
       for (var i = 0; i < data.length; i += 8) {
         newData.push(data.slice(i, i + 8));
       }
-      this.solutionData = newData
+      this.solutionData = newData;
     },
   },
 };
@@ -121,6 +151,37 @@ export default {
         .goto {
           cursor: pointer;
         }
+      }
+    }
+  }
+  &-evaluate {
+      margin-bottom: 20px;
+    &-num {
+      .number {
+        color: #ff6854;
+        font-size: 24px;
+        font-family: Georgia;
+      }
+    }
+    &-content {
+      padding: 16px;
+      background-color: #eaeef2;
+      border: solid 1px #ccd3df;
+      margin-top: 15px;
+    }
+    .el-textarea__inner {
+      color: #35393f;
+      background-color: #e5e5e5;
+    }
+    &-footer {
+      text-align: end;
+      margin-top: 16px;
+      .footer-btn {
+        margin-left: 25px;
+        width: 64px;
+        height: 30px;
+        padding: 0;
+        background-color: #2882fe;
       }
     }
   }
