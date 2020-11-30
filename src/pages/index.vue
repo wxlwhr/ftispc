@@ -116,7 +116,6 @@ export default {
 .home {
   width: 100%;
   height: 100%;
-
   &-header {
     height: 21rem;
     padding: 0 360px;
@@ -261,6 +260,7 @@ export default {
   }
   &-view {
     padding: 0 360px;
+    // margin: 0 auto;
   }
   &-footer {
     width: 100%;

@@ -1,4 +1,32 @@
+@media screen and (min-width: 700px) {
+  html, body {
+      font-size: 12px!important;
+  }
+}
 
+@media screen and (min-width: 1000px) {
+  html, body {
+      font-size: 12px!important;
+  }
+}
+
+@media screen and (min-width: 1340px) {
+  html, body {
+      font-size: 12px!important;
+  }
+}
+
+@media screen and (min-width: 1580px) {
+  html, body {
+      font-size: 14px!important;
+  }
+}
+
+@media screen and (min-width: 1900px) {
+  html, body {
+      font-size: 16px!important;
+  }
+}
 html{
   height: 100%;
   font-size:62.5% !important;
