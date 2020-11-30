@@ -109,7 +109,7 @@
       <div class="bottom_wire"></div>
       <!-- <div class="a">ad</div> -->
       <div class="plat_infor">
-        <OrganList/>
+        <OrganList :logolist="logolist" />
       </div>
     </div>
   </div>
@@ -117,6 +117,7 @@
 
 <script>
 import OrganList from '@/components/organList'
+import img1 from "@/assets/organlogo.png";
 export default {
   components: {},
   name: "Index",
@@ -127,6 +128,48 @@ export default {
       plat_infor2:
         "金融科技服务能力共享系统是一个以AI驱动产业数字化的新型数字平台。平台以AI、数据技术、物联网、区块链等前沿数字科技为基础，建立并发展起核心的风险管理能力、用户运营能力、产业理解能力和企业服务能力。",
       currentDate: new Date(),
+       logolist: [
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+        {
+          src: img1,
+          organ_name: "蚂蚁科技",
+        },
+      ],
     };
   },
 
