@@ -20,19 +20,23 @@
       <span class="productInfo-title-tit">关联解决方案</span>
     </div>
     <div class="productInfo-solution">
-      <el-row style="height:15.188rem">
-        <el-col v-for="(item, i) in solutionData" :key="i" :span="6">
-          <div>
-            <div>
-              <img src="@/assets/Solution.png" alt="" />
-              <span>{{ item.title }}</span>
-            </div>
-            <div class="goto">
-              <img src="@/assets/arrow_right.png" alt="" />
-            </div>
-          </div>
-        </el-col>
-      </el-row>
+      <el-carousel trigger="click" height="15.188rem">
+        <el-carousel-item v-for="item in solutionData" :key="item">
+          <el-row style="height: 15.188rem">
+            <el-col v-for="(v, i) in item" :key="i" :span="6">
+              <div>
+                <div>
+                  <img src="@/assets/Solution.png" alt="" />
+                  <span>{{ v.title }}</span>
+                </div>
+                <div class="goto">
+                  <img src="@/assets/arrow_right.png" alt="" />
+                </div>
+              </div>
+            </el-col>
+          </el-row>
+        </el-carousel-item>
+      </el-carousel>
     </div>
   </div>
 </template>
@@ -53,17 +57,28 @@ export default {
         { title: "解决方案名称" },
         { title: "解决方案名称" },
         { title: "解决方案名称" },
-        // { title: "解决方案名称" },
-        // { title: "解决方案名称" },
-        // { title: "解决方案名称" },
+        { title: "第九个" },
+        { title: "解决方案名称" },
+        { title: "解决方案名称" }
       ],
     };
   },
   computed: {},
   watch: {},
   created() {},
-  mounted() {},
-  methods: {},
+  mounted() {
+      this.dealSolutionData()
+  },
+  methods: {
+    dealSolutionData() {
+      const data = this.solutionData;
+      let newData = [];
+      for (var i = 0; i < data.length; i += 8) {
+        newData.push(data.slice(i, i + 8));
+      }
+      this.solutionData = newData
+    },
+  },
 };
 </script>
 <style lang="scss" scoped>
@@ -91,7 +106,7 @@ export default {
   &-solution {
     width: 100%;
     .el-col {
-        padding: 0 0.834rem;
+      padding: 0 0.834rem;
       > div {
         height: 60px;
         display: flex;
