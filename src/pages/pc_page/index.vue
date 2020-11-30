@@ -141,7 +141,6 @@ export default {
 </script>
 <style lang='scss' scoped>
 .index {
-  margin: auto;
   width: 100%;
   height: 100%;
   .plat_intro {

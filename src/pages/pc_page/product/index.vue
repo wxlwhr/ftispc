@@ -20,16 +20,13 @@
       </div>
       <div class="product-content-right">
         <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="name" label="姓名">
-          </el-table-column>
-          <el-table-column prop="province" label="省份">
-          </el-table-column>
-          <el-table-column prop="city" label="市区">
-          </el-table-column>
+          <el-table-column prop="name" label="姓名" width="auto"> </el-table-column>
+          <el-table-column prop="province" label="省份" width="auto"> </el-table-column>
+          <el-table-column prop="city" label="市区" width="auto"> </el-table-column>
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
               <el-button
-                @click="handleClick(scope.row)"
+                @click="handleView(scope.row)"
                 type="text"
                 size="small"
                 >查看</el-button
@@ -149,12 +146,13 @@ export default {
   computed: {},
 
   methods: {
-    handleClick(row) {
+    handleView(row) {
       console.log(row);
+      this.$router.push('/productInfo')
     },
-   handleNodeClick(data) {
-        console.log(data);
-      }
+    handleNodeClick(data) {
+      console.log(data);
+    },
   },
 };
 </script>
@@ -169,12 +167,12 @@ export default {
 
     &-tag {
       width: 0.29rem;
-      height: 1.79rem;
-      background-color: #2882fe;
+      height: 24px;
+      background-color: #2882fe;    
     }
 
     &-tit {
-      font-size: 1.71rem;
+      font-size: 24px;
       color: #35393f;
       font-weight: bold;
       margin-left: 1rem;
@@ -187,10 +185,10 @@ export default {
     display: flex;
 
     &-left {
-      width: 15.71rem;
+      width: 220px;
       height: 100%;
       border-right: 1px solid #d6dce7;
-      
+
       .title {
         img {
           vertical-align: middle;
@@ -205,12 +203,13 @@ export default {
       }
       .tree {
         margin-top: 0.93rem;
-        
+        padding: 0 1rem;
       }
     }
 
-    &-right{
-       padding: 15px;
+    &-right {
+      padding: 15px;
+      width: calc(100% - 220px);
     }
   }
 }
