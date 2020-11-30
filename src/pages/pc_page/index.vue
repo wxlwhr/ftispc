@@ -67,11 +67,15 @@
     <div class="plat_intro">
       <p class="title">动态发布</p>
       <div class="bottom_wire"></div>
-      <!-- <div class="a">ad</div> -->
       <div class="plat_infor">
+
         <div class="dynamic">
           <div class="img_box">
-            <img src="@/assets/jd.jpg" style="width:100%;height: 100%;" alt="" />
+            <img
+              src="@/assets/jd.jpg"
+              style="width: 100%; height: 100%"
+              alt=""
+            />
           </div>
           <div class="dynamic_infor">
             <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
@@ -82,7 +86,11 @@
         </div>
         <div class="dynamic">
           <div class="img_box">
-            <img src="@/assets/man.jpg" style="width:100%;height: 100%;" alt="" />
+            <img
+              src="@/assets/man.jpg"
+              style="width: 100%; height: 100%"
+              alt=""
+            />
           </div>
           <div class="dynamic_infor">
             <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
@@ -93,7 +101,11 @@
         </div>
         <div class="dynamic">
           <div class="img_box">
-            <img src="@/assets/money.jpg" style="width:100%;height: 100%;" alt="" />
+            <img
+              src="@/assets/money.jpg"
+              style="width: 100%; height: 100%"
+              alt=""
+            />
           </div>
           <div class="dynamic_infor">
             <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
@@ -104,19 +116,19 @@
         </div>
       </div>
     </div>
-    <div class="plat_intro" style="margin-top:50px">
+    <div class="plat_intro" style="margin-top: 50px">
       <p class="title">入驻机构</p>
       <div class="bottom_wire"></div>
       <!-- <div class="a">ad</div> -->
       <div class="plat_infor">
-        <OrganList/>
+        <OrganList />
       </div>
     </div>
   </div>
 </template>
 
 <script>
-import OrganList from '@/components/organList'
+import OrganList from "@/components/organList";
 export default {
   components: {},
   name: "Index",
@@ -131,7 +143,7 @@ export default {
   },
 
   components: {
-    OrganList
+    OrganList,
   },
 
   computed: {},
@@ -145,7 +157,7 @@ export default {
   height: 100%;
   margin: 0 auto;
   .plat_intro {
-    margin:30px auto;
+    margin: 30px auto;
     .title {
       font-family: MicrosoftYaHei;
       font-size: 2rem;
@@ -169,12 +181,12 @@ export default {
       justify-content: space-between;
       margin: auto;
       .img_box {
-        width: 47.5%;  //35.625rem
-        height: 100%;    // 32rem
+        width: 47.5%; //35.625rem
+        height: 100%; // 32rem
         margin-top: 1.875rem;
       }
       .plat_msg {
-        width: 50%;  //43rem
+        width: 50%; //43rem
         font-weight: normal;
         font-stretch: normal;
         line-height: 2rem;
@@ -231,22 +243,22 @@ export default {
       margin-right: 1.25rem;
     }
     //   卡片
-    .dynamic{
-       width:31.6667% ;   //24rem
-       height: 100%;          //23.125rem
-       font-size: 1rem;
-       position: relative;
-       .img_box{
-          width:100% ;   //24rem
-          height: 71.35%;       //16.5rem
-       }
-      .dynamic_infor{
-        p{ 
-           font-size: 1rem;
-           margin-top: 1rem;
+    .dynamic {
+      width: 31.6667%; //24rem
+      height: 100%; //23.125rem
+      font-size: 1rem;
+      position: relative;
+      .img_box {
+        width: 100%; //24rem
+        height: 71.35%; //16.5rem
+      }
+      .dynamic_infor {
+        p {
+          font-size: 1rem;
+          margin-top: 1rem;
         }
-        .more_btn{
-           width: 98px;
+        .more_btn {
+          width: 98px;
           height: 32px;
           padding: 0;
           font-size: 1rem;
@@ -255,8 +267,7 @@ export default {
         }
       }
     }
+
   }
-  
-  
 }
 </style>

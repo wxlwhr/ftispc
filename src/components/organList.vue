@@ -5,7 +5,7 @@
         <div class="organ_logo">
           <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
         </div>
-        <div class="organ_name">蚂蚁科技</div>
+        <div class="organ_name">{{item.organ_name}}</div>
       </div>
 
       <!-- <div style="width:2.18rem" v-for="(item,index) in logolist" :key="index"></div> -->
@@ -19,7 +19,7 @@
 </template>
 
 <script>
-import img1 from "@/assets/organlogo.png";
+import img1 from "@/assets/du.png";
 export default {
   name: "OrganList",
   data() {
@@ -27,43 +27,43 @@ export default {
       logolist: [
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
       ],
     };

@@ -36,11 +36,18 @@
       >
       </el-input>
     </div>
+    <!-- 产品详情顶部banner -->
     <div
       v-show="activeKey === 1 && path === '/productInfo'"
       class="productInfo-topImg"
     >
       <img src="@/assets/2_02.jpg" alt="" />
+    </div>
+    <div
+      v-show="activeKey === 2 && path === '/solutionInfo'"
+      class="productInfo-topImg"
+    >
+      <img src="@/assets/solutionImg.jpg" alt="" />
     </div>
     <div class="home-view">
       <router-view />
@@ -59,8 +66,8 @@ export default {
       tabs: [
         { title: "首页", path: "/index" },
         { title: "产品", path: "/product" },
-        { title: "解决方案" },
-        { title: "入驻机构" },
+        { title: "解决方案",path:"/solution" },
+        { title: "入驻机构" ,path:"/organization"},
         { title: "政策信息" },
         { title: "动态发布" },
         { title: "关于我们" },
@@ -101,6 +108,12 @@ export default {
       this.activeKey = v;
       let path = "";
       switch (v) {
+        case 3:
+          path = "organization";
+          break;
+        case 2:
+          path = "solution";
+          break;
         case 1:
           path = "product";
           break;

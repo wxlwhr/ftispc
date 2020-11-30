@@ -1,11 +1,12 @@
 <template>
    <div>
-       入驻机构
+       机构详情
    </div>
 </template>
 
 <script>
 export default {
+    name:"OrganizatioanDetail",
    data () {
       return {
 
