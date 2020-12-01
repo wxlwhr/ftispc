@@ -129,9 +129,8 @@
 
 <script>
 import OrganList from '@/components/organList'
-import img1 from "@/assets/organlogo.png";
+import img1 from "@/assets/du.png";
 export default {
-  components: {},
   name: "Index",
   data() {
     return {
@@ -143,43 +142,43 @@ export default {
        logolist: [
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
         {
           src: img1,
-          organ_name: "蚂蚁科技",
+          organ_name: "度小满金融",
         },
       ],
     };

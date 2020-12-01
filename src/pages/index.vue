@@ -65,9 +65,13 @@ export default {
     return {
       tabs: [
         { title: "首页", path: "/index" },
-        { title: "产品", path: "/product" },
-        { title: "解决方案",path:"/solution" },
-        { title: "入驻机构" ,path:"/organization"},
+        { title: "产品", path: "/product", children: ["/productInfo"] },
+        { title: "解决方案", path: "/solution", children: ["/solutionInfo"] },
+        {
+          title: "入驻机构",
+          path: "/organization",
+          children: ["/organizationDetail"],
+        },
         { title: "政策信息" },
         { title: "动态发布" },
         { title: "关于我们" },
@@ -91,18 +95,21 @@ export default {
     //   监听路由变化
     const path = this.$route.path;
     this.path = path;
-    this.tabs.map((item, i) => {
-      if (item.path === path) {
-        this.activeKey = i;
-      }else{
-        this.activeKey = 0;
+    console.log(this.path)
+    if (this.path === "/") {
+        this.activeKey=0
         this.$router.push('/index')
       }
+    this.tabs.map((item, i) => {
+      if (item.path === path) {
+          this.activeKey = i;
+        } else {
+          // this.activeKey = 0;
+          // this.$router.push('/index')
+        }
     });
   },
-  updated(){
-
-  },
+  updated() {},
   methods: {
     handleChange(v) {
       this.activeKey = v;
@@ -119,7 +126,7 @@ export default {
           break;
         default:
           path = "index";
-          
+
           break;
       }
       this.$router.push({
@@ -257,14 +264,12 @@ export default {
         background: #fff;
       }
     }
-    ul{
-      
-      li{
-      &:hover{
-        color: #fff;
+    ul {
+      li {
+        &:hover {
+          color: #fff;
+        }
       }
-    }
-     
     }
   }
 

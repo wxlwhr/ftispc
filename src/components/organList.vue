@@ -2,7 +2,7 @@
   <div class="organList">
     <el-row>
       <div class="aaa" v-for="(item, index) in logolist" :key="index">
-        <div class="organ_logo">
+        <div class="organ_logo" @click="handleOrganDetail">
           <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
         </div>
         <div class="organ_name">{{ item.organ_name }}</div>
@@ -41,7 +41,11 @@ export default {
 
   computed: {},
 
-  methods: {},
+  methods: {
+    handleOrganDetail(e){
+      console.log(e)
+    }
+  },
 };
 </script>
 <style lang='scss' scoped>
@@ -62,6 +66,7 @@ export default {
         border-radius: 8px;
         position: relative;
         margin: auto;
+        cursor: pointer;
         img {
           position: absolute;
           top: 50%;
@@ -84,6 +89,7 @@ export default {
   }
   .more {
     text-align: center;
+    margin-bottom: 3rem;
     .more_btn {
       width: 98px;
       height: 32px;
