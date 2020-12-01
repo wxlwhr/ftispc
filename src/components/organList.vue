@@ -43,6 +43,7 @@ export default {
 
   methods: {
     handleOrganDetail(e){
+      this.$router.push('/organizationDetail')
       console.log(e)
     }
   },
@@ -89,6 +90,7 @@ export default {
   }
   .more {
     text-align: center;
+    margin-top: 2rem;
     margin-bottom: 3rem;
     .more_btn {
       width: 98px;

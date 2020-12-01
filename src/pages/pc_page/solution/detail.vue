@@ -75,6 +75,8 @@ export default {
         { title: "解决方案名称" },
         { title: "解决方案名称" },
       ],
+      isOpen:true,
+      evaluate:''
     };
   },
 

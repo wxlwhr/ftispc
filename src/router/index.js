@@ -12,7 +12,7 @@ export default new Router({
   routes: [
     {
       path: '/',
-      // redirect:'/index',
+      redirect:'/index',
       component: () =>
         import(/* webpackChunkName: "pc" */ '@/pages/index'),
       children: [

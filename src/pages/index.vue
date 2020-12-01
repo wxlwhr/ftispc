@@ -65,12 +65,20 @@ export default {
     return {
       tabs: [
         { title: "首页", path: "/index" },
-        { title: "产品", path: "/product", children: ["/productInfo"] },
-        { title: "解决方案", path: "/solution", children: ["/solutionInfo"] },
+        {
+          title: "产品",
+          path: "/product",
+          children: [{ path: "/productInfo" }],
+        },
+        {
+          title: "解决方案",
+          path: "/solution",
+          children: [{ path: "/solutionInfo" }],
+        },
         {
           title: "入驻机构",
           path: "/organization",
-          children: ["/organizationDetail"],
+          children: [{ path: "/organizationDetail" }],
         },
         { title: "政策信息" },
         { title: "动态发布" },
@@ -95,18 +103,26 @@ export default {
     //   监听路由变化
     const path = this.$route.path;
     this.path = path;
-    console.log(this.path)
-    if (this.path === "/") {
-        this.activeKey=0
-        this.$router.push('/index')
-      }
+    console.log(this.path);
     this.tabs.map((item, i) => {
+      console.log(path);
+
       if (item.path === path) {
-          this.activeKey = i;
-        } else {
-          // this.activeKey = 0;
-          // this.$router.push('/index')
+        this.activeKey = i;
+      } else {
+        if (item.children) {
+          item.children.map((item, j) => {
+            console.log(item, j);
+            if (item.path === path) {
+              this.activeKey = i;
+            }
+          });
+        }else{
+          console.log("真没有children")
         }
+        // this.activeKey = 0;
+        // this.$router.push('/index')
+      }
     });
   },
   updated() {},
