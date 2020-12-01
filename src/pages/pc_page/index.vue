@@ -30,7 +30,7 @@
         class="plat_infor"
         style="border: 1px solid #ccc; margin-top: 1.5rem"
       >
-        <ul class="ul_left" style="list-style: initial">
+        <ul class="ul_left">
           <li>中华人民共和国人民银行法（修正）</li>
           <li>中华人民共和国人民银行法</li>
           <li>中华人民共和国人民银行法（修正）</li>
@@ -252,7 +252,7 @@ export default {
       }
     }
     .ul_left {
-      list-style: initial !important;
+      list-style: inside !important;
       margin-left: 2rem;
       width: 31rem;
       margin-top: 1rem;
