@@ -15,7 +15,7 @@
       </div>
     </div>
     <div
-      :class="activeKey === 1 && path === '/productInfo' ? 'blue-tabs' : ''"
+      :class="path === '/productInfo' || path === '/solutionInfo' ? 'blue-tabs' : ''"
       class="home-tabs"
     >
       <ul>
@@ -273,6 +273,7 @@ export default {
     background-color: #2882fe;
     color: #fff;
     border-top: 1px solid #fff;
+    border-bottom: 1px solid #fff;
 
     .active {
       color: #fff;
