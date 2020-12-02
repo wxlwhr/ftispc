@@ -71,7 +71,7 @@ export default {
 <style lang='scss' scoped>
 .organization {
   width: 100%;
-
+  min-height: 77rem;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;

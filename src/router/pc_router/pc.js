@@ -40,5 +40,23 @@ export default [{
     component: () =>
       import(/* webpackChunkName: "pc" */ '@/pages/pc_page/organization/detail'),
   },
+  {
+    path: '/policy',
+    name: 'Policy',
+    component: () =>
+      import(/* webpackChunkName: "pc" */ '@/pages/pc_page/policy'),
+  },
+  {
+    path: '/dynamic_issue',
+    name: 'Dynamic_issue',
+    component: () =>
+      import(/* webpackChunkName: "pc" */ '@/pages/pc_page/dynamic_issue'),
+  },
+  {
+    path: '/about_us',
+    name: 'About_us',
+    component: () =>
+      import(/* webpackChunkName: "pc" */ '@/pages/pc_page/about_us'),
+  },
 ]
   

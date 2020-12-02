@@ -15,7 +15,9 @@
       </div>
     </div>
     <div
-      :class="path === '/productInfo' || path === '/solutionInfo' ? 'blue-tabs' : ''"
+      :class="
+        path === '/productInfo' || path === '/solutionInfo' ? 'blue-tabs' : ''
+      "
       class="home-tabs"
     >
       <ul>
@@ -80,9 +82,9 @@ export default {
           path: "/organization",
           children: [{ path: "/organizationDetail" }],
         },
-        { title: "政策信息" },
-        { title: "动态发布" },
-        { title: "关于我们" },
+        { title: "政策信息", path: "/policy" },
+        { title: "动态发布", path: "/dynamic_issue" },
+        { title: "关于我们", path:"/about_us" },
       ],
       activeKey: 0,
       path: "",
@@ -117,8 +119,8 @@ export default {
               this.activeKey = i;
             }
           });
-        }else{
-          console.log("真没有children")
+        } else {
+          console.log("真没有children");
         }
         // this.activeKey = 0;
         // this.$router.push('/index')
@@ -131,6 +133,15 @@ export default {
       this.activeKey = v;
       let path = "";
       switch (v) {
+        case 6:
+          path = "about_us";
+          break;
+        case 5:
+          path = "dynamic_issue";
+          break;
+        case 4:
+          path = "policy";
+          break;
         case 3:
           path = "organization";
           break;

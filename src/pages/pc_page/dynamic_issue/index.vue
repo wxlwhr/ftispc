@@ -6,6 +6,7 @@
 
 <script>
 export default {
+   name:"Dynamic_issue",
    data () {
       return {
 

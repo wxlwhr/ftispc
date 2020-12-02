@@ -160,7 +160,7 @@ export default {
 <style lang='scss' scoped>
 .product {
   height: 100%;
-  min-height: 77.25rem;
+  min-height: 77rem;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;
