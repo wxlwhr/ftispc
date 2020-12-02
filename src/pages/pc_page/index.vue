@@ -1,11 +1,184 @@
 <template>
   <div class="index">
     <div class="index-banner">
-      <el-carousel trigger="click" height="150px">
+      <el-carousel trigger="click">
         <el-carousel-item v-for="item in 4" :key="item">
-          <h3 class="small">{{ item }}</h3>
+          <div class="system-infor">
+            <p class="row1">金融科技服务能力共享系统</p>
+            <p class="row2">
+              打造金融+科技+场景多维开放生态，连接监管机构、金融机构、科技服务商、场景商户
+            </p>
+            <el-button class="btn">立即查看</el-button>
+          </div>
+          <img
+            src="@/assets/homepage_banner.jpg"
+            width="100%"
+            height="100%"
+            alt=""
+          />
         </el-carousel-item>
+        <!-- <el-carousel-item>
+          <img src="@/assets/dynamic_bg.jpg" width="100%" alt="" />
+        </el-carousel-item> -->
       </el-carousel>
+    </div>
+    <div class="index-tab">
+      <div class="col1">
+        <img
+          src="@/assets/icon1.png"
+          style="width: 3rem; height: 3rem"
+          alt=""
+        />
+        <div class="text">
+          <p>数字化解决方案</p>
+          <p>API能力、中台服务</p>
+        </div>
+      </div>
+      <div class="col1">
+        <img
+          src="@/assets/icon1.png"
+          style="width: 3rem; height: 3rem"
+          alt=""
+        />
+        <div class="text">
+          <p>数字化解决方案</p>
+          <p>API能力、中台服务</p>
+        </div>
+      </div>
+      <div class="col1">
+        <img
+          src="@/assets/icon1.png"
+          style="width: 3rem; height: 3rem"
+          alt=""
+        />
+        <div class="text">
+          <p>数字化解决方案</p>
+          <p>API能力、中台服务</p>
+        </div>
+      </div>
+      <div class="col1">
+        <img
+          src="@/assets/icon1.png"
+          style="width: 3rem; height: 3rem"
+          alt=""
+        />
+        <div class="text">
+          <p>数字化解决方案</p>
+          <p>API能力、中台服务</p>
+        </div>
+      </div>
+    </div>
+    <div class="index-product" :style="leftBg">
+      <div class="index-product-box">
+        <div class="row">
+          <p>产品</p>
+          <span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
+        </div>
+        <div class="title">技术产品</div>
+        <div class="list">
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="title">业务产品</div>
+        <div class="list">
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>AI</span>
+              </div>
+              <div class="txt">
+                产品相关描述产品相关描述产品相关描述产品相关
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
     <div class="plat_intro">
       <p class="title">政策信息</p>
@@ -164,6 +337,13 @@ export default {
           organ_name: "度小满金融",
         },
       ],
+      bg_url: "@/assets/pro_bg.png",
+      leftBg: {
+        background:
+          " url(" +
+          require("@/assets/pro_bg.png") +
+          ") no-repeat scroll center center / 100% ",
+      },
     };
   },
 
@@ -183,20 +363,158 @@ export default {
   height: 100%;
   margin: 0 auto;
   &-banner {
-    .el-carousel__item h3 {
-      color: #475669;
-      font-size: 14px;
-      opacity: 0.75;
-      line-height: 150px;
-      margin: 0;
+    .el-carousel__item {
+      .system-infor {
+        width: 36.625rem;
+        position: absolute;
+        top: 8.5rem;
+        left: 30rem;
+        p {
+          color: #fff;
+        }
+        .row1 {
+          font-size: 2.5rem;
+          font-weight: 600;
+        }
+        .row2 {
+          font-size: 1.5rem;
+          margin-top: 1.625rem;
+        }
+        .btn {
+          padding: 0;
+          margin-top: 2rem;
+          width: 7rem;
+          height: 2.5rem;
+          font-size: 1rem;
+          background-color: #ff871d;
+          color: #fff;
+          border: 0;
+          border-radius: 0;
+        }
+      }
+      h3 {
+        color: #475669;
+        font-size: 14px;
+        opacity: 0.75;
+        line-height: 150px;
+        margin: 0;
+      }
     }
-
-    .el-carousel__item:nth-child(2n) {
-      background-color: #99a9bf;
+  }
+  &-tab {
+    height: 7.5rem;
+    width: 62.5%;
+    background-color: #fff;
+    display: flex;
+    position: absolute;
+    top: 32.5rem;
+    // position: relative;
+    // top: -3.85rem;
+    left: 18.75%;
+    z-index: 999;
+    border: 0;
+    border-radius: 5px;
+    .col1 {
+      width: 25%;
+      height: 100%;
+      display: flex;
+      img {
+        margin: auto 0;
+        margin-left: 5rem;
+      }
+      .text {
+        height: 100%;
+        position: relative;
+        top: 30%;
+        left: 4%;
+        p:nth-child(1) {
+          font-size: 1rem;
+          color: #3d464e;
+        }
+        p:nth-child(2) {
+          margin-top: 0.2rem;
+          font-size: 0.875rem;
+          color: #808e9b;
+        }
+      }
     }
-
-    .el-carousel__item:nth-child(2n + 1) {
-      background-color: #d3dce6;
+  }
+  &-product {
+    height: 44rem;
+    width: 100%;
+    &-box {
+      width: 62.5%;
+      height: 100%;
+      margin:0 auto;
+      padding-top: 9rem;
+      .row {
+        display: flex;
+        justify-content: space-between;
+        line-height: 3rem;
+        p {
+          font-size: 3rem;
+        }
+        span {
+          text-align: center;
+          width: 6rem;
+          height: 3rem;
+          line-height: 3rem;
+          color: #2882fe;
+          border: 1px solid #2882fe;
+          img {
+            margin-left: 5px;
+          }
+        }
+      }
+      .title {
+        font-size: 2rem;
+        color: #2882fe;
+        margin-left: 10px;
+        margin-top: 2rem;
+      }
+      .list {
+        display: flex;
+        margin-top: 1rem;
+        .col {
+          width: 25%;
+          height: 9rem;
+          // background-color: #ff871d;
+          .little_box {
+            width: 94%;
+            height: 8rem;
+            background: #fff;
+            border: 1px solid #cfd2d7;
+            margin-top: 0.5rem;
+            margin-left: 3%;
+            cursor: pointer;
+            transition: all 0.4s;
+            .row1 {
+              margin-left: 1.2rem;
+              margin-top: 10px;
+              img {
+                position: absolute;
+              }
+              span {
+                margin-left: 2.8rem;
+              }
+            }
+            .txt {
+              width: 70%;
+              margin-top: 4px;
+              margin-left: 4rem;
+              font-size: 0.6rem;
+              display: -webkit-box;
+              -webkit-box-orient: vertical;
+              -webkit-line-clamp: 2;
+              overflow: hidden;
+            }
+          }
+          .little_box:hover {
+            box-shadow: #cfd2d7 0 0 1px 1px;
+            transform: scale(1.04);
+          }
+        }
+      }
     }
   }
   .plat_intro {
