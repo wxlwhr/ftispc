@@ -72,6 +72,7 @@ export default {
 .organization {
   width: 100%;
   min-height: 77rem;
+  padding: 0 360px;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;

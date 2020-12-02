@@ -105,6 +105,7 @@ export default {
 <style lang='scss' scoped>
 .solutionInfo {
   width: 100%;
+  padding: 0 360px;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;

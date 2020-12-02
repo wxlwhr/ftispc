@@ -1,27 +1,11 @@
 <template>
   <div class="index">
-    <div class="plat_intro">
-      <p class="title">平台简介</p>
-      <div class="bottom_wire"></div>
-      <!-- <div class="a">ad</div> -->
-      <div class="plat_infor">
-        <div class="img_box">
-          <img
-            src="@/assets/plat_img.png"
-            alt=""
-            style="width: 100%; height: 100%"
-          />
-        </div>
-        <div class="plat_msg">
-          <p>{{ plat_infor }}</p>
-          <p>{{ plat_infor }}</p>
-          <p>{{ plat_infor2 }}</p>
-
-          <el-button type="primary" class="more_btn"
-            >查看更多<i class="el-icon-arrow-right el-icon--right"></i
-          ></el-button>
-        </div>
-      </div>
+    <div class="index-banner">
+      <el-carousel trigger="click" height="150px">
+        <el-carousel-item v-for="item in 4" :key="item">
+          <h3 class="small">{{ item }}</h3>
+        </el-carousel-item>
+      </el-carousel>
     </div>
     <div class="plat_intro">
       <p class="title">政策信息</p>
@@ -68,7 +52,6 @@
       <p class="title">动态发布</p>
       <div class="bottom_wire"></div>
       <div class="plat_infor">
-
         <div class="dynamic">
           <div class="img_box">
             <img
@@ -128,7 +111,7 @@
 </template>
 
 <script>
-import OrganList from '@/components/organList'
+import OrganList from "@/components/organList";
 import img1 from "@/assets/du.png";
 export default {
   name: "Index",
@@ -139,7 +122,7 @@ export default {
       plat_infor2:
         "金融科技服务能力共享系统是一个以AI驱动产业数字化的新型数字平台。平台以AI、数据技术、物联网、区块链等前沿数字科技为基础，建立并发展起核心的风险管理能力、用户运营能力、产业理解能力和企业服务能力。",
       currentDate: new Date(),
-       logolist: [
+      logolist: [
         {
           src: img1,
           organ_name: "度小满金融",
@@ -195,9 +178,27 @@ export default {
 </script>
 <style lang='scss' scoped>
 .index {
+  padding: 0;
   width: 100%;
   height: 100%;
   margin: 0 auto;
+  &-banner {
+    .el-carousel__item h3 {
+      color: #475669;
+      font-size: 14px;
+      opacity: 0.75;
+      line-height: 150px;
+      margin: 0;
+    }
+
+    .el-carousel__item:nth-child(2n) {
+      background-color: #99a9bf;
+    }
+
+    .el-carousel__item:nth-child(2n + 1) {
+      background-color: #d3dce6;
+    }
+  }
   .plat_intro {
     margin: 30px auto;
     .title {
@@ -309,7 +310,6 @@ export default {
         }
       }
     }
-
   }
 }
 </style>

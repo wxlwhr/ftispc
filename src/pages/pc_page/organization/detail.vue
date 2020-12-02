@@ -175,6 +175,7 @@ export default {
 <style lang='scss' scoped>
 .organizatioanDetail {
   width: 100%;
+  padding: 0 360px;
   &-header {
     margin-top: 2rem;
   }

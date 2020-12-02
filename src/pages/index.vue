@@ -308,10 +308,10 @@ export default {
       height: 100%;
     }
   }
-  &-view {
-    padding: 0 360px;
+  // &-view {
+    // padding: 0 360px;
     // margin: 0 auto;
-  }
+  // }
   &-footer {
     width: 100%;
     height: 4.93rem;
