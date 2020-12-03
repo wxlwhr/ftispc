@@ -2,13 +2,14 @@
   <div class="organList">
     <el-row>
       <div class="aaa" v-for="(item, index) in logolist" :key="index">
-        <div class="organ_logo" @click="handleOrganDetail">
+        <div class="organ_logo" @click="handleOrganDetail" >
           <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
         </div>
-        <div class="organ_name">{{ item.organ_name }}</div>
+        <div class="mask">
+          <span>{{item.organ_name}}</span>
+          <img src="@/assets/magnifier.png" alt="">
+        </div>
       </div>
-
-      <!-- <div style="width:2.18rem" v-for="(item,index) in logolist" :key="index"></div> -->
     </el-row>
     <div class="more">
       <el-button v-if="type === 'btn'" type="primary" class="more_btn"
@@ -34,7 +35,9 @@ export default {
     },
   },
   data() {
-    return {};
+    return {
+      
+    };
   },
 
   components: {},
@@ -51,20 +54,20 @@ export default {
 </script>
 <style lang='scss' scoped>
 .organList {
-  width: 100%;
+  width: 1200px;
   .el-row {
     margin-top: 2rem;
     display: flex;
     // justify-content: space-between;
     flex-wrap: wrap;
     .aaa {
-      width: 20%;
-      height: 17.625rem;
+      width: 200px;
+      height: 200px;
+      position: relative;
       .organ_logo {
-        width: 13rem;
-        height: 13rem;
+        width: 200px;
+        height: 200px;
         border: 1px solid #cfd2d7;
-        border-radius: 8px;
         position: relative;
         margin: auto;
         cursor: pointer;
@@ -76,16 +79,32 @@ export default {
           margin-left: -6.25rem;
         }
       }
-      .organ_name {
-        text-align: center;
-        margin-top: 1rem;
-        font-size: 1rem;
-        font-weight: 600;
-        font-family: MicrosoftYaHei-Bold;
-        font-stretch: normal;
-        letter-spacing: 0;
-        color: #35393f;
+      &:hover{
+        .mask{
+          opacity: .9;
+        }
       }
+    }
+  }
+  .mask{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    background: #2882fe;
+    color: #fff;
+    span{
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%,-50%);
+    }
+    img{
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
     }
   }
   .more {
