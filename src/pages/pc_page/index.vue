@@ -186,51 +186,162 @@
           <p class="title">解决方案</p>
           <p class="content">
             解决方案解决方案解决方案解决方案解决方案解决方案
-            解决方案解决方案解决方案解决方案解决方案解决方案
+            解决方案解决方案解决方案解决方案解决方案
           </p>
         </div>
       </div>
-      <div class="index-solution-right" :style="rightBg">2</div>
+      <div class="index-solution-right" :style="rightBg">
+        <div class="out-box">
+          <div class="row1">
+            <div class="row1-col">银行业</div>
+            <div class="row1-col">保险行业</div>
+          </div>
+          <div class="row2">
+            <div class="row2-box">
+              <div class="row2-box-col">技术</div>
+              <div class="row2-box-col">业务</div>
+              <div class="row2-box-col">场景生态</div>
+            </div>
+          </div>
+          <div class="row3">
+            <div class="row3-col">
+              <p>金融台</p>
+              <p>模块描述模块描述模块描述</p>
+            </div>
+            <div class="row3-col">
+              <p>金融台</p>
+              <p>模块描述模块描述模块描述</p>
+            </div>
+            <div class="row3-col">
+              <p>金融台</p>
+              <p>模块描述模块描述模块描述</p>
+            </div>
+            <div class="row3-col">
+              <p>金融台</p>
+              <p>模块描述模块描述模块描述</p>
+            </div>
+            <div class="row3-col">
+              <p>金融台</p>
+              <p>模块描述模块描述模块描述</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="plat_intro">
-      <p class="title">政策信息</p>
-      <div class="bottom_wire"></div>
-      <div
-        class="plat_infor"
-        style="border: 1px solid #ccc; margin-top: 1.5rem"
-      >
-        <ul class="ul_left">
-          <li>中华人民共和国人民银行法（修正）</li>
-          <li>中华人民共和国人民银行法</li>
-          <li>中华人民共和国人民银行法（修正）</li>
-          <li>
-            全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
-          </li>
-          <li>中华人民共和国人民银行法</li>
-        </ul>
-        <ul class="ul_time">
-          <li>01-01</li>
-          <li>01-01</li>
-          <li>01-01</li>
-          <li>01-01</li>
-          <li>01-01</li>
-        </ul>
-        <ul class="ul_left">
-          <li>中华人民共和国人民银行法（修正）</li>
-          <li>中华人民共和国人民银行法</li>
-          <li>中华人民共和国人民银行法（修正）</li>
-          <li>
-            全国人民代表大会常任理事会常任理事会常任理事会《中华人民共和国人民银行法（修正）》
-          </li>
-          <li>中华人民共和国人民银行法</li>
-        </ul>
-        <ul class="ul_time">
-          <li>01-01</li>
-          <li>01-01</li>
-          <li>01-01</li>
-          <li>01-01</li>
-          <li>01-01</li>
-        </ul>
+    <div class="index-policy" :style="policyBg">
+      <div class="index-policy-box">
+        <div class="row1">
+          <span>政策信息</span
+          ><span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
+        </div>
+        <div class="row2">
+          <div class="row2-col">
+            <p>
+              国家法律<span
+                ><img
+                  src="@/assets/policy_arrow.png"
+                  style="width: 0.9375rem; height: 0.875rem"
+                  alt=""
+              /></span>
+            </p>
+            <div class="ul-box">
+              <ul class="ul_left">
+                <li>中华人民共和国人民银行法（修正）</li>
+                <li>中华人民共和国人民银行法</li>
+                <li>中华人民共和国人民银行法（修正）</li>
+                <li>
+                  全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
+                </li>
+                <li>中华人民共和国人民银行法</li>
+              </ul>
+              <ul class="ul_time">
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row2-col">
+            <p>
+              国家法律<span
+                ><img
+                  src="@/assets/policy_arrow.png"
+                  style="width: 0.9375rem; height: 0.875rem"
+                  alt=""
+              /></span>
+            </p>
+            <div class="ul-box">
+              <ul class="ul_left">
+                <li>中华人民共和国人民银行法（修正）</li>
+                <li>中华人民共和国人民银行法</li>
+                <li>中华人民共和国人民银行法（修正）</li>
+                <li>
+                  全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
+                </li>
+                <li>中华人民共和国人民银行法</li>
+              </ul>
+              <ul class="ul_time">
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+              </ul>
+            </div>
+          </div>
+          <div class="row2-col">
+            <p>
+              国家法律<span
+                ><img
+                  src="@/assets/policy_arrow.png"
+                  style="width: 0.9375rem; height: 0.875rem"
+                  alt=""
+              /></span>
+            </p>
+            <div class="ul-box">
+              <ul class="ul_left">
+                <li>中华人民共和国人民银行法（修正）</li>
+                <li>中华人民共和国人民银行法</li>
+                <li>中华人民共和国人民银行法（修正）</li>
+                <li>
+                  全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
+                </li>
+                <li>中华人民共和国人民银行法</li>
+              </ul>
+              <ul class="ul_time">
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+                <li>01-01</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="index-dynamic">
+      <div class="index-dynamic-title">
+        <div class="title">
+          <span>动态发布</span>
+          <span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
+        </div>
+      </div>
+      <div class="index-dynamic-content" :style="dynamicBg">
+        <div class="box">
+          <div class="box-left">
+            <p class="row1">京东数科陈：助力之鞥呢城市战役，与实体产业公斤</p>
+            <p class="row2">
+              2020年11月3日数科陈：助力之鞥呢城市战役，与实体产业公斤京东数科陈：助力之鞥呢城市战役，与实体产业公斤京东数科陈：助力之鞥呢城市战役，与实体产业公斤
+            </p>
+            <div class="btn">
+              查看详情<img src="@/assets/dynamic_arrow_right.png" alt="" />
+            </div>
+          </div>
+          <div class="box-right">3</div>
+        </div>
       </div>
     </div>
     <div class="plat_intro">
@@ -368,6 +479,18 @@ export default {
           require("@/assets/solution_bg2.png") +
           ") no-repeat scroll 0% 50% /73% 100% content-box ",
       },
+      policyBg: {
+        background:
+          " url(" +
+          require("@/assets/policy_bg.png") +
+          ") no-repeat scroll 72% center / 21% content-box ",
+      },
+      dynamicBg: {
+        background:
+          " url(" +
+          require("@/assets/dynamic_bg.jpg") +
+          ") no-repeat scroll center center /100%",
+      },
     };
   },
 
@@ -438,6 +561,7 @@ export default {
     z-index: 999;
     border: 0;
     border-radius: 5px;
+    box-shadow: #d9e0ec 0 2px 5px 0px;
     .col1 {
       width: 25%;
       height: 100%;
@@ -534,8 +658,8 @@ export default {
             }
           }
           .little_box:hover {
-            box-shadow: #cfd2d7 0 0 1px 1px;
-            transform: scale(1.04);
+            box-shadow: #cfd2d7 0 0 20px 0px;
+            // transform: scale(1.02);
           }
         }
       }
@@ -568,6 +692,217 @@ export default {
     }
     &-right {
       width: 62%;
+      .out-box {
+        width: 70%;
+        margin-top: 2.625rem;
+        margin-left: 2rem;
+        display: flex;
+        flex-direction: column;
+        .row1 {
+          display: flex;
+          height: 2rem;
+          line-height: 2rem;
+          &-col {
+            width: 6.25rem;
+            font-size: 1rem;
+            color: #fff;
+          }
+          .active {
+            font-size: 1.375rem;
+            height: 2rem;
+            border-bottom: 1px solid #fff;
+          }
+        }
+        .row2 {
+          margin-top: 1.4rem;
+          position: relative;
+          height: 2.25rem;
+          &-box {
+            border: 1px solid #cfd2d7;
+            float: left;
+            display: flex;
+            &-col {
+              height: 2.25rem;
+              line-height: 2.25rem;
+              margin: 0 10px;
+              font-size: 1rem;
+              color: #b3c5ff;
+            }
+          }
+        }
+        .row3 {
+          display: flex;
+          // justify-content: space-between;
+          flex-wrap: wrap;
+          &-col {
+            height: 8.125rem;
+            width: 32%;
+            text-align: center;
+            border: 1px solid #cfd2d7;
+            margin-right: 1%;
+            margin-top: 1.625rem;
+            p:nth-child(1) {
+              color: #fff;
+              font-size: 1.25rem;
+              margin-top: 1rem;
+            }
+            p:nth-child(2) {
+              color: #fff;
+              font-size: 1rem;
+              margin-top: 1rem;
+            }
+          }
+        }
+      }
+    }
+  }
+  &-policy {
+    height: 31.25rem;
+    width: 100%;
+    &-box {
+      width: 62.5%;
+      margin: 0 auto;
+      .row1 {
+        padding-top: 4.375rem;
+        display: flex;
+        justify-content: space-between;
+        span:nth-child(1) {
+          font-size: 3rem;
+        }
+        span:nth-child(2) {
+          text-align: center;
+          width: 6rem;
+          height: 3rem;
+          line-height: 3rem;
+          color: #2882fe;
+          border: 1px solid #2882fe;
+          img {
+            margin-left: 5px;
+          }
+        }
+      }
+      .row2 {
+        margin-top: 1.6875rem;
+        display: flex;
+        justify-content: space-between;
+        &-col {
+          width: 32%;
+          border: 1px solid #cfd2d7;
+          p {
+            color: #fff;
+            font-size: 1.3rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
+            padding-left: 1rem;
+            background-color: #2882fe;
+            span {
+              width: 0.9375rem;
+              height: 0.875rem;
+              float: right;
+              padding-right: 2rem;
+            }
+          }
+          .ul-box {
+            display: flex;
+            justify-content: space-between;
+            .ul_left {
+              width: 80%;
+              padding-left: 1rem;
+              margin-top: 1rem;
+              margin-bottom: 1rem;
+              li {
+                // width: 20px;
+                font-size: 1rem;
+                height: 2rem;
+                line-height: 2rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+              li:hover {
+                cursor: pointer;
+                color: #2882fe;
+              }
+            }
+            .ul_time {
+              width: 18%;
+              color: #b0b1b5;
+              font-size: 1rem;
+              margin-top: 1rem;
+              font-size: 1rem;
+              margin-right: 1rem;
+              li {
+                text-align: end;
+                font-size: 1rem;
+                height: 2rem;
+                line-height: 2rem;
+                text-overflow: ellipsis;
+                overflow: hidden;
+                white-space: nowrap;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  &-dynamic {
+    &-title {
+      width: 62.5%;
+      margin: 0 auto;
+      .title {
+        display: flex;
+        line-height: 3rem;
+        padding: 2rem 0;
+        span:nth-child(1) {
+          font-size: 3rem;
+        }
+        span:nth-child(2) {
+          text-align: center;
+          width: 6rem;
+          height: 3rem;
+          line-height: 3rem;
+          color: #2882fe;
+          border: 1px solid #2882fe;
+          margin-left: 3rem;
+          img {
+            margin-left: 5px;
+          }
+        }
+      }
+    }
+    &-content {
+      height: 13.75rem;
+      .box {
+        width: 62.5%;
+        margin: 0 auto;
+        display: flex;
+        &-left {
+          width: 50%;
+          color: #fff;
+          .row1 {
+            font-size: 1.2rem;
+            margin: 2rem 0;
+          }
+          .row2 {
+            font-size: 0.875rem;
+          }
+          .btn {
+            font-size: 1rem;
+            border: 1px solid #fff;
+            height: 2.25rem;
+            line-height: 2.25rem;
+            width: 6.125rem;
+            text-align: center;
+            img {
+              margin-left: 5px;
+            }
+          }
+        }
+        &-right {
+          width: 50%;
+        }
+      }
     }
   }
   .plat_intro {

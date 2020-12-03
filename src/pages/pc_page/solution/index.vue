@@ -2,7 +2,7 @@
   <div class="product">
     <div class="product-title">
       <span class="product-title-tag"></span>
-      <span class="product-title-tit">数字化转型专题解决方案列表</span>
+      <span class="product-title-tit">数字化转型产品解决方案列表</span>
     </div>
     <div class="product-content">
       <div class="product-content-left">
