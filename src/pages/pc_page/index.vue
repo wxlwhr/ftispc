@@ -68,7 +68,7 @@
         </div>
       </div>
     </div>
-    <div class="index-product" :style="leftBg">
+    <div class="index-product" :style="productBg">
       <div class="index-product-box">
         <div class="row">
           <p>产品</p>
@@ -179,6 +179,18 @@
           </div>
         </div>
       </div>
+    </div>
+    <div class="index-solution">
+      <div class="index-solution-left" :style="leftBg">
+        <div class="solution-box">
+          <p class="title">解决方案</p>
+          <p class="content">
+            解决方案解决方案解决方案解决方案解决方案解决方案
+            解决方案解决方案解决方案解决方案解决方案解决方案
+          </p>
+        </div>
+      </div>
+      <div class="index-solution-right" :style="rightBg">2</div>
     </div>
     <div class="plat_intro">
       <p class="title">政策信息</p>
@@ -338,11 +350,23 @@ export default {
         },
       ],
       bg_url: "@/assets/pro_bg.png",
-      leftBg: {
+      productBg: {
         background:
           " url(" +
           require("@/assets/pro_bg.png") +
           ") no-repeat scroll center center / 100% ",
+      },
+      leftBg: {
+        background:
+          "#e9edf5 url(" +
+          require("@/assets/solution_bg1.png") +
+          ") no-repeat scroll 70% 50%/40% ",
+      },
+      rightBg: {
+        background:
+          "#2c73ff url(" +
+          require("@/assets/solution_bg2.png") +
+          ") no-repeat scroll 0% 50% /73% 100% content-box ",
       },
     };
   },
@@ -445,7 +469,7 @@ export default {
     &-box {
       width: 62.5%;
       height: 100%;
-      margin:0 auto;
+      margin: 0 auto;
       padding-top: 9rem;
       .row {
         display: flex;
@@ -515,6 +539,35 @@ export default {
           }
         }
       }
+    }
+  }
+  &-solution {
+    width: 100%;
+    height: 30.25rem;
+    display: flex;
+    &-left {
+      width: 38%;
+      display: flex;
+      align-items: center;
+      .solution-box {
+        margin-left: 50%;
+        .title {
+          font-size: 3rem;
+        }
+        .content {
+          margin-top: 10px;
+          font-size: 0.875rem;
+          color: #3d464e;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 3;
+          overflow: hidden;
+          margin-right: 18px;
+        }
+      }
+    }
+    &-right {
+      width: 62%;
     }
   }
   .plat_intro {

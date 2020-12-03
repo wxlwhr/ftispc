@@ -206,6 +206,7 @@ export default {
         // margin-left: 5rem;
         margin: 0 auto;
         li {
+          font-size: 1rem;
           margin-left: 4rem;
           cursor: pointer;
           padding-bottom: 10px;
@@ -225,6 +226,7 @@ export default {
         }
         .active {
           color: #2983fe;
+          font-weight: 600;
           .line {
             width: 100%;
             height: 3px;
