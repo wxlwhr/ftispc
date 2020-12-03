@@ -8,7 +8,10 @@
       <div class="policy-box-left">
         <ul v-for="(item, index) in tabList" :key="index" class="tab-ul">
           <li
-            @click="handleChangeTab(index)"
+            @click="
+              right_title = item.label;
+              tabOption = index;
+            "
             :class="tabOption === index ? 'active' : ''"
           >
             {{ item.label }}
@@ -17,9 +20,25 @@
         </ul>
       </div>
       <div class="policy-box-right">
-         <div class="title">
-            {{right_title}}
-         </div>
+        <div class="title">
+          {{ right_title }}
+        </div>
+        <div class="content-list">
+          <ul>
+            <li v-for="(item, i) in policyList" :key="i">
+              <span> {{ item.title }}</span>
+              <span > {{ item.date }}</span>
+              <div
+                v-show="(i + 1) % 5 === 0 && i !== policyList.length - 1"
+                class="dashed"
+              ></div>
+            </li>
+          </ul>
+          <div class="pagination">
+            <el-pagination  background layout="prev, pager, next" :total="1000">
+      </el-pagination>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -36,8 +55,25 @@ export default {
         { label: "自律规范", value: "2" },
         { label: "其他", value: "3" },
       ],
-      tabOption: "",
-      right_title:""
+      policyList: [
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+        { title: "中华人民共和国合同法（修正）", date: "08-10" },
+      ],
+      tabOption: 0,
+      right_title: "国家法律",
     };
   },
 
@@ -45,19 +81,8 @@ export default {
 
   computed: {},
 
-  methods: {
-    handleChangeTab(i) {
-      this.tabOption = i;
-      this.tabList.filter(item => {
-         if(item.value==i){
-            this.right_title=item.label
-         }
-      })
-    },
-  },
-  created(){
-     this.tabOption=0
-  }
+  methods: {},
+  created() {},
 };
 </script>
 <style lang='scss' scoped>
@@ -94,6 +119,7 @@ export default {
       border-radius: 2px;
       width: 20%;
       .tab-ul {
+        cursor: pointer;
         li {
           font-size: 1rem;
           color: #3c3d3f;
@@ -115,11 +141,50 @@ export default {
       border: 1px solid #d8dcdf;
       border-radius: 3px;
       width: 78%;
-      .title{
-         height: 5rem;
-         line-height: 5rem;
-         font-size: 1.6rem;
-         text-align: center;
+      .title {
+        height: 5rem;
+        line-height: 5rem;
+        font-size: 24px;
+        text-align: center;
+      }
+      .content-list {
+        padding: 0 4.813rem 0 3rem;
+        ul {
+          &:first-child {
+            list-style: inside;
+          }
+          li {
+            margin-top: 1.375rem;
+            span {
+              &:first-child {
+                color: #35393f;
+                cursor: pointer;
+               
+                &:hover{
+                   text-decoration:underline;
+                   color:#2882fe;
+                    font-weight: bold;
+                }
+              }
+              &:nth-child(2) {
+                float: right;
+                color: #6f7884;
+              }
+            }
+
+            .dashed {
+              width: 100%;
+              height: 1px;
+              border: 1px dashed #d6dce7;
+              margin-top: 1.875rem;
+              margin-bottom: 0.313rem;
+            }
+          }
+        }
+      }
+      .pagination{
+        text-align: center;
+        margin: 1.75rem 0;
       }
     }
   }
