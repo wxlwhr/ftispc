@@ -111,22 +111,18 @@ export default {
     //   监听路由变化
     const path = this.$route.path;
     this.path = path;
-    console.log(this.path);
     this.tabs.map((item, i) => {
-      console.log(path);
-
       if (item.path === path) {
         this.activeKey = i;
       } else {
         if (item.children) {
           item.children.map((item, j) => {
-            console.log(item, j);
             if (item.path === path) {
               this.activeKey = i;
             }
           });
         } else {
-          console.log("真没有children");
+
         }
         // this.activeKey = 0;
         // this.$router.push('/index')

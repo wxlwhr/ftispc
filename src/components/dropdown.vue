@@ -50,7 +50,7 @@ export default {
 .wrapper {
   .el-dropdown-link {
     cursor: pointer;
-    color: #409eff;
+    // color: #409eff;
   }
   .el-icon-arrow-down {
     font-size: 12px;

@@ -72,11 +72,27 @@
       <div class="index-product-box">
         <div class="row">
           <p>产品</p>
-          <span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
+          <span @click="handleToproduct"
+            >更多<img src="@/assets/arrow_right.png" alt=""
+          /></span>
         </div>
         <div class="title">技术产品</div>
-        <div class="list">
+        <div class="list" v-for="(item, index) in productList" :key="index">
           <div class="col">
+            <div class="little_box">
+              <div class="row1">
+                <img
+                  src="@/assets/icon2.png"
+                  style="width: 24px; height: 22px"
+                  alt=""
+                /><span>{{ item.product_name }}</span>
+              </div>
+              <div class="txt">
+                {{ item.product_des }}
+              </div>
+            </div>
+          </div>
+          <!-- <div class="col">
             <div class="little_box">
               <div class="row1">
                 <img
@@ -117,24 +133,14 @@
                 产品相关描述产品相关描述产品相关描述产品相关
               </div>
             </div>
-          </div>
-          <div class="col">
-            <div class="little_box">
-              <div class="row1">
-                <img
-                  src="@/assets/icon2.png"
-                  style="width: 24px; height: 22px"
-                  alt=""
-                /><span>AI</span>
-              </div>
-              <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
-              </div>
-            </div>
-          </div>
+          </div> -->
         </div>
         <div class="title">业务产品</div>
-        <div class="list">
+        <div
+          class="list"
+          v-for="(item, index) in productList"
+          :key="'info2-' + index"
+        >
           <div class="col">
             <div class="little_box">
               <div class="row1">
@@ -142,38 +148,10 @@
                   src="@/assets/icon2.png"
                   style="width: 24px; height: 22px"
                   alt=""
-                /><span>AI</span>
+                /><span>{{ item.product_name }}</span>
               </div>
               <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="little_box">
-              <div class="row1">
-                <img
-                  src="@/assets/icon2.png"
-                  style="width: 24px; height: 22px"
-                  alt=""
-                /><span>AI</span>
-              </div>
-              <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="little_box">
-              <div class="row1">
-                <img
-                  src="@/assets/icon2.png"
-                  style="width: 24px; height: 22px"
-                  alt=""
-                /><span>AI</span>
-              </div>
-              <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
+                {{ item.product_des }}
               </div>
             </div>
           </div>
@@ -192,34 +170,19 @@
       </div>
       <div class="index-solution-right" :style="rightBg">
         <div class="out-box">
-          <div class="row1">
-            <div class="row1-col">银行业</div>
-            <div class="row1-col">保险行业</div>
-          </div>
+          <ul class="row1">
+            <li class="row1-col" :class="tab1=== i ? 'active' : ''" v-for="(item,i) in tabdata1" :key="i" @click="handleTab1(i)">{{item}}</li>
+            <span
+              >更多<img src="@/assets/dynamic_arrow_right.png" alt=""
+            /></span>
+          </ul>
           <div class="row2">
             <div class="row2-box">
-              <div class="row2-box-col">技术</div>
-              <div class="row2-box-col">业务</div>
-              <div class="row2-box-col">场景生态</div>
+              <div class="row2-box-col" :class="tab2=== j ? 'active' : ''" v-for="(item,j) in tabdata2" :key="j" @click="handleTab2(j)">{{item}}</div>
+              <!-- <div class="row2-box-col" v-for="(item,index) in solutionTree[1].children" :key="index">{{item.name}}</div> -->
             </div>
           </div>
           <div class="row3">
-            <div class="row3-col">
-              <p>金融台</p>
-              <p>模块描述模块描述模块描述</p>
-            </div>
-            <div class="row3-col">
-              <p>金融台</p>
-              <p>模块描述模块描述模块描述</p>
-            </div>
-            <div class="row3-col">
-              <p>金融台</p>
-              <p>模块描述模块描述模块描述</p>
-            </div>
-            <div class="row3-col">
-              <p>金融台</p>
-              <p>模块描述模块描述模块描述</p>
-            </div>
             <div class="row3-col">
               <p>金融台</p>
               <p>模块描述模块描述模块描述</p>
@@ -340,75 +303,73 @@
               查看详情<img src="@/assets/dynamic_arrow_right.png" alt="" />
             </div>
           </div>
-          <div class="box-right">3</div>
-        </div>
-      </div>
-    </div>
-    <div class="plat_intro">
-      <p class="title">动态发布</p>
-      <div class="bottom_wire"></div>
-      <div class="plat_infor">
-        <div class="dynamic">
-          <div class="img_box">
-            <img
-              src="@/assets/jd.jpg"
-              style="width: 100%; height: 100%"
-              alt=""
-            />
-          </div>
-          <div class="dynamic_infor">
-            <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
-            <el-button type="primary" class="more_btn"
-              >查看更多<i class="el-icon-arrow-right el-icon--right"></i
-            ></el-button>
-          </div>
-        </div>
-        <div class="dynamic">
-          <div class="img_box">
-            <img
-              src="@/assets/man.jpg"
-              style="width: 100%; height: 100%"
-              alt=""
-            />
-          </div>
-          <div class="dynamic_infor">
-            <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
-            <el-button type="primary" class="more_btn"
-              >查看更多<i class="el-icon-arrow-right el-icon--right"></i
-            ></el-button>
-          </div>
-        </div>
-        <div class="dynamic">
-          <div class="img_box">
-            <img
-              src="@/assets/money.jpg"
-              style="width: 100%; height: 100%"
-              alt=""
-            />
-          </div>
-          <div class="dynamic_infor">
-            <p>京东数科陈圣枪：京东京东京东京东京东京东京东京东</p>
-            <el-button type="primary" class="more_btn"
-              >查看更多<i class="el-icon-arrow-right el-icon--right"></i
-            ></el-button>
+          <div class="box-right">
+            <el-carousel :interval="4000" type="card" height="160px">
+              <el-carousel-item>
+                <img
+                  src="@/assets/jd.jpg"
+                  style="width: 100%; height: 100%"
+                  alt=""
+                />
+              </el-carousel-item>
+              <el-carousel-item>
+                <img
+                  src="@/assets/man.jpg"
+                  style="width: 100%; height: 100%"
+                  alt=""
+                />
+              </el-carousel-item>
+              <el-carousel-item>
+                <img
+                  src="@/assets/money.jpg"
+                  style="width: 100%; height: 100%"
+                  alt=""
+                />
+              </el-carousel-item>
+            </el-carousel>
           </div>
         </div>
       </div>
     </div>
-    <div class="plat_intro" style="margin-top: 50px">
-      <p class="title">入驻机构</p>
-      <div class="bottom_wire"></div>
+    <!-- <div class="index-organ">
+      <div class="index-organ-box">
+        <div class="title">
+          入驻机构
+        </div>
+        <div>
+
+        </div>
+      </div>
+    </div> -->
+    <div class="plat_intro" :style="organBg">
+      <div class="title">入驻机构</div>
       <!-- <div class="a">ad</div> -->
       <div class="plat_infor">
-        <OrganList :logolist="logolist" />
+        <OrganList :logolist="organLogoList" v-if="organLogoList.length != 0" />
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import {
+  organList,
+  productListData,
+  caseList,
+  caseTree,
+  policyList, 
+
+} from "@/api/api.js";
 import OrganList from "@/components/organList";
-import img1 from "@/assets/du.png";
+import img1 from "@/assets/organlogos/logo1.jpg";
+import img2 from "@/assets/organlogos/logo2.jpg";
+import img3 from "@/assets/organlogos/logo3.jpg";
+import img4 from "@/assets/organlogos/logo4.jpg";
+import img5 from "@/assets/organlogos/logo5.jpg";
+import img6 from "@/assets/organlogos/logo6.jpg";
+import img7 from "@/assets/organlogos/logo7.jpg";
+import img8 from "@/assets/organlogos/logo8.jpg";
+import img9 from "@/assets/organlogos/logo9.jpg";
 export default {
   name: "Index",
   data() {
@@ -418,48 +379,14 @@ export default {
       plat_infor2:
         "金融科技服务能力共享系统是一个以AI驱动产业数字化的新型数字平台。平台以AI、数据技术、物联网、区块链等前沿数字科技为基础，建立并发展起核心的风险管理能力、用户运营能力、产业理解能力和企业服务能力。",
       currentDate: new Date(),
-      logolist: [
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img1,
-          organ_name: "度小满金融",
-        },
-      ],
+      organLogoList: [],
+      productList: [],
+      solutionTree: [],
+      tabdata1:["银行业1","保险行业1"],
+      tabdata2:["银行业2","保险行业2","金融行业2","技术2"],
+      tabdata3:["银行业3","保险行业3"],
+      tab1:0,
+      tab2:0,
       bg_url: "@/assets/pro_bg.png",
       productBg: {
         background:
@@ -491,6 +418,12 @@ export default {
           require("@/assets/dynamic_bg.jpg") +
           ") no-repeat scroll center center /100%",
       },
+      organBg: {
+        background:
+          " url(" +
+          require("@/assets/organ_bg.jpg") +
+          ") no-repeat scroll center center /100%",
+      },
     };
   },
 
@@ -500,7 +433,82 @@ export default {
 
   computed: {},
 
-  methods: {},
+  methods: {
+    handleToproduct() {
+      this.$router.push("/product");
+    },
+    handleTopolicy() {
+      this.$router.push("/policy");
+    },
+    handleTodynamic() {
+      this.$router.push("/dynamic_issue");
+    },
+    // 入驻机构列表申请
+    async getOrganList() {
+      let that = this;
+      let data = {
+        page: "1",
+        rows: "12",
+      };
+      await organList({}).then(function (res) {
+        that.organLogoList = res.data.organPageInfo.rows;
+        console.log(res);
+      });
+    },
+    // 产品列表
+    async getProductList() {
+      let that = this;
+      let data = {
+        page: "1",
+        rows: "12",
+      };
+      await productListData({
+        catalog_id: "2953a34edde84903bb58848fb0e6656b",
+      }).then(function (res) {
+        that.productList = res.data.productPageInfo.rows;
+        console.log(res);
+      });
+    },
+
+    // 解决方案列表
+    async getSolutionList() {
+      let that = this;
+      let data = {
+        page: "1",
+        rows: "12",
+      };
+      await caseList({
+        catalog_id: "2953a34edde84903bb58848fb0e6656b",
+      }).then(function (res) {
+        // that.productList = res.data.productPageInfo.rows;
+        console.log(res);
+      });
+    },
+    // 解决方案tree请求 caseTree
+    async getTreeList() {
+      let that = this;
+      await caseTree().then(function (res) {
+        that.solutionTree = res.data.caseTree[0].children;
+        // that.treeRender(tree)
+        console.log(res);
+      });
+    },
+    treeRender(val) {
+      console.log(val);
+    },
+    handleTab1(i){
+      this.tab1=i
+    },
+    handleTab2(j){
+      this.tab2=j
+    }
+  },
+  created() {
+    this.getOrganList();
+    this.getProductList();
+    this.getTreeList();
+  },
+  mounted() {},
 };
 </script>
 <style lang='scss' scoped>
@@ -603,6 +611,7 @@ export default {
           font-size: 3rem;
         }
         span {
+          cursor: pointer;
           text-align: center;
           width: 6rem;
           height: 3rem;
@@ -703,13 +712,35 @@ export default {
           height: 2rem;
           line-height: 2rem;
           &-col {
+            cursor: pointer;
             width: 6.25rem;
+            overflow: hidden;
+            margin-right: 8px;
             font-size: 1rem;
+            height: 2.2rem;
+            line-height: 2.2rem;
             color: #fff;
+          }
+          span {
+            position: absolute;
+            right: 18%;
+            font-size: 1rem;
+            cursor: pointer;
+            text-align: center;
+            width: 6rem;
+            height: 3rem;
+            line-height: 3rem;
+            color: #fff;
+            border: 1px solid #fff;
+            img {
+              height: 1rem;
+              margin-left: 5px;
+            }
           }
           .active {
             font-size: 1.375rem;
-            height: 2rem;
+            height: 2.2rem;
+            line-height: 2.2rem;
             border-bottom: 1px solid #fff;
           }
         }
@@ -722,11 +753,16 @@ export default {
             float: left;
             display: flex;
             &-col {
+              cursor: pointer;
               height: 2.25rem;
               line-height: 2.25rem;
-              margin: 0 10px;
+              padding: 0 10px;
               font-size: 1rem;
               color: #b3c5ff;
+            }
+            .active{
+              color: #2882fe;
+              background-color: #fff;
             }
           }
         }
@@ -735,6 +771,7 @@ export default {
           // justify-content: space-between;
           flex-wrap: wrap;
           &-col {
+            cursor: pointer;
             height: 8.125rem;
             width: 32%;
             text-align: center;
@@ -770,6 +807,7 @@ export default {
           font-size: 3rem;
         }
         span:nth-child(2) {
+          cursor: pointer;
           text-align: center;
           width: 6rem;
           height: 3rem;
@@ -858,6 +896,7 @@ export default {
           font-size: 3rem;
         }
         span:nth-child(2) {
+          cursor: pointer;
           text-align: center;
           width: 6rem;
           height: 3rem;
@@ -888,42 +927,52 @@ export default {
             font-size: 0.875rem;
           }
           .btn {
+            cursor: pointer;
             font-size: 1rem;
             border: 1px solid #fff;
-            height: 2.25rem;
-            line-height: 2.25rem;
-            width: 6.125rem;
+            line-height: 2.5rem;
+            width: 8.125rem;
+            margin-top: 1rem;
             text-align: center;
             img {
+              height: 1rem;
               margin-left: 5px;
             }
           }
         }
         &-right {
           width: 50%;
+          position: relative;
+          .el-carousel {
+            margin: auto 5%;
+            width: 90%;
+            position: absolute;
+            bottom: -1rem;
+          }
+          .el-carousel__item h3 {
+            color: #475669;
+            font-size: 14px;
+            opacity: 0.75;
+            line-height: 200px;
+            margin: 0;
+          }
+          .el-carousel__item:nth-child(2n) {
+            background-color: #99a9bf;
+          }
+
+          .el-carousel__item:nth-child(2n + 1) {
+            background-color: #d3dce6;
+          }
         }
       }
     }
   }
   .plat_intro {
-    margin: 30px auto;
     .title {
-      font-family: MicrosoftYaHei;
-      font-size: 2rem;
-      font-weight: bold;
-      font-stretch: normal;
-      letter-spacing: 0rem;
-      color: #2882fe;
-      text-align: center;
-      margin-top: 2.5rem;
-    }
-    .bottom_wire {
-      width: 4rem;
-      height: 3px;
-      background-color: #2882fe;
-      border-radius: 6px;
-      margin: auto;
-      margin-top: 6px;
+      padding-top:2rem;
+      width: 62.5%;
+      margin: 0 auto;
+      font-size: 3rem;
     }
     .plat_infor {
       display: flex;
@@ -958,39 +1007,7 @@ export default {
         }
       }
     }
-    .ul_left {
-      list-style: inside !important;
-      margin-left: 2rem;
-      width: 31rem;
-      margin-top: 1rem;
-      li {
-        width: 26rem;
-        font-size: 1rem;
-        height: 2.8125rem;
-        line-height: 2.8125rem;
-        text-overflow: ellipsis;
-        overflow: hidden;
-        white-space: nowrap;
-      }
-      li:hover {
-        cursor: pointer;
-        color: #2882fe;
-      }
-      i {
-        position: relative;
-        float: right;
-        color: #b0b1b5;
-      }
-    }
-    .ul_time {
-      color: #b0b1b5;
-      font-size: 1rem;
-      height: 2.8125rem;
-      line-height: 2.8125rem;
-      margin-top: 1rem;
-      font-size: 1rem;
-      margin-right: 1.25rem;
-    }
+    
     //   卡片
     .dynamic {
       width: 31.6667%; //24rem

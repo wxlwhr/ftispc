@@ -2,18 +2,26 @@
   <div class="organList">
     <el-row>
       <div class="aaa" v-for="(item, index) in logolist" :key="index">
-        <div class="organ_logo" @click="handleOrganDetail" >
-          <img :src="item.src" alt="" style="width: 12.5rem; height: 12.5rem" />
+        <div class="organ_logo">
+          <img
+            :src="srcList[index]"
+            alt=""
+          />
         </div>
         <div class="mask">
-          <span>{{item.organ_name}}</span>
-          <img src="@/assets/magnifier.png" alt="">
+          <span>{{ item.organ_name }}</span>
+          <img
+            id="imgorganlogo"
+            src="@/assets/magnifier.png"
+            alt=""
+            @click="handleOrganDetail"
+          />
         </div>
       </div>
     </el-row>
     <div class="more">
-      <el-button v-if="type === 'btn'" type="primary" class="more_btn"
-        >查看更多<i class="el-icon-arrow-right el-icon--right"></i
+      <el-button v-if="type === 'btn'" type="primary" plain class="more_btn"
+        >更多<i class="el-icon-arrow-right el-icon--right"></i
       ></el-button>
       <el-pagination v-else background layout="prev, pager, next" :total="1000">
       </el-pagination>
@@ -36,7 +44,8 @@ export default {
   },
   data() {
     return {
-      
+      src: "",
+      srcList: [],
     };
   },
 
@@ -45,63 +54,89 @@ export default {
   computed: {},
 
   methods: {
-    handleOrganDetail(e){
-      this.$router.push('/organizationDetail')
-      console.log(e)
-    }
+    handleOrganDetail(e) {
+      this.$router.push("/organizationDetail");
+      console.log(e);
+    },
+  },
+  created() {
+    // 有数据之后放开
+    // let url=this.$store.state.url
+    // let list=[]
+    // let src=url+"/attach/binary?attachmentId="
+    // this.logolist.map((item,index)=>{
+    //   list.push(src+item.logoFile)
+    // })
+    // this.srcList=list
+    // 临时写的死数据
+    let url = this.$store.state.url;
+    let list = [];
+    let src = url + "/attach/binary?attachmentId=";
+    this.logolist.map((item, index) => {
+      list.push(src + "b647ff882a644def9e54e614264649bd");
+    });
+    this.srcList = list;
+    // console.log(this.srcList);
+    // console.log(this.logolist);
+  },
+  mounted() {
   },
 };
 </script>
 <style lang='scss' scoped>
 .organList {
-  width: 1200px;
+  width: 62.5%;
+  margin: 0 auto;
   .el-row {
     margin-top: 2rem;
     display: flex;
     // justify-content: space-between;
     flex-wrap: wrap;
     .aaa {
-      width: 200px;
-      height: 200px;
+      width: 16.6%;
       position: relative;
+      border: 1px solid #cfd2d7;
       .organ_logo {
-        width: 200px;
-        height: 200px;
-        border: 1px solid #cfd2d7;
+        width: 15.5rem;
+        height: 15.5rem;
         position: relative;
         margin: auto;
         cursor: pointer;
         img {
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          margin-top: -6.25rem;
-          margin-left: -6.25rem;
+          width: 100%;
+          height: 100%;
+          // object-fit: cover;
+          // position: absolute;
+          // top: 50%;
+          // left: 50%;
+          // margin-top: -6.25rem;
+          // margin-left: -6.25rem;
         }
       }
-      &:hover{
-        .mask{
-          opacity: .9;
+      &:hover {
+        .mask {
+          opacity: 0.9;
         }
       }
     }
   }
-  .mask{
+  .mask {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
     opacity: 0;
+    font-size: 1rem;
     background: #2882fe;
     color: #fff;
-    span{
+    span {
       position: absolute;
       top: 50%;
       left: 50%;
-      transform: translate(-50%,-50%);
+      transform: translate(-50%, -50%);
     }
-    img{
+    img {
       position: absolute;
       bottom: 5px;
       right: 5px;
@@ -112,7 +147,7 @@ export default {
     margin-top: 2rem;
     margin-bottom: 3rem;
     .more_btn {
-      width: 98px;
+      width: 75px;
       height: 32px;
       padding: 0;
       font-size: 1rem;

@@ -112,7 +112,10 @@
 </template>
 
 <script>
-import img1 from "@/assets/4_11.jpg";
+import img1 from "@/assets/rengong.png";
+import img2 from "@/assets/qukuailian.png";
+import img3 from "@/assets/account.png";
+import img4 from "@/assets/bigdata.png";
 import Dropdown from "../../../components/dropdown";
 export default {
   name: "OrganizatioanDetail",
@@ -145,15 +148,15 @@ export default {
           tech_name: "人工智能",
         },
         {
-          src: img1,
+          src: img2,
           tech_name: "区块链",
         },
         {
-          src: img1,
+          src: img3,
           tech_name: "云计算",
         },
         {
-          src: img1,
+          src: img4,
           tech_name: "大数据",
         },
       ],
