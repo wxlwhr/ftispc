@@ -171,14 +171,30 @@
       <div class="index-solution-right" :style="rightBg">
         <div class="out-box">
           <ul class="row1">
-            <li class="row1-col" :class="tab1=== i ? 'active' : ''" v-for="(item,i) in tabdata1" :key="i" @click="handleTab1(i)">{{item}}</li>
+            <li
+              class="row1-col"
+              :class="tab1 === i ? 'active' : ''"
+              v-for="(item, i) in tabdata1"
+              :key="i"
+              @click="handleTab1(i)"
+            >
+              {{ item }}
+            </li>
             <span
               >更多<img src="@/assets/dynamic_arrow_right.png" alt=""
             /></span>
           </ul>
           <div class="row2">
             <div class="row2-box">
-              <div class="row2-box-col" :class="tab2=== j ? 'active' : ''" v-for="(item,j) in tabdata2" :key="j" @click="handleTab2(j)">{{item}}</div>
+              <div
+                class="row2-box-col"
+                :class="tab2 === j ? 'active' : ''"
+                v-for="(item, j) in tabdata2"
+                :key="j"
+                @click="handleTab2(j)"
+              >
+                {{ item }}
+              </div>
               <!-- <div class="row2-box-col" v-for="(item,index) in solutionTree[1].children" :key="index">{{item.name}}</div> -->
             </div>
           </div>
@@ -357,8 +373,7 @@ import {
   productListData,
   caseList,
   caseTree,
-  policyList, 
-
+  policyList,
 } from "@/api/api.js";
 import OrganList from "@/components/organList";
 import img1 from "@/assets/organlogos/logo1.jpg";
@@ -382,11 +397,11 @@ export default {
       organLogoList: [],
       productList: [],
       solutionTree: [],
-      tabdata1:["银行业1","保险行业1"],
-      tabdata2:["银行业2","保险行业2","金融行业2","技术2"],
-      tabdata3:["银行业3","保险行业3"],
-      tab1:0,
-      tab2:0,
+      tabdata1: ["银行业1", "保险行业1"],
+      tabdata2: ["银行业2", "保险行业2", "金融行业2", "技术2"],
+      tabdata3: ["银行业3", "保险行业3"],
+      tab1: 0,
+      tab2: 0,
       bg_url: "@/assets/pro_bg.png",
       productBg: {
         background:
@@ -424,6 +439,82 @@ export default {
           require("@/assets/organ_bg.jpg") +
           ") no-repeat scroll center center /100%",
       },
+      testData: [
+        {
+          id: "51c2ec2c9bdf471195db647c12bb8fe6",
+          parentId: "4242307149c24d54bb55cfcd5a9b6a1a",
+          name: "解决方案目录1",
+          level: "2",
+          children: [
+            {
+              id: "09bb0bb68eb84022a4fe4e23784f95fc",
+              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
+              name: "解决方案目录1-1",
+              level: "3",
+              children: [
+                {
+                  id: "7beb6843421448c6b528c5a4d3ca3adb",
+                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
+                  name: "解决方案目录1-1-2",
+                  level: "3",
+                  children: [],
+                },
+                {
+                  id: "cefd89cac77749e1b6ce05bb0fef637d",
+                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
+                  name: "解决方案目录1-1-1",
+                  level: "3",
+                  children: [],
+                },
+              ],
+            },
+            {
+              id: "6a77fd8bff574b818c166f31c2d3a5ee",
+              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
+              name: "解决方案目录1-2",
+              level: "3",
+              children: [],
+            },
+          ],
+        },
+        {
+          id: "8c28ee59d8424073bb0bcbe9124e68b2",
+          parentId: "4242307149c24d54bb55cfcd5a9b6a1a",
+          name: "解决方案2",
+          level: "2",
+          children: [
+            {
+              id: "09bb0bb68eb84022a4fe4e23784f95fc",
+              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
+              name: "解决方案目录2-1",
+              level: "3",
+              children: [
+                {
+                  id: "7beb6843421448c6b528c5a4d3ca3adb",
+                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
+                  name: "解决方案目录2-1-2",
+                  level: "3",
+                  children: [],
+                },
+                {
+                  id: "cefd89cac77749e1b6ce05bb0fef637d",
+                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
+                  name: "解决方案目录2-1-1",
+                  level: "3",
+                  children: [],
+                },
+              ],
+            },
+            {
+              id: "6a77fd8bff574b818c166f31c2d3a5ee",
+              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
+              name: "解决方案目录2-2",
+              level: "3",
+              children: [],
+            },
+          ],
+        },
+      ],
     };
   },
 
@@ -496,12 +587,12 @@ export default {
     treeRender(val) {
       console.log(val);
     },
-    handleTab1(i){
-      this.tab1=i
+    handleTab1(i) {
+      this.tab1 = i;
     },
-    handleTab2(j){
-      this.tab2=j
-    }
+    handleTab2(j) {
+      this.tab2 = j;
+    },
   },
   created() {
     this.getOrganList();
@@ -760,7 +851,7 @@ export default {
               font-size: 1rem;
               color: #b3c5ff;
             }
-            .active{
+            .active {
               color: #2882fe;
               background-color: #fff;
             }
@@ -969,7 +1060,7 @@ export default {
   }
   .plat_intro {
     .title {
-      padding-top:2rem;
+      padding-top: 2rem;
       width: 62.5%;
       margin: 0 auto;
       font-size: 3rem;
@@ -1007,7 +1098,7 @@ export default {
         }
       }
     }
-    
+
     //   卡片
     .dynamic {
       width: 31.6667%; //24rem
