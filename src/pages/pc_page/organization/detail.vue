@@ -1,7 +1,9 @@
 <template>
   <div class="organizatioanDetail">
     <div class="organizatioanDetail-header">
-      <img src="@/assets/4_03.jpg" style="width: 100%" alt="" />
+      <div class="ql-snow">
+        <div class="ql-snow ql-editor" v-html="organ_Infor"></div>
+      </div>
     </div>
     <div class="organizatioanDetail-drapdown">
       <el-row>
@@ -132,7 +134,7 @@
 </template>
 
 <script>
-import {organDetail} from "@/api/api.js";
+import {organDetail,productDetail} from "@/api/api.js";
 import img1 from "@/assets/rengong.png";
 import img2 from "@/assets/qukuailian.png";
 import img3 from "@/assets/account.png";
@@ -210,11 +212,17 @@ export default {
         organ_id: id,
       };
       await organDetail(data).then(function (res) {
-        // that.organ_Infor = res.data.organ;
+        that.organ_Infor = res.data.organIntro;
         console.log(res);
       });
     },
     organValue(val) {},
+    async getProductDetail(){
+      await productDetail().then(function (res) {
+        that.product_Infor = res.data.product;
+        console.log(res);
+      });
+    }
   },
   created() {
     let id = this.$route.query.id;
@@ -375,10 +383,6 @@ export default {
     .commit-list {
       .col {
         display: flex;
-        .img-box {
-          img {
-          }
-        }
         .content {
           margin-left: 1rem;
           height: 6.25rem;
