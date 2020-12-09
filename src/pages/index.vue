@@ -103,34 +103,36 @@ export default {
   watch: {
     $route(to, from) {
       this.path = to.path;
+      this.activeTab()
     },
   },
   components: {},
   computed: {},
   created() {
-    //   监听路由变化
-    const path = this.$route.path;
-    this.path = path;
-    this.tabs.map((item, i) => {
-      if (item.path === path) {
-        this.activeKey = i;
-      } else {
-        if (item.children) {
-          item.children.map((item, j) => {
-            if (item.path === path) {
-              this.activeKey = i;
-            }
-          });
-        } else {
-
-        }
-        // this.activeKey = 0;
-        // this.$router.push('/index')
-      }
-    });
+   this.activeTab()
   },
   updated() {},
   methods: {
+    activeTab(){
+      //   监听路由变化
+      const path = this.$route.path;
+      this.path = path;
+      this.tabs.map((item, i) => {
+        if (item.path === path) {
+          this.activeKey = i;
+        } else {
+          if (item.children) {
+            item.children.map((item, j) => {
+              if (item.path === path) {
+                this.activeKey = i;
+              }
+            });
+          }
+          // this.activeKey = 0;
+          // this.$router.push('/index')
+        }
+      });
+    },
     handleChange(v) {
       this.activeKey = v;
       let path = "";
@@ -245,7 +247,7 @@ export default {
         .signin-btn:hover{
           cursor: pointer;
            color: #2983fe;
-          
+
         }
       }
     }
