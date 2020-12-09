@@ -32,9 +32,9 @@
           </li>
         </ul>
         <div class="bts">
-          <span class="login-btn">登录</span>
+          <span class="login-btn" @click="handleGoLogin">登录</span>
           <span class="gang">|</span>
-          <span class="signin-btn">注册</span>
+          <span class="signin-btn" @click="handleGoSignin">注册</span>
         </div>
       </div>
       <!-- <el-input
@@ -45,24 +45,17 @@
       </el-input> -->
     </div>
     <!-- 产品详情顶部banner -->
-    <div
-      v-show="activeKey === 1 && path === '/productInfo'"
-      class="productInfo-topImg"
-    >
+    <div v-show="activeKey === 1 && path === '/productInfo'" class="productInfo-topImg">
       <img src="@/assets/2_02.jpg" alt="" />
     </div>
-    <div
-      v-show="activeKey === 2 && path === '/solutionInfo'"
-      class="productInfo-topImg"
-    >
+    <div v-show="activeKey === 2 && path === '/solutionInfo'" class="productInfo-topImg">
       <img src="@/assets/solutionImg.jpg" alt="" />
     </div>
     <div class="home-view">
       <router-view />
     </div>
     <div class="home-footer">
-      ©2019
-      中国互联网金融协会中国互联网金融服务平台金融科技服务能力共享系统版权所有
+      ©2019 中国互联网金融协会中国互联网金融服务平台金融科技服务能力共享系统版权所有
     </div>
   </div>
 </template>
@@ -103,17 +96,17 @@ export default {
   watch: {
     $route(to, from) {
       this.path = to.path;
-      this.activeTab()
+      this.activeTab();
     },
   },
   components: {},
   computed: {},
   created() {
-   this.activeTab()
+    this.activeTab();
   },
   updated() {},
   methods: {
-    activeTab(){
+    activeTab() {
       //   监听路由变化
       const path = this.$route.path;
       this.path = path;
@@ -164,10 +157,16 @@ export default {
         path,
       });
     },
+    handleGoSignin() {
+      this.$router.push("/signin");
+    },
+    handleGoLogin() {
+      this.$router.push("/login");
+    },
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .home {
   width: 100%;
   height: 100%;
@@ -235,19 +234,18 @@ export default {
           }
         }
       }
-      .bts{
+      .bts {
         // margin-left: 27rem;
-        .gang{
+        .gang {
           margin: 0 5px;
         }
-        .login-btn:hover{
+        .login-btn:hover {
           cursor: pointer;
-           color: #2983fe;
+          color: #2983fe;
         }
-        .signin-btn:hover{
+        .signin-btn:hover {
           cursor: pointer;
-           color: #2983fe;
-
+          color: #2983fe;
         }
       }
     }

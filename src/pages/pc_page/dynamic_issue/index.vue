@@ -123,6 +123,11 @@ export default {
     },
   },
   created() {
+    console.log(this.$route.query.id)
+    let id=this.$route.query.id
+    if(id){
+      this.gotoDetail(id);
+    }
     this.getTab();
   },
   mounted() {

@@ -78,7 +78,7 @@
         </div>
         <div class="title">技术产品</div>
         <div class="list">
-          <div class="col" v-for="(item, index) in productList.slice(0, 4)" :key="index">
+          <div class="col" v-for="(item, index) in productList1.slice(0, 4)" :key="index" @click="handleProDetail(item)">
             <div class="little_box">
               <div class="row1">
                 <img
@@ -97,8 +97,9 @@
         <div class="list">
           <div
             class="col"
-            v-for="(item, index) in productList.slice(0, 4)"
+            v-for="(item, index) in productList2.slice(0, 4)"
             :key="'info2-' + index"
+            @click="handleProDetail(item)"
           >
             <div class="little_box">
               <div class="row1">
@@ -138,7 +139,7 @@
             >
               {{ item }}
             </li>
-            <span
+            <span @click="handleGosolution"
               >更多<img src="@/assets/dynamic_arrow_right.png" alt=""
             /></span>
           </ul>
@@ -175,7 +176,7 @@
       <div class="index-policy-box">
         <div class="row1">
           <span>政策信息</span
-          ><span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
+          ><span @click="handleTopolicy">更多<img src="@/assets/arrow_right.png" alt="" /></span>
         </div>
         <div class="row2">
           <div
@@ -193,7 +194,7 @@
             </p>
             <div class="ul-box">
               <ul class="ul_left">
-                <li v-for="(item,j) in item.policyList" :key="j">{{item.content_title}}</li>
+                <li v-for="(item,j) in item.policyList" :key="j" @click="handlePolicyDetail(item)">{{item.content_title}}</li>
               </ul>
               <ul class="ul_time">
                 <li v-for="(item,j) in item.policyList" :key="j+'1'">{{item.publish_date.slice(5,10)}}</li>
@@ -209,7 +210,7 @@
       <div class="index-dynamic-title">
         <div class="title">
           <span>动态发布</span>
-          <span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
+          <span @click="handleTodynamic">更多<img src="@/assets/arrow_right.png" alt="" /></span>
         </div>
       </div>
       <div class="index-dynamic-content" :style="dynamicBg">
@@ -222,7 +223,7 @@
             </p>
             <!-- <p class="row1">文章主题</p>
             <p class="row2">文章内容</p> -->
-            <div class="btn">
+            <div class="btn" @click="handleDtDetail(item)">
               查看详情<img src="@/assets/dynamic_arrow_right.png" alt="" />
             </div>
           </div>
@@ -253,21 +254,14 @@
         </div>
       </div>
     </div>
-    <!-- <div class="index-organ">
-      <div class="index-organ-box">
-        <div class="title">
-          入驻机构
-        </div>
-        <div>
-
-        </div>
-      </div>
-    </div> -->
     <div class="plat_intro" :style="organBg">
       <div class="title">入驻机构</div>
       <!-- <div class="a">ad</div> -->
       <div class="plat_infor">
         <OrganList :logolist="organLogoList" v-if="organLogoList.length != 0" />
+      </div>
+      <div class="more_btn">
+          <span class="btn" @click="handleGoOrganList">更多<img src="@/assets/arrow_right.png" alt="" /></span>
       </div>
     </div>
   </div>
@@ -301,7 +295,8 @@ export default {
         "金融科技服务能力共享系统是一个以AI驱动产业数字化的新型数字平台。平台以AI、数据技术、物联网、区块链等前沿数字科技为基础，建立并发展起核心的风险管理能力、用户运营能力、产业理解能力和企业服务能力。",
       currentDate: new Date(),
       organLogoList: [],
-      productList: [],
+      productList1: [],
+      productList2:[],
       solutionTree: [],
       tabdata1: ["银行业"],
       tabdata2: [],
@@ -368,6 +363,12 @@ export default {
     handleTodynamic() {
       this.$router.push("/dynamic_issue");
     },
+    handleGosolution(){
+      this.$router.push('/solution');
+    },
+    handleGoOrganList(){
+      this.$router.push("/organization");
+    },
     // 入驻机构列表申请
     async getOrganList() {
       let that = this;
@@ -380,21 +381,35 @@ export default {
         console.log(res);
       });
     },
-    // 产品列表
+    //d218c07273814e4886a96b6bbd336196
+    // 产品列表1
     async getProductList() {
       let that = this;
       let data = {
         page: "1",
-        rows: "12",
+        rows: "4",
       };
       await productListData({
         catalog_id: "2953a34edde84903bb58848fb0e6656b",
       }).then(function (res) {
-        that.productList = res.data.productPageInfo.rows;
+        that.productList1 = res.data.productPageInfo.rows;
         console.log(res);
       });
     },
-
+    // 产品列表2
+    async getProductList2() {
+      let that = this;
+      let data = {
+        page: "1",
+        rows: "4",
+      };
+      await productListData({
+        catalog_id: "d218c07273814e4886a96b6bbd336196",
+      }).then(function (res) {
+        that.productList2 = res.data.productPageInfo.rows;
+        console.log(res);
+      });
+    },
     // 解决方案列表
     async getSolutionList() {
       let that = this;
@@ -473,6 +488,21 @@ export default {
       });
       this.imglist = list;
     },
+    // 产品根据Id跳转到详情
+    handleProDetail(i){
+      console.log(i)
+      this.$router.push({path:"/productInfo",query:{id:i.product_id}});
+    },
+    // 政策信息详情
+    handlePolicyDetail(i){
+      this.$router.push({path:"/policy",query:{id:i}});
+      console.log(i)
+    },
+    // 动态发布详情
+    handleDtDetail(i){
+      console.log(i)
+       this.$router.push({path:"/dynamic_issue",query:{id:i}});
+    }
   },
   created() {
     this.getOrganList();
@@ -482,7 +512,9 @@ export default {
     this.dt();
     // this.handleTab2(this.tabdata2[0])
   },
-  mounted() {},
+  mounted() {
+      this.getProductList2()
+  },
 };
 </script>
 <style lang='scss' scoped>
@@ -974,17 +1006,27 @@ export default {
           margin-top: 0.5rem;
           font-size: 1rem;
         }
-        .more_btn {
-          width: 100px;
-          height: 36px;
-          padding: 0;
-          font-size: 1rem;
-          position: absolute;
-          right: 0;
-          //bottom: 0;  //-50
-        }
       }
     }
+    .more_btn{
+         height: 8rem;
+          line-height: 8rem;
+        text-align: center;
+        .btn{
+          cursor: pointer;
+          text-align: center;
+          width: 6rem;
+          height: 4rem;
+          line-height: 4rem;
+          color: #2882fe;
+          border: 1px solid #2882fe;
+          padding:4px 10px;
+          img {
+            margin-left: 5px;
+          }
+        }
+        
+      }
 
     //   卡片
     .dynamic {

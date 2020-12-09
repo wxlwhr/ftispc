@@ -19,13 +19,6 @@
         </div>
       </div>
     </el-row>
-    <div class="more">
-      <el-button v-if="type === 'btn'" type="primary" plain class="more_btn"
-        >更多<i class="el-icon-arrow-right el-icon--right"></i
-      ></el-button>
-      <!-- <el-pagination v-else background layout="prev, pager, next" :total="1000">
-      </el-pagination> -->
-    </div>
   </div>
 </template>
 
@@ -144,17 +137,6 @@ export default {
       position: absolute;
       bottom: 5px;
       right: 5px;
-    }
-  }
-  .more {
-    text-align: center;
-    margin-top: 2rem;
-    margin-bottom: 3rem;
-    .more_btn {
-      width: 75px;
-      height: 32px;
-      padding: 0;
-      font-size: 1rem;
     }
   }
 }

@@ -65,7 +65,6 @@ export default {
     handleView(row) {
       console.log(row);
       this.$router.push({path:"/productInfo",query:{id:row.product_id}});
-
     },
     handleNodeClick(data) {
       console.log(data);

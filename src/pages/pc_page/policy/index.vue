@@ -175,6 +175,10 @@ export default {
     },
   },
   created() {
+    let id=this.$route.query.id
+    if(id){
+      this.gotoDetail(id);
+    }
     this.getTab();
   },
   mounted(){

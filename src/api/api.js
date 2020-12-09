@@ -1,7 +1,7 @@
 import { request } from '../core/request.js'
 import axios from 'axios'
-// const url = 'http://172.18.12.148:8080/ftis'   //测试环境
-const url = 'http://192.168.21.14:8080/ftis'   //本地环境
+const url = 'http://172.18.12.148:8080/ftis'   //测试环境
+// const url = 'http://192.168.21.14:8080/ftis'   //本地环境
 let localtoken = localStorage.getItem('Authorization');
 // 入驻机构列表
 export function organList(params) {

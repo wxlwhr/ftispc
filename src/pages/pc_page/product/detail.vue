@@ -172,7 +172,7 @@ export default {
         that.product_Infor = res.data.product;
         that.productcommentList = res.data.productCommentList;
         let solutionData = res.data.caseList;
-        that.dealSolutionData(solutionData);
+        // that.dealSolutionData(solutionData);
         console.log(that.solutionData);
         console.log(res);
       });
