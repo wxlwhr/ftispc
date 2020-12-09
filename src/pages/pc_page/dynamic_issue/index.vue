@@ -208,10 +208,12 @@ export default {
           border-bottom: 1px dashed #d6dce7;
           padding: 1.313rem 0;
           .title {
-            font-size: 20px;
+            font-size: 2rem;
             text-align: start;
             line-height: 2.5rem;
             height: 2.5rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
           }
           .date {
             color: #a6abb1;

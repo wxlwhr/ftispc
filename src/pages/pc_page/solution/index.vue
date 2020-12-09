@@ -14,17 +14,19 @@
           <el-tree
             :data="data"
             :props="defaultProps"
+            node-key="id"
+            default-expand-all
             @node-click="handleNodeClick"
           ></el-tree>
         </div>
       </div>
       <div class="product-content-right">
         <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="name" label="解决方案名称" width="auto">
+          <el-table-column prop="case_name" label="解决方案名称" width="auto">
           </el-table-column>
-          <el-table-column prop="province" label="机构名称" width="auto">
+          <el-table-column prop="creator_organ_name" label="机构名称" width="auto">
           </el-table-column>
-          <el-table-column prop="city" label="发布时间" width="auto">
+          <el-table-column prop="create_date" label="发布时间" width="auto">
           </el-table-column>
           <el-table-column label="操作" width="100">
             <template slot-scope="scope">
@@ -40,104 +42,17 @@
 </template>
 
 <script>
+import { caseTree, caseList } from "@/api/api.js";
 export default {
   name: "Solution",
   data() {
     return {
-      data: [
-        {
-          label: "银行业解决方案",
-          children: [
-            {
-              label: "技术",
-              children: [
-                {
-                  label: "金融云",
-                },
-              ],
-            },
-            {
-              label: "业务",
-              children: [
-                {
-                  label: "三级 2-1",
-                  children: [
-                    {
-                      label: "四级 2-1-1",
-                    },
-                  ],
-                },
-                {
-                  label: "三级 2-2",
-                  children: [
-                    {
-                      label: "四级 2-2-1",
-                    },
-                  ],
-                },
-              ],
-            },
-            {
-              label: "场景生态",
-              children: [
-                {
-                  label: "三级 3-1",
-                  children: [
-                    {
-                      label: "四级 3-1-1",
-                    },
-                  ],
-                },
-                {
-                  label: "三级 3-2",
-                  children: [
-                    {
-                      label: "四级 3-2-1",
-                    },
-                  ],
-                },
-              ],
-            },
-          ],
-        },
-      ],
+      data: [],
       defaultProps: {
         children: "children",
-        label: "label",
+        label: "name",
       },
       tableData: [
-        {
-          date: "2016-05-02",
-          name: "解决方案1",
-          province: "北京",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333,
-        },
-        {
-          date: "2016-05-04",
-          name: "解决方案2",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1517 弄",
-          zip: 200333,
-        },
-        {
-          date: "2016-05-01",
-          name: "解决方案3",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1519 弄",
-          zip: 200333,
-        },
-        {
-          date: "2016-05-03",
-          name: "解决方案4",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1516 弄",
-          zip: 200333,
-        },
       ],
     };
   },
@@ -149,11 +64,37 @@ export default {
   methods: {
     handleView(row) {
       console.log(row);
-      this.$router.push("/solutionInfo");
+      this.$router.push({path:"/solutionInfo",query:{id:row.case_id}});
     },
     handleNodeClick(data) {
       console.log(data);
+      if (data.level === "3") {
+        this.getCaseList(data.id);
+      }
     },
+    // 产品树获取
+    async handelecasetree() {
+      let that = this;
+      await caseTree().then(function (res) {
+        // that.data=res.data.productTree[0].children
+        that.data = res.data.caseTree;
+        console.log(res);
+      });
+    },
+    // 根据产品树获取产品列表
+    getCaseList(val) {
+      let that = this;
+      let data = {
+        catalog_id: val
+      };
+      caseList(data).then(function (res) {
+        that.tableData = res.data.casePageInfo.rows;
+        console.log(res);
+      });
+    },
+  },
+  created() {
+    this.handelecasetree();
   },
 };
 </script>
@@ -197,11 +138,11 @@ export default {
         img {
           vertical-align: middle;
         }
-        height: 3.57rem;
-        line-height: 3.57rem;
+        height: 4rem;
+        line-height: 4rem;
         border-bottom: 1px solid #d6dce7;
         padding-left: 1rem;
-        font-size: 1.14rem;
+        font-size: 1.4rem;
         color: #35393f;
         font-weight: bold;
       }

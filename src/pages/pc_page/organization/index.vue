@@ -4,21 +4,38 @@
       <span class="organization-title-tag"></span>
       <span class="organization-title-tit">机构列表</span>
     </div>
-    <OrganList :logolist="logolist" type="pagination"/>
+    <div class="organization-tab">
+      <div
+        class="tab-item"
+        :class="tabOption === index ? 'active' : ''"
+        v-for="(item, index) in organType"
+        :key="index"
+        @click="
+          tabOption = index;
+          handleTabChange(index);
+        "
+      >
+        {{ item.organName }}
+      </div>
+    </div>
+    <OrganList :logolist="list" type="pagination" v-if="list.length != 0" />
+    <div class="page-tab">
+      <el-pagination
+        background
+        layout="prev, pager, next"
+        :total="total"
+        @current-change="handleCurrentChange"
+        :current-page.sync="currentPage1"
+        :page-size="24"
+      >
+      </el-pagination>
+    </div>
   </div>
 </template>
 
 <script>
-import img1 from "@/assets/organlogos/logo1.jpg";
-import img2 from "@/assets/organlogos/logo2.jpg";
-import img3 from "@/assets/organlogos/logo3.jpg";
-import img4 from "@/assets/organlogos/logo4.jpg";
-import img5 from "@/assets/organlogos/logo5.jpg";
-import img6 from "@/assets/organlogos/logo6.jpg";
-import img7 from "@/assets/organlogos/logo7.jpg";
-import img8 from "@/assets/organlogos/logo8.jpg";
-import img9 from "@/assets/organlogos/logo9.jpg";
 import OrganList from "@/components/organList";
+import { organList } from "@/api/api.js";
 export default {
   name: "Organization",
   components: {
@@ -28,60 +45,48 @@ export default {
 
   data() {
     return {
-      logolist: [
-        {
-          src: img1,
-          organ_name: "易宝支付",
-        },
-        {
-          src: img2,
-          organ_name: "京东数科",
-        },
-        {
-          src: img3,
-          organ_name: "度小满金融",
-        },
-        {
-          src: img4,
-          organ_name: "恒生电子",
-        },
-        {
-          src: img5,
-          organ_name: "旷世",
-        },
-        {
-          src: img6,
-          organ_name: "长亮科技",
-        },
-        {
-          src: img7,
-          organ_name: "顶象",
-        },
-        {
-          src: img8,
-          organ_name: "神州信息",
-        },
-        {
-          src: img9,
-          organ_name: "微众银行",
-        },
-        {
-          src: img1,
-          organ_name: "易宝支付",
-        },
-        {
-          src: img8,
-          organ_name: "神州信息",
-        },
-        {
-          src: img9,
-          organ_name: "微众银行",
-        },
+      list: [],
+      organType: [
+        { organName: "金融科技公司" },
+        { organName: "金融机构" },
+        { organName: "检查机构" },
+        { organName: "认证机构" },
+        { organName: "咨询机构" },
       ],
+      tabOption: 0,
+      total: 240,
+      page: "1",
+      lastPage: "",
+      currentPage1: 1,
     };
   },
-
-  methods: {},
+  methods: {
+    // 入驻机构列表申请
+    async getOrganList(page) {
+      let that = this;
+      let data = {
+        page: page,
+        rows: "24",
+      };
+      await organList(data).then(function (res) {
+        that.list = res.data.organPageInfo.rows;
+        that.$nextTick(()=>{
+          that.flag="1"
+        })
+        console.log(that.list)
+        console.log(res);
+      });
+    },
+    handleCurrentChange(val) {
+      console.log(`当前页:${val}`, val);
+      this.getOrganList(`${val}`)
+    },
+    handleTabChange(i) {},
+  },
+  created() {
+    this.getOrganList('1');
+  },
+  mounted() {},
 };
 </script>
 <style lang='scss' scoped>
@@ -105,6 +110,34 @@ export default {
       font-size: 26px;
       color: #35393f;
       margin-left: 1rem;
+    }
+  }
+  &-tab {
+    width: 62.5%;
+    margin: 1.75rem auto;
+    display: flex;
+    align-items: center;
+    justify-content: start;
+    div {
+      font-size: 1rem;
+      height: 2rem;
+      line-height: 2rem;
+      margin-right: 10px;
+      padding: 0 10px;
+      cursor: pointer;
+    }
+    .active {
+      border: 1px solid #2882fe;
+      color: #2882fe;
+      border-radius: 30px;
+    }
+  }
+  .page-tab {
+    width: 62.5%;
+    margin: 1.75rem auto;
+    .el-pagination {
+      text-align: center;
+      margin: 0 auto;
     }
   }
 }

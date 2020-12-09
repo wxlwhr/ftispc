@@ -108,10 +108,31 @@
         </div>
       </div>
     </div>
+    <div class="commit-content">
+      <ul class="commit-list">
+        <li
+          class="col"
+          v-for="(item, index) in productcommentList"
+          :key="index"
+        >
+          <div class="img-box">
+            <img src="@/assets/logo.png" alt="" />
+          </div>
+          <!--  -->
+          <div class="content">
+            <p>
+              {{ item.comment_organ_name }}<span>{{ item.create_date }}</span>
+            </p>
+            <p>{{ item.comment_content }}</p>
+          </div>
+        </li>
+      </ul>
+    </div>
   </div>
 </template>
 
 <script>
+import {organDetail} from "@/api/api.js";
 import img1 from "@/assets/rengong.png";
 import img2 from "@/assets/qukuailian.png";
 import img3 from "@/assets/account.png";
@@ -165,14 +186,42 @@ export default {
       authority:
         "专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。",
       evaluate:'',
-      isOpen:""
+      isOpen:true,
+      organ_Infor:"",
+      productcommentList:[
+        {
+          comment_organ_name:'jigou1',
+          create_date:'1-2',
+          comment_content:'专利证书是专利申请经审查合格'
+        },
+        {
+          comment_organ_name:'jigou1',
+          create_date:'1-2',
+          comment_content:'专利证书是专利申请经审查合格'
+        },
+      ]
     };
   },
 
   methods: {
+    async getDetail(id) {
+      let that = this;
+      let data = {
+        organ_id: id,
+      };
+      await organDetail(data).then(function (res) {
+        // that.organ_Infor = res.data.organ;
+        console.log(res);
+      });
+    },
     organValue(val) {},
   },
-  created() {},
+  created() {
+    let id = this.$route.query.id;
+    this.id = id;
+    this.getDetail(id);
+    console.log(this.$route.query);
+  },
 };
 </script>
 <style lang='scss' scoped>
@@ -318,6 +367,35 @@ export default {
         height: 30px;
         padding: 0;
         background-color: #2882fe;
+      }
+    }
+  }
+  .commit-content {
+    padding: 1rem 0 3rem 0;
+    .commit-list {
+      .col {
+        display: flex;
+        .img-box {
+          img {
+          }
+        }
+        .content {
+          margin-left: 1rem;
+          height: 6.25rem;
+          p:nth-child(1) {
+            font-size: 1.5rem;
+            color: #586caa;
+            span {
+              margin-left: 2rem;
+              font-size: 1rem;
+              color: #97a5b2;
+            }
+          }
+          p:nth-child(2) {
+            font-size: 1rem;
+            color: #3d464e;
+          }
+        }
       }
     }
   }

@@ -163,7 +163,6 @@ export default {
                 &:hover{
                    text-decoration:underline;
                    color:#2882fe;
-                    font-weight: bold;
                 }
               }
               &:nth-child(2) {

@@ -9,12 +9,12 @@
           />
         </div>
         <div class="mask">
-          <span>{{ item.organ_name }}</span>
+          <span>{{ item.organName }}</span>
           <img
             id="imgorganlogo"
             src="@/assets/magnifier.png"
             alt=""
-            @click="handleOrganDetail"
+            @click="handleOrganDetail(item,index)"
           />
         </div>
       </div>
@@ -23,8 +23,8 @@
       <el-button v-if="type === 'btn'" type="primary" plain class="more_btn"
         >更多<i class="el-icon-arrow-right el-icon--right"></i
       ></el-button>
-      <el-pagination v-else background layout="prev, pager, next" :total="1000">
-      </el-pagination>
+      <!-- <el-pagination v-else background layout="prev, pager, next" :total="1000">
+      </el-pagination> -->
     </div>
   </div>
 </template>
@@ -54,12 +54,13 @@ export default {
   computed: {},
 
   methods: {
-    handleOrganDetail(e) {
-      this.$router.push("/organizationDetail");
-      console.log(e);
+    handleOrganDetail(i,j) {
+      this.$router.push({path:"/organizationDetail",query:{id:i.organId}});
+      console.log(i,j);
     },
   },
   created() {
+    console.log(this.logolist)
     // 有数据之后放开
     // let url=this.$store.state.url
     // let list=[]
@@ -81,6 +82,9 @@ export default {
   },
   mounted() {
   },
+  updated(){
+    console.log(this.logolist)
+  }
 };
 </script>
 <style lang='scss' scoped>

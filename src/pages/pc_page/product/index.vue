@@ -14,21 +14,22 @@
           <el-tree
             :data="data"
             :props="defaultProps"
+            default-expand-all
             @node-click="handleNodeClick"
           ></el-tree>
         </div>
       </div>
       <div class="product-content-right">
-        <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="name" label="姓名" width="auto"> </el-table-column>
-          <el-table-column prop="province" label="省份" width="auto"> </el-table-column>
-          <el-table-column prop="city" label="市区" width="auto"> </el-table-column>
-          <el-table-column label="操作" width="100">
+        <el-table  :data="tableData" style="width: 100%">
+          <el-table-column prop="product_name" label="产品名称" width="auto">
+          </el-table-column>
+          <el-table-column prop="creator_organ_name" label="机构名称" width="auto">
+          </el-table-column>
+          <el-table-column prop="create_date" label="发布时间" width="auto">
+          </el-table-column>
+          <el-table-column label="操作" width="80">
             <template slot-scope="scope">
-              <el-button
-                @click="handleView(scope.row)"
-                type="text"
-                size="small"
+              <el-button @click="handleView(scope.row)" type="text" size="small"
                 >查看</el-button
               >
             </template>
@@ -40,105 +41,19 @@
 </template>
 
 <script>
+import { productTree, productListData } from "@/api/api.js";
 export default {
-  name:"Product",
+  name: "Product",
   data() {
     return {
       data: [
-        {
-          label: "一级 1",
-          children: [
-            {
-              label: "二级 1-1",
-              children: [
-                {
-                  label: "三级 1-1-1",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: "一级 2",
-          children: [
-            {
-              label: "二级 2-1",
-              children: [
-                {
-                  label: "三级 2-1-1",
-                },
-              ],
-            },
-            {
-              label: "二级 2-2",
-              children: [
-                {
-                  label: "三级 2-2-1",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: "一级 3",
-          children: [
-            {
-              label: "二级 3-1",
-              children: [
-                {
-                  label: "三级 3-1-1",
-                },
-              ],
-            },
-            {
-              label: "二级 3-2",
-              children: [
-                {
-                  label: "三级 3-2-1",
-                },
-              ],
-            },
-          ],
-        },
+        
       ],
       defaultProps: {
         children: "children",
-        label: "label",
+        label: "name",
       },
-      tableData: [
-        {
-          date: "2016-05-02",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1518 弄",
-          zip: 200333,
-        },
-        {
-          date: "2016-05-04",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1517 弄",
-          zip: 200333,
-        },
-        {
-          date: "2016-05-01",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1519 弄",
-          zip: 200333,
-        },
-        {
-          date: "2016-05-03",
-          name: "王小虎",
-          province: "上海",
-          city: "普陀区",
-          address: "上海市普陀区金沙江路 1516 弄",
-          zip: 200333,
-        },
-      ],
+      tableData: [],
     };
   },
 
@@ -149,19 +64,53 @@ export default {
   methods: {
     handleView(row) {
       console.log(row);
-      this.$router.push('/productInfo')
+      this.$router.push({path:"/productInfo",query:{id:row.product_id}});
+
     },
     handleNodeClick(data) {
       console.log(data);
+      if(data.level==="3"){
+        this.getProductList(data.id)
+      }
+      
     },
+    // 产品树获取
+    async handeleproducttree() {
+      let that = this;
+      await productTree().then(function (res) {
+        // that.data=res.data.productTree[0].children
+        that.data=res.data.productTree
+        console.log(res);
+      });
+    },
+    // 根据产品树获取产品列表
+    getProductList(val){
+      let that=this
+      let data={
+        "catalog_id":val,
+        page:"1",
+        rows:"10"
+      }
+      productListData(data).then(function(res){
+        that.tableData=res.data.productPageInfo.rows
+        console.log(res)
+      })
+    }
+  },
+  created() {
+    this.handeleproducttree();
   },
 };
 </script>
 <style lang='scss' scoped>
+
 .product {
   height: 100%;
   padding: 0 360px;
   min-height: 77rem;
+  /deep/.el-tree-node__label{
+          font-size: 1rem!important;
+        }
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;
@@ -172,7 +121,7 @@ export default {
     &-tag {
       width: 0.29rem;
       height: 24px;
-      background-color: #2882fe;    
+      background-color: #2882fe;
     }
 
     &-tit {
@@ -197,17 +146,18 @@ export default {
         img {
           vertical-align: middle;
         }
-        height: 3.57rem;
-        line-height: 3.57rem;
+        height: 4rem;
+        line-height: 4rem;
         border-bottom: 1px solid #d6dce7;
         padding-left: 1rem;
-        font-size: 1.14rem;
+        font-size: 1.4rem;
         color: #35393f;
         font-weight: bold;
       }
       .tree {
         margin-top: 0.93rem;
         padding: 0 1rem;
+        
       }
     }
 

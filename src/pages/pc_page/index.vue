@@ -77,8 +77,8 @@
           /></span>
         </div>
         <div class="title">技术产品</div>
-        <div class="list" v-for="(item, index) in productList" :key="index">
-          <div class="col">
+        <div class="list">
+          <div class="col" v-for="(item, index) in productList.slice(0, 4)" :key="index">
             <div class="little_box">
               <div class="row1">
                 <img
@@ -92,56 +92,14 @@
               </div>
             </div>
           </div>
-          <!-- <div class="col">
-            <div class="little_box">
-              <div class="row1">
-                <img
-                  src="@/assets/icon2.png"
-                  style="width: 24px; height: 22px"
-                  alt=""
-                /><span>AI</span>
-              </div>
-              <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="little_box">
-              <div class="row1">
-                <img
-                  src="@/assets/icon2.png"
-                  style="width: 24px; height: 22px"
-                  alt=""
-                /><span>AI</span>
-              </div>
-              <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
-              </div>
-            </div>
-          </div>
-          <div class="col">
-            <div class="little_box">
-              <div class="row1">
-                <img
-                  src="@/assets/icon2.png"
-                  style="width: 24px; height: 22px"
-                  alt=""
-                /><span>AI</span>
-              </div>
-              <div class="txt">
-                产品相关描述产品相关描述产品相关描述产品相关
-              </div>
-            </div>
-          </div> -->
         </div>
         <div class="title">业务产品</div>
-        <div
-          class="list"
-          v-for="(item, index) in productList"
-          :key="'info2-' + index"
-        >
-          <div class="col">
+        <div class="list">
+          <div
+            class="col"
+            v-for="(item, index) in productList.slice(0, 4)"
+            :key="'info2-' + index"
+          >
             <div class="little_box">
               <div class="row1">
                 <img
@@ -191,16 +149,22 @@
                 :class="tab2 === j ? 'active' : ''"
                 v-for="(item, j) in tabdata2"
                 :key="j"
-                @click="handleTab2(j)"
+                @click="handleTab2(item, j)"
               >
-                {{ item }}
+                {{ item.catalog_name }}
               </div>
               <!-- <div class="row2-box-col" v-for="(item,index) in solutionTree[1].children" :key="index">{{item.name}}</div> -->
             </div>
           </div>
           <div class="row3">
-            <div class="row3-col">
-              <p>金融台</p>
+            <div
+              class="row3-col"
+              :class="tab3 === k ? 'active' : ''"
+              v-for="(item, k) in tabdata3"
+              :key="k"
+              @click="handleTab3(item, k)"
+            >
+              <p>{{ item.catalog_name }}</p>
               <p>模块描述模块描述模块描述</p>
             </div>
           </div>
@@ -214,9 +178,13 @@
           ><span>更多<img src="@/assets/arrow_right.png" alt="" /></span>
         </div>
         <div class="row2">
-          <div class="row2-col">
+          <div
+            class="row2-col"
+            v-for="(item, index) in policyList"
+            :key="index"
+          >
             <p>
-              国家法律<span
+              {{item.catalog.catalogName}}<span
                 ><img
                   src="@/assets/policy_arrow.png"
                   style="width: 0.9375rem; height: 0.875rem"
@@ -225,79 +193,15 @@
             </p>
             <div class="ul-box">
               <ul class="ul_left">
-                <li>中华人民共和国人民银行法（修正）</li>
-                <li>中华人民共和国人民银行法</li>
-                <li>中华人民共和国人民银行法（修正）</li>
-                <li>
-                  全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
-                </li>
-                <li>中华人民共和国人民银行法</li>
+                <li v-for="(item,j) in item.policyList" :key="j">{{item.content_title}}</li>
               </ul>
               <ul class="ul_time">
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
+                <li v-for="(item,j) in item.policyList" :key="j+'1'">{{item.publish_date.slice(5,10)}}</li>
               </ul>
             </div>
           </div>
-          <div class="row2-col">
-            <p>
-              国家法律<span
-                ><img
-                  src="@/assets/policy_arrow.png"
-                  style="width: 0.9375rem; height: 0.875rem"
-                  alt=""
-              /></span>
-            </p>
-            <div class="ul-box">
-              <ul class="ul_left">
-                <li>中华人民共和国人民银行法（修正）</li>
-                <li>中华人民共和国人民银行法</li>
-                <li>中华人民共和国人民银行法（修正）</li>
-                <li>
-                  全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
-                </li>
-                <li>中华人民共和国人民银行法</li>
-              </ul>
-              <ul class="ul_time">
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-              </ul>
-            </div>
-          </div>
-          <div class="row2-col">
-            <p>
-              国家法律<span
-                ><img
-                  src="@/assets/policy_arrow.png"
-                  style="width: 0.9375rem; height: 0.875rem"
-                  alt=""
-              /></span>
-            </p>
-            <div class="ul-box">
-              <ul class="ul_left">
-                <li>中华人民共和国人民银行法（修正）</li>
-                <li>中华人民共和国人民银行法</li>
-                <li>中华人民共和国人民银行法（修正）</li>
-                <li>
-                  全国人民代表大会常任理事会《中华人民共和国人民银行法（修正）》
-                </li>
-                <li>中华人民共和国人民银行法</li>
-              </ul>
-              <ul class="ul_time">
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-                <li>01-01</li>
-              </ul>
-            </div>
-          </div>
+
+          
         </div>
       </div>
     </div>
@@ -310,36 +214,38 @@
       </div>
       <div class="index-dynamic-content" :style="dynamicBg">
         <div class="box">
-          <div class="box-left">
-            <p class="row1">京东数科陈：助力之鞥呢城市战役，与实体产业公斤</p>
+          <!-- <div class="box-left"> -->
+          <div class="box-left" v-for="(item, i) in dtlistLeft" :key="i">
+            <p class="row1">{{ item.content_title }}</p>
             <p class="row2">
-              2020年11月3日数科陈：助力之鞥呢城市战役，与实体产业公斤京东数科陈：助力之鞥呢城市战役，与实体产业公斤京东数科陈：助力之鞥呢城市战役，与实体产业公斤
+              {{ item.content_text }}
             </p>
+            <!-- <p class="row1">文章主题</p>
+            <p class="row2">文章内容</p> -->
             <div class="btn">
               查看详情<img src="@/assets/dynamic_arrow_right.png" alt="" />
             </div>
           </div>
           <div class="box-right">
-            <el-carousel :interval="4000" type="card" height="160px">
-              <el-carousel-item>
+            <el-carousel
+              :autoplay="false"
+              trigger="click"
+              type="card"
+              height="160px"
+              ref="carousel"
+              :initial-index="0"
+              @change="handlechange"
+            >
+              <el-carousel-item
+                name="1"
+                v-for="(item, index) in imglist"
+                :key="index"
+              >
                 <img
-                  src="@/assets/jd.jpg"
+                  :src="item"
                   style="width: 100%; height: 100%"
                   alt=""
-                />
-              </el-carousel-item>
-              <el-carousel-item>
-                <img
-                  src="@/assets/man.jpg"
-                  style="width: 100%; height: 100%"
-                  alt=""
-                />
-              </el-carousel-item>
-              <el-carousel-item>
-                <img
-                  src="@/assets/money.jpg"
-                  style="width: 100%; height: 100%"
-                  alt=""
+                  @click="handlechange(index)"
                 />
               </el-carousel-item>
             </el-carousel>
@@ -371,9 +277,9 @@
 import {
   organList,
   productListData,
-  caseList,
-  caseTree,
-  policyList,
+  caselistbyparent,
+  dynamicList,
+  policyIndex,
 } from "@/api/api.js";
 import OrganList from "@/components/organList";
 import img1 from "@/assets/organlogos/logo1.jpg";
@@ -397,12 +303,16 @@ export default {
       organLogoList: [],
       productList: [],
       solutionTree: [],
-      tabdata1: ["银行业1", "保险行业1"],
-      tabdata2: ["银行业2", "保险行业2", "金融行业2", "技术2"],
-      tabdata3: ["银行业3", "保险行业3"],
+      tabdata1: ["银行业"],
+      tabdata2: [],
+      tabdata3: [],
       tab1: 0,
       tab2: 0,
-      bg_url: "@/assets/pro_bg.png",
+      tab3: 0,
+      dtlist: [],
+      dtlistLeft: [],
+      imglist: [],
+      policyList: {},
       productBg: {
         background:
           " url(" +
@@ -437,84 +347,8 @@ export default {
         background:
           " url(" +
           require("@/assets/organ_bg.jpg") +
-          ") no-repeat scroll center center /100%",
+          ") no-repeat scroll center center /100% 100%",
       },
-      testData: [
-        {
-          id: "51c2ec2c9bdf471195db647c12bb8fe6",
-          parentId: "4242307149c24d54bb55cfcd5a9b6a1a",
-          name: "解决方案目录1",
-          level: "2",
-          children: [
-            {
-              id: "09bb0bb68eb84022a4fe4e23784f95fc",
-              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
-              name: "解决方案目录1-1",
-              level: "3",
-              children: [
-                {
-                  id: "7beb6843421448c6b528c5a4d3ca3adb",
-                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
-                  name: "解决方案目录1-1-2",
-                  level: "3",
-                  children: [],
-                },
-                {
-                  id: "cefd89cac77749e1b6ce05bb0fef637d",
-                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
-                  name: "解决方案目录1-1-1",
-                  level: "3",
-                  children: [],
-                },
-              ],
-            },
-            {
-              id: "6a77fd8bff574b818c166f31c2d3a5ee",
-              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
-              name: "解决方案目录1-2",
-              level: "3",
-              children: [],
-            },
-          ],
-        },
-        {
-          id: "8c28ee59d8424073bb0bcbe9124e68b2",
-          parentId: "4242307149c24d54bb55cfcd5a9b6a1a",
-          name: "解决方案2",
-          level: "2",
-          children: [
-            {
-              id: "09bb0bb68eb84022a4fe4e23784f95fc",
-              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
-              name: "解决方案目录2-1",
-              level: "3",
-              children: [
-                {
-                  id: "7beb6843421448c6b528c5a4d3ca3adb",
-                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
-                  name: "解决方案目录2-1-2",
-                  level: "3",
-                  children: [],
-                },
-                {
-                  id: "cefd89cac77749e1b6ce05bb0fef637d",
-                  parentId: "09bb0bb68eb84022a4fe4e23784f95fc",
-                  name: "解决方案目录2-1-1",
-                  level: "3",
-                  children: [],
-                },
-              ],
-            },
-            {
-              id: "6a77fd8bff574b818c166f31c2d3a5ee",
-              parentId: "51c2ec2c9bdf471195db647c12bb8fe6",
-              name: "解决方案目录2-2",
-              level: "3",
-              children: [],
-            },
-          ],
-        },
-      ],
     };
   },
 
@@ -541,7 +375,7 @@ export default {
         page: "1",
         rows: "12",
       };
-      await organList({}).then(function (res) {
+      await organList(data).then(function (res) {
         that.organLogoList = res.data.organPageInfo.rows;
         console.log(res);
       });
@@ -575,13 +409,16 @@ export default {
         console.log(res);
       });
     },
-    // 解决方案tree请求 caseTree
+    // 解决方案tab获取
     async getTreeList() {
       let that = this;
-      await caseTree().then(function (res) {
-        that.solutionTree = res.data.caseTree[0].children;
+      await caselistbyparent({
+        parentCatalog: "51c2ec2c9bdf471195db647c12bb8fe6",
+      }).then(function (res) {
+        that.tabdata2 = res;
         // that.treeRender(tree)
         console.log(res);
+        that.handleTab2(res[0], 0);
       });
     },
     treeRender(val) {
@@ -590,14 +427,60 @@ export default {
     handleTab1(i) {
       this.tab1 = i;
     },
-    handleTab2(j) {
+    handleTab2(item, j) {
+      console.log(item, j);
+      let that = this;
       this.tab2 = j;
+      caselistbyparent({ parentCatalog: item.catalog_id }).then(function (res) {
+        that.tabdata3 = res;
+      });
+    },
+    handleTab3(item, k) {
+      this.tab3 = k;
+    },
+    // 政策信息
+    async policy() {
+      let that = this;
+      await policyIndex().then(function (res) {
+        that.policyList = res.data;
+        console.log(res);
+      });
+    },
+    // 动态发布列表
+    async dt() {
+      let that = this;
+      await dynamicList({}).then(function (res) {
+        that.dtlist = res.data.dynamicPageInfo.rows;
+        that.imgListData();
+        that.handlechange(0);
+        console.log(res);
+      });
+    },
+    handlechange(index) {
+      console.log(index);
+      this.$refs.carousel.setActiveItem(index);
+      // this.dtlistLeft.push(this.dtlist[index])
+      this.dtlist.slice(index, index + 1);
+      this.dtlistLeft = this.dtlist.slice(index, index + 1);
+    },
+    imgListData() {
+      let url = this.$store.state.url;
+      let list = [];
+      let src = url + "/attach/binary?attachmentId=";
+      // item.imageAttachId
+      this.dtlist.map((item, index) => {
+        list.push(src + "b647ff882a644def9e54e614264649bd");
+      });
+      this.imglist = list;
     },
   },
   created() {
     this.getOrganList();
     this.getProductList();
     this.getTreeList();
+    this.policy();
+    this.dt();
+    // this.handleTab2(this.tabdata2[0])
   },
   mounted() {},
 };
@@ -863,6 +746,7 @@ export default {
           flex-wrap: wrap;
           &-col {
             cursor: pointer;
+            color: #fff;
             height: 8.125rem;
             width: 32%;
             text-align: center;
@@ -870,15 +754,18 @@ export default {
             margin-right: 1%;
             margin-top: 1.625rem;
             p:nth-child(1) {
-              color: #fff;
               font-size: 1.25rem;
               margin-top: 1rem;
             }
             p:nth-child(2) {
-              color: #fff;
+              // color: #fff;
               font-size: 1rem;
               margin-top: 1rem;
             }
+          }
+          .active {
+            color: #2882fe;
+            background-color: #fff;
           }
         }
       }
