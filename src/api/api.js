@@ -23,6 +23,16 @@ export function organDetail(params) {
         showLoading: 'true'
     })
 }
+// 机构细分场景和相应的产品
+export function organProduct(params) {
+    console.log('机构详情')
+    return request({
+        url: url + '/client/organ/menu/products',
+        method: 'get',
+        params: params,
+        showLoading: 'true'
+    })
+}
 // 产品树
 export function productTree(params) {
     console.log('产品树请求')
@@ -182,8 +192,8 @@ export function dynamicTab(params) {
     console.log('动态发布Tab')
     return request({
         url: url + '/client/dynamic/sidemenu',
-        method: 'post',
-        data: params,
+        method: 'get',
+        params: params,
         showLoading: 'true'
     })
 }
@@ -195,5 +205,17 @@ export function dynamicList(params) {
         method: 'post',
         data: params,
         showLoading: 'true'
+    })
+}
+// 机构类型tab
+export function getSelectData(params) {
+    console.log('获取下拉框请求')
+    return request({
+        url: url + '/cache/dict',
+        method: 'post',
+        data: params,
+        showLoading: 'true',
+        headers:{token:localtoken}
+
     })
 }

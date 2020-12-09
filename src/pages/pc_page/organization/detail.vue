@@ -7,14 +7,8 @@
     </div>
     <div class="organizatioanDetail-drapdown">
       <el-row>
-        <el-col :span="3">
-          <Dropdown />
-        </el-col>
-        <el-col :span="3">
-          <Dropdown />
-        </el-col>
-        <el-col :span="3">
-          <Dropdown />
+        <el-col :span="3" v-for="(item, index) in arrlist" :key="index">
+          <Dropdown :dropdata="item" :name="index" @handleId="getid" />
         </el-col>
       </el-row>
     </div>
@@ -22,15 +16,25 @@
       <span class="organizatioanDetail-title-tag"></span>
       <span class="organizatioanDetail-title-tit">信息披露</span>
     </div>
-    <img src="@/assets/4_07.jpg" style="width: 100%" alt="" />
+
+    <div class="productinfor">
+      <div class="second-tab">关键产品能力</div>
+      <div class="ql-snow">
+        <div class="ql-snow ql-editor" v-html="product_Infor.product_des"></div>
+      </div>
+      <div class="second-tab">应用场景</div>
+      <div class="ql-snow">
+        <div class="ql-editor" v-html="product_Infor.product_scene"></div>
+      </div>
+    </div>
     <div class="organizatioanDetail-title">
       <span class="organizatioanDetail-title-tag"></span>
       <span class="organizatioanDetail-title-tit">涉及技术</span>
     </div>
     <div class="organizatioanDetail-technology">
-      <div class="aaa" v-for="(item, index) in technologylist" :key="index">
-        <img :src="item.src" alt="" style="width: 60%; height: 60%" />
-        <div class="organ_name">{{ item.tech_name }}</div>
+      <div class="aaa" v-for="(item, index) in technologylist.slice(0,4)" :key="index">
+        <img :src="srclist[index]" alt="" />
+        <div class="organ_name">{{ item.tec_name }}</div>
       </div>
     </div>
     <!-- 证书 -->
@@ -39,21 +43,17 @@
       <span class="organizatioanDetail-title-tit">相关证书</span>
     </div>
     <div class="organizatioanDetail-zhengshu">
-      <div class="img_box">
-        <img
-          src="@/assets/4_15.jpg"
-          alt=""
-          style="width: 67.5%; height: 100%"
-        />
+      <div class="img_box" v-for="(item,index) in credentialList" :key="index">
+        <img src="@/assets/4_15.jpg" alt="" style="width: 67.5%; height: 80%" />
       </div>
-      <div class="plat_msg">
+      <!-- <div class="plat_msg">
         <div class="subhead">
           <span class="subhead-title">证书介绍</span>
           <span class="subhead-tag"></span>
         </div>
         <p>{{ plat_infor }}</p>
         <p>{{ plat_infor }}</p>
-      </div>
+      </div> -->
     </div>
     <!-- 专利 -->
     <div class="organizatioanDetail-title">
@@ -61,17 +61,17 @@
       <span class="organizatioanDetail-title-tit">相关专利</span>
     </div>
     <div class="organizatioanDetail-zhengshu">
-      <div class="img_box">
-        <img src="@/assets/4_19.jpg" alt="" style="width: 67.5%" />
+      <div class="img_box"  v-for="(item,index) in patent" :key="index">
+        <img src="@/assets/4_19.jpg" alt="" style="width: 67.5%"/>
       </div>
-      <div class="plat_msg">
+      <!-- <div class="plat_msg">
         <div class="subhead">
           <span class="subhead-title">专利介绍</span>
           <span class="subhead-tag"></span>
         </div>
         <p>{{ plat_infor }}</p>
         <p>{{ plat_infor }}</p>
-      </div>
+      </div> -->
     </div>
     <!-- 权威认证说明 -->
     <div class="organizatioanDetail-title">
@@ -82,7 +82,7 @@
       {{ authority }}
     </div>
     <!-- 机构评价 -->
-    <div class="organizatioanDetail-title">
+    <!-- <div class="organizatioanDetail-title">
       <span class="organizatioanDetail-title-tag"></span>
       <span class="organizatioanDetail-title-tit">机构评价</span>
     </div>
@@ -92,15 +92,8 @@
         <span>条评价</span>
       </div>
       <div class="organizatioanDetail-evaluate-content">
-        <div style="color: #35393f; margin-bottom: 10px; font-weight: bold">
-          发表评价
-        </div>
-        <el-input
-          type="textarea"
-          :rows="2"
-          placeholder="请输入内容"
-          v-model="evaluate"
-        >
+        <div style="color: #35393f; margin-bottom: 10px; font-weight: bold">发表评价</div>
+        <el-input type="textarea" :rows="2" placeholder="请输入内容" v-model="evaluate">
         </el-input>
         <div class="organizatioanDetail-evaluate-footer">
           <el-checkbox v-model="isOpen">是否公开</el-checkbox>
@@ -112,15 +105,10 @@
     </div>
     <div class="commit-content">
       <ul class="commit-list">
-        <li
-          class="col"
-          v-for="(item, index) in productcommentList"
-          :key="index"
-        >
+        <li class="col" v-for="(item, index) in productcommentList" :key="index">
           <div class="img-box">
             <img src="@/assets/logo.png" alt="" />
           </div>
-          <!--  -->
           <div class="content">
             <p>
               {{ item.comment_organ_name }}<span>{{ item.create_date }}</span>
@@ -129,12 +117,12 @@
           </div>
         </li>
       </ul>
-    </div>
+    </div> -->
   </div>
 </template>
 
 <script>
-import {organDetail,productDetail} from "@/api/api.js";
+import { organDetail, productDetail, organProduct } from "@/api/api.js";
 import img1 from "@/assets/rengong.png";
 import img2 from "@/assets/qukuailian.png";
 import img3 from "@/assets/account.png";
@@ -165,43 +153,21 @@ export default {
       ],
       selectplat: "",
       src1: "",
-      technologylist: [
-        {
-          src: img1,
-          tech_name: "人工智能",
-        },
-        {
-          src: img2,
-          tech_name: "区块链",
-        },
-        {
-          src: img3,
-          tech_name: "云计算",
-        },
-        {
-          src: img4,
-          tech_name: "大数据",
-        },
-      ],
+      technologylist: [],
       plat_infor:
         "专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。",
       authority:
         "专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。专利证书是专利申请经审查合格，没有发现驳回理由，满足颁发授予专利权条件，由国务院专利行政部门（即国家知识产权局）作出授予专利权的决定，发给专利申请人的专利证书，是一种法律证明文件。",
-      evaluate:'',
-      isOpen:true,
-      organ_Infor:"",
-      productcommentList:[
-        {
-          comment_organ_name:'jigou1',
-          create_date:'1-2',
-          comment_content:'专利证书是专利申请经审查合格'
-        },
-        {
-          comment_organ_name:'jigou1',
-          create_date:'1-2',
-          comment_content:'专利证书是专利申请经审查合格'
-        },
-      ]
+      evaluate: "",
+      isOpen: true,
+      organ_Infor: "",
+      list1: [],
+      product_Infor: "",
+      srclist: [img1, img2, img3, img4],
+      id: "",
+      arrlist: "",
+      credentialList:[],
+      patent:[]
     };
   },
 
@@ -217,22 +183,45 @@ export default {
       });
     },
     organValue(val) {},
-    async getProductDetail(){
-      await productDetail().then(function (res) {
+    async getProductDetail(v) {
+      let that = this;
+      let data = {
+        product_id: v,
+      };
+      await productDetail(data).then(function (res) {
         that.product_Infor = res.data.product;
+        that.technologylist = res.data.techList;
+        that.credentialList = res.data.cerList;
+        that.patent=res.data.patentList
         console.log(res);
       });
-    }
+    },
+    async getdropDown() {
+      let that = this;
+      let data = {
+        organ_id: this.id,
+      };
+      await organProduct(data).then(function (res) {
+        that.arrlist = res;
+        console.log(res);
+      });
+    },
+    getid(val) {
+      console.log(val);
+      this.getProductDetail(val);
+    },
   },
   created() {
     let id = this.$route.query.id;
     this.id = id;
     this.getDetail(id);
     console.log(this.$route.query);
+    this.getProductDetail("dadaef6792c1445cbe184269ff829ed1");
+    this.getdropDown();
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .organizatioanDetail {
   width: 100%;
   padding: 0 360px;
@@ -242,8 +231,16 @@ export default {
   &-drapdown {
     margin: 2rem 0;
     border-bottom: 1px solid #d8dcdf;
-    .el-row{
-       margin-bottom: 1rem;
+    .el-row {
+      height: 3.4375rem;
+      line-height: 3.4375rem;
+      margin-bottom: 1rem;
+      .el-col {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
     }
   }
   &-title {
@@ -265,6 +262,11 @@ export default {
       margin-left: 1rem;
     }
   }
+  .productinfor {
+    .second-tab {
+      font-size: 2rem;
+    }
+  }
   &-technology {
     display: flex;
     flex-wrap: wrap;
@@ -276,8 +278,8 @@ export default {
         position: absolute;
         top: 50%;
         left: 50%;
-        margin-top: -6.5rem;
-        margin-left: -6.875rem;
+        margin-top: -30px;
+        margin-left: -30px;
       }
 
       .organ_name {
@@ -346,9 +348,10 @@ export default {
     margin: auto 0;
     text-align: start;
     text-indent: 2em;
+    margin-bottom: 5rem;
   }
   &-evaluate {
-      margin-bottom: 20px;
+    margin-bottom: 20px;
     &-num {
       .number {
         color: #ff6854;

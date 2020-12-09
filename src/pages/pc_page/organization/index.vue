@@ -12,10 +12,10 @@
         :key="index"
         @click="
           tabOption = index;
-          handleTabChange(index);
+          handleTabChange(item);
         "
       >
-        {{ item.organName }}
+        {{ item.label }}
       </div>
     </div>
     <OrganList :logolist="list" type="pagination" v-if="list.length != 0" />
@@ -35,7 +35,7 @@
 
 <script>
 import OrganList from "@/components/organList";
-import { organList } from "@/api/api.js";
+import { organList,getSelectData } from "@/api/api.js";
 export default {
   name: "Organization",
   components: {
@@ -46,27 +46,23 @@ export default {
   data() {
     return {
       list: [],
-      organType: [
-        { organName: "金融科技公司" },
-        { organName: "金融机构" },
-        { organName: "检查机构" },
-        { organName: "认证机构" },
-        { organName: "咨询机构" },
-      ],
+      organType: [],
       tabOption: 0,
       total: 240,
       page: "1",
       lastPage: "",
       currentPage1: 1,
+      firstTabValue:""
     };
   },
   methods: {
     // 入驻机构列表申请
-    async getOrganList(page) {
+    async getOrganList(page,organ) {
       let that = this;
       let data = {
         page: page,
         rows: "24",
+        organ_type:organ
       };
       await organList(data).then(function (res) {
         that.list = res.data.organPageInfo.rows;
@@ -79,14 +75,33 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页:${val}`, val);
-      this.getOrganList(`${val}`)
+      this.getOrganList(`${val}`,this.organ_type_value)
     },
-    handleTabChange(i) {},
+    handleTabChange(i) {
+      this.getOrganList("1",i.value)
+      this.organ_type_value=i.value
+      console.log(i)
+    },
+    handletab(){
+      let that=this
+      getSelectData(["ORGAN_TYPE"]).then(function (response) {
+        that.organType = response[0].ORGAN_TYPE;
+        let aaa=response[0].ORGAN_TYPE[0].value
+
+        console.log(response);
+        console.log(aaa)
+        console.log(that.organType[0].value);
+        that.firstTabValue=aaa
+        that.getOrganList('1',aaa);
+      });
+    }
   },
   created() {
-    this.getOrganList('1');
+    this.handletab()
   },
-  mounted() {},
+  mounted() {
+    
+  },
 };
 </script>
 <style lang='scss' scoped>

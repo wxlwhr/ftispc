@@ -21,7 +21,7 @@
               <div>
                 <div>
                   <img src="@/assets/Solution.png" alt="" />
-                  <span>{{ v.title }}</span>
+                  <span>{{ v.product_name }}</span>
                 </div>
                 <div class="goto">
                   <img src="@/assets/arrow_right.png" alt="" />
@@ -38,7 +38,7 @@
     </div>
     <div class="solutionInfo-evaluate">
       <div class="solutionInfo-evaluate-num">
-        <span class="number">45</span>
+        <span class="number">{{ casecommentList.length }}</span>
         <span>条评价</span>
       </div>
       <div class="solutionInfo-evaluate-content">
@@ -52,7 +52,7 @@
         </el-input>
         <div class="solutionInfo-evaluate-footer">
           <el-checkbox v-model="isOpen">是否公开</el-checkbox>
-          <el-button class="footer-btn" type="primary" @click="handlecomment()">发表</el-button>
+          <el-button class="footer-btn" type="primary" @click="handlecaseComment()">发表</el-button>
         </div>
       </div>
     </div>
@@ -105,19 +105,7 @@ export default {
   name: "SolutionInfo",
   data() {
     return {
-      productData: [
-        { title: "智能决策产品" },
-        { title: "解决方案名称2" },
-        { title: "解决方案名称3" },
-        { title: "解决方案名称4" },
-        { title: "解决方案名称5" },
-        { title: "解决方案名称6" },
-        { title: "解决方案名称7" },
-        { title: "解决方案名称8" },
-        { title: "第九个" },
-        { title: "解决方案名称" },
-        { title: "解决方案名称" },
-      ],
+      productData: [],
       isOpen:true,
       evaluate:'',
       case_Infor:"", //解决方案详情
@@ -132,8 +120,7 @@ export default {
   computed: {},
 
   methods: {
-    dealSolutionData() {
-      let data=this.productData
+    dealSolutionData(data) {
       let newData = [];
       for (var i = 0; i < data.length; i += 8) {
         newData.push(data.slice(i, i + 8));
@@ -151,9 +138,9 @@ export default {
       };
       await caseDetail(data).then(function (res) {
         that.case_Infor = res.data.case;
-        // that.casecommentList = res.data.caseCommentList;
-        // let productData = res.data.caseList;
-        // that.dealSolutionData(solutionData);
+        that.casecommentList = res.data.case.commentList;
+        let productData = res.data.case.productCaseList;
+        that.dealSolutionData(productData);
         console.log(res);
       });
     },
@@ -171,6 +158,7 @@ export default {
         if (localStorage.getItem("AuthStatus") === "6") {
           caseAsk(data).then(function (res) {
             that.textarea=""
+            that.dialogVisible=false
             console.log(res);
           });
         }
@@ -179,7 +167,7 @@ export default {
       }
     },
      // 提交评论
-    handleproductComment() {
+    handlecaseComment() {
       let that = this;
       let is = "";
       if (this.isOpen) {
@@ -215,7 +203,6 @@ export default {
     this.getDetail(id);
   },
   mounted(){
-    this.dealSolutionData();
   }
 };
 </script>

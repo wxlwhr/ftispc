@@ -3,11 +3,11 @@
     <!-- <el-row>
       <el-col :span="6"> -->
         <el-dropdown trigger="click"  @command="handleCommand">
-          <span class="el-dropdown-link">
+          <span class="el-dropdown-link" id="link-tab">
             {{val}}<i class="el-icon-arrow-down el-icon--right"></i>
           </span>
           <el-dropdown-menu slot="dropdown">
-            <el-dropdown-item  v-for="(item,index) in selection" :key="index" :command="item.value">{{item.label}}</el-dropdown-item>
+            <el-dropdown-item  v-for="(item,index) in dropdata" :key="index" :command="item.value">{{item.label}}</el-dropdown-item>
           </el-dropdown-menu>
         </el-dropdown>
       <!-- </el-col>
@@ -17,15 +17,19 @@
 
 <script>
 export default {
+  props:{
+    dropdata:{
+      type:Array,
+      default: () => {},
+    },
+    name:{
+      type:String
+    }
+  },
   data() {
     return {
-        val:'下拉菜单',
+        val:'',
         selection:[
-            {label:'黄金糕',value:'1'},
-            {label:'狮子头',value:'2'},
-            {label:'螺蛳粉',value:'3'},
-            {label:'双皮奶',value:'4'},
-            {label:'蚵仔煎',value:'5'},
         ]
     };
   },
@@ -37,23 +41,31 @@ export default {
   methods: {
       handleCommand(command) {
           console.log(command)
-          this.selection.map((item,i)=>{
+          // document.getElementById("link-tab").style.color="#000";
+          // document.getElementById("link-tab").style.fontWeight="600";
+          console.log(this.val)
+          this.dropdata.map((item,i)=>{
               if(item.value===command){
-                  this.val=item.label
+                this.val=item.label
+                this.$emit('handleId',command)
               }
           })
       }
   },
+  created(){
+    this.val=this.name
+  }
 };
 </script>
 <style lang='scss' scoped>
 .wrapper {
   .el-dropdown-link {
     cursor: pointer;
+    overflow: hidden;
     // color: #409eff;
   }
   .el-icon-arrow-down {
-    font-size: 12px;
+    font-size: .75rem;
   }
 }
 </style>
