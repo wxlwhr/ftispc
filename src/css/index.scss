@@ -80,4 +80,33 @@ nav {
 ul,ol{
   list-style: none;
 }
+.el-tree-node__content:hover {
+  background: rgba(255, 255, 255, 0.05);
+}
 
+.el-tree-node__label{
+  font-size: 1.3rem;
+}
+.el-tree-node:focus > .el-tree-node__content {
+  background-color:#2983fe;
+  border-radius: 3px;
+  color: #fff;
+}
+// .tree .el-tree-node__expand-icon.expanded {
+//   -webkit-transform: rotate(0deg);
+//   transform: rotate(0deg);
+// }
+// .tree .el-icon-caret-right:before {
+//   content: "\E602";
+//   font-size: 18px;
+// }
+// .tree .el-tree-node__expand-icon.expanded.el-icon-caret-right:before {
+//   content: "\E63c";
+//   font-size: 18px;
+// }
+.el-table .cell{
+  font-size: 1.3rem;
+}
+// .el-button span{
+//   font-size: 1.2rem;
+// }

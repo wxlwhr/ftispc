@@ -20,7 +20,7 @@
           </li>
         </ul>
       </div>
-      <div class="dynamic-box-right" v-if="content_detail===''">
+      <div class="dynamic-box-right" v-if="content_detail === ''">
         <div class="title">
           {{ right_title }}
         </div>
@@ -28,25 +28,36 @@
           <ul>
             <li v-for="(item, i) in policyList" :key="i">
               <div class="content-list-img">
-                <img src="@/assets/money.jpg" alt="" />
+                <!-- <img src="@/assets/money.jpg" alt="" /> -->
+                <img :src="srcList[i]" alt="" />
               </div>
               <div class="content-list-right">
                 <div class="title">{{ item.content_title }}</div>
                 <div class="date">{{ item.publish_date }}</div>
-                <div class="desc">{{ item.content_text }}</div>
-                <div style="color: #2882fe; cursor: pointer" @click="gotoDetail(item)">阅读全文</div>
+                <div class="desc">
+                  {{ item.content_text.match(/[\u4e00-\u9fa5]/g).join("") }}
+                </div>
+                <div
+                  style="color: #2882fe; cursor: pointer; font-size: 1.3rem"
+                  @click="gotoDetail(item)"
+                >
+                  阅读全文
+                </div>
               </div>
             </li>
           </ul>
         </div>
       </div>
       <div class="dynamic-box-right" v-else>
-        <div class="title">
+        <!-- <div class="title">
           {{ content_detail.content_title }}
+        </div> -->
+        <!-- <div class="content-list">
+          {{ content_detail.content_text }}
+        </div> -->
+        <div class="ql-snow">
+          <div class="ql-editor" v-html="content_detail.content_text"></div>
         </div>
-          <div class="content-list">
-            {{content_detail.content_text}}
-          </div>
       </div>
     </div>
   </div>
@@ -58,17 +69,19 @@ export default {
   name: "Dynamic_issue",
   data() {
     return {
-      tabList: [
-      ],
+      tabList: [],
       policyList: [],
       tabOption: 0,
-      right_title: "平台信息",
+      right_title: "",
       total: 150,
       page: "1",
       lastPage: "",
       currentPage1: 1,
       firstTabId: "",
       content_detail: "",
+      srcList: [],
+      id: "",
+      fatherId: "",
     };
   },
 
@@ -80,8 +93,18 @@ export default {
     async getTab() {
       let that = this;
       await dynamicTab().then(function (res) {
-        that.firstTabId = res.data.menuList[0].catalog_id;
-        that.tabList = res.data.menuList;
+        let data = res.data.menuList;
+        let firstTabId = res.data.menuList[0].catalogId;
+        that.right_title = res.data.menuList[0].catalogName;
+        that.getList("1", firstTabId);
+        that.tabList = data;
+
+        data.map((item, index) => {
+          if (item.catalogId === that.fatherId) {
+            console.log(that.id);
+            that.tabOption = index;
+          }
+        });
         console.log(res);
       });
     },
@@ -95,21 +118,29 @@ export default {
       console.log(data);
       await dynamicList(data).then(function (res) {
         that.policyList = res.data.dynamicPageInfo.rows;
+        let url = that.$store.state.url;
+        let imglist = [];
+        let src = url + "/attach/binary?attachmentId=";
+        res.data.dynamicPageInfo.rows.map((item, index) => {
+          // logoFile
+          imglist.push(src + item.imageAttachId);
+        });
+        that.srcList = imglist;
         console.log(res);
       });
     },
     handlegetList(i) {
       this.currentPage1 = 1;
       this.content_detail = "";
+      // this.nowcatalogId = i.catalogId;
       console.log(i.catalogId);
       this.getList("1", i.catalogId);
     },
     gotoDetail(i) {
       console.log(i);
-      let id = i.content_id;
       let that = this;
       let data = {
-        content_id: id,
+        content_id: i.content_id,
       };
       console.log(data);
       policyDetail(data).then(function (res) {
@@ -117,29 +148,26 @@ export default {
         console.log(res);
       });
     },
-    handleCurrentChange(val) {
-      console.log(`当前页:${val}`, val);
-      this.getList(`${val}`);
-    },
   },
   created() {
-    console.log(this.$route.query.id)
-    let id=this.$route.query.id
-    if(id){
+    // console.log(this.$route.query.id);
+    console.log(this.$route.query.fatherId);
+    this.fatherId = this.$route.query.fatherId;
+    let id = this.$route.query.id;
+    this.id = id;
+    if (id) {
       this.gotoDetail(id);
     }
     this.getTab();
   },
-  mounted() {
-    this.getList("1", this.firstTabId);
-  },
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .dynamic {
-  width: 100%;
+  width: 62.5%;
   min-height: 77rem;
-  padding: 0 360px;
+  margin: 0 auto;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;
@@ -161,8 +189,9 @@ export default {
   }
   &-box {
     width: 100%;
-
     display: flex;
+    padding-bottom: 5rem;
+    min-height: 60rem;
     justify-content: space-between;
     &-left {
       border: 1px solid #d8dcdf;
@@ -199,13 +228,13 @@ export default {
       }
       .content-list {
         padding: 0 4.813rem 0 3rem;
-        overflow: auto;
-        height: 70.8rem;
+        word-wrap: break-word;
+        word-break: normal;
         ul li {
           border-bottom: 1px dashed #d6dce7;
           padding: 1.313rem 0;
           .title {
-            font-size: 2rem;
+            font-size: 1.8rem;
             text-align: start;
             line-height: 2.5rem;
             height: 2.5rem;
@@ -213,11 +242,14 @@ export default {
             text-overflow: ellipsis;
           }
           .date {
+            font-size: 1rem;
+
             color: #a6abb1;
           }
           .desc {
+            margin: 6px 0;
+            font-size: 1rem;
             color: #84898e;
-            height: 4.063rem;
             overflow: hidden;
             text-overflow: ellipsis;
             display: -webkit-box;

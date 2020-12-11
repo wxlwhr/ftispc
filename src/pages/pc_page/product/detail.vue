@@ -172,7 +172,7 @@ export default {
         that.product_Infor = res.data.product;
         that.productcommentList = res.data.productCommentList;
         let solutionData = res.data.caseList;
-        // that.dealSolutionData(solutionData);
+        that.dealSolutionData(solutionData);
         console.log(that.solutionData);
         console.log(res);
       });
@@ -242,8 +242,8 @@ export default {
 </script>
 <style lang="scss" scoped>
 .productInfo {
-  width: 100%;
-  padding: 0 360px;
+  width: 62.5%;
+  margin: 0 auto;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;

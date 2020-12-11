@@ -67,10 +67,10 @@ export default {
     let list = [];
     let src = url + "/attach/binary?attachmentId=";
     this.logolist.map((item, index) => {
-      list.push(src + "b647ff882a644def9e54e614264649bd");
+      // logoFile
+      list.push(src + item.logoFile);
     });
     this.srcList = list;
-    // console.log(this.srcList);
     // console.log(this.logolist);
   },
   mounted() {
@@ -94,10 +94,11 @@ export default {
       position: relative;
       border: 1px solid #cfd2d7;
       .organ_logo {
-        width: 15.5rem;
-        height: 15.5rem;
+        width:90%;
+        height: 90%;
         position: relative;
-        margin: auto;
+        top: 5%;
+        margin:auto;
         cursor: pointer;
         img {
           width: 100%;
@@ -118,6 +119,7 @@ export default {
     }
   }
   .mask {
+    cursor: pointer;
     position: absolute;
     top: 0;
     left: 0;

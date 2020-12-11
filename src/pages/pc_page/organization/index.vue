@@ -134,9 +134,9 @@ export default {
     align-items: center;
     justify-content: start;
     div {
-      font-size: 1rem;
-      height: 2rem;
-      line-height: 2rem;
+      font-size: 1.2rem;
+      height: 2.4rem;
+      line-height: 2.4rem;
       margin-right: 10px;
       padding: 0 10px;
       cursor: pointer;

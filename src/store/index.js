@@ -5,7 +5,8 @@ const initStore = new Vuex.Store({
     state: {
         comment: {},
         menu: '',
-        url:'http://172.18.12.148:8080/ftis',
+        url:'http://172.18.12.148:8080/ftis',  //测试环境
+        // url:'http://192.168.1.170:8080/ftis',
         RealnameStatus:'',
         userIfor:'',
         auditManager:'',

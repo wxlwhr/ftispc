@@ -16,25 +16,43 @@
             :props="defaultProps"
             default-expand-all
             @node-click="handleNodeClick"
-          ></el-tree>
+          >
+          </el-tree>
         </div>
       </div>
       <div class="product-content-right">
-        <el-table  :data="tableData" style="width: 100%">
-          <el-table-column prop="product_name" label="产品名称" width="auto">
-          </el-table-column>
-          <el-table-column prop="creator_organ_name" label="机构名称" width="auto">
-          </el-table-column>
-          <el-table-column prop="create_date" label="发布时间" width="auto">
-          </el-table-column>
-          <el-table-column label="操作" width="80">
-            <template slot-scope="scope">
-              <el-button @click="handleView(scope.row)" type="text" size="small"
-                >查看</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
+        <div class="product-content-right-box">
+          <el-table
+            :data="tableData"
+            :row-style="{ height: '40px', color: '#000' }"
+            :cell-style="{ padding: '0' }"
+            style="width: 100%"
+            highlight-current-row
+            :header-cell-style="tableHeaderColor"
+          >
+            <el-table-column prop="product_name" label="产品名称" align="center" width="auto">
+            </el-table-column>
+            <el-table-column
+              prop="creator_organ_name"
+              label="机构名称"
+              width="auto"
+              align="center"
+            >
+            </el-table-column>
+            <el-table-column prop="create_date" label="发布时间" align="center" width="auto">
+            </el-table-column>
+            <el-table-column label="操作" width="80">
+              <template slot-scope="scope">
+                <el-button
+                  @click="handleView(scope.row)"
+                  type="text"
+                  size="small"
+                  >查看</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
     </div>
   </div>
@@ -46,9 +64,7 @@ export default {
   name: "Product",
   data() {
     return {
-      data: [
-        
-      ],
+      data: [],
       defaultProps: {
         children: "children",
         label: "name",
@@ -62,39 +78,46 @@ export default {
   computed: {},
 
   methods: {
+    tableHeaderColor({ row, rowIndex, column, columnIndex }) {
+      if (rowIndex === 0) {
+        return "background-color:#eceff4;color:#31363c;height:36px;font-family:Microsoft YaHei;padding:5px 0";
+      }
+    },
     handleView(row) {
       console.log(row);
-      this.$router.push({path:"/productInfo",query:{id:row.product_id}});
+      this.$router.push({
+        path: "/productInfo",
+        query: { id: row.product_id },
+      });
     },
     handleNodeClick(data) {
       console.log(data);
-      if(data.level==="3"){
-        this.getProductList(data.id)
+      if (data.level === "3") {
+        this.getProductList(data.id);
       }
-      
     },
     // 产品树获取
     async handeleproducttree() {
       let that = this;
       await productTree().then(function (res) {
         // that.data=res.data.productTree[0].children
-        that.data=res.data.productTree
+        that.data = res.data.productTree;
         console.log(res);
       });
     },
     // 根据产品树获取产品列表
-    getProductList(val){
-      let that=this
-      let data={
-        "catalog_id":val,
-        page:"1",
-        rows:"10"
-      }
-      productListData(data).then(function(res){
-        that.tableData=res.data.productPageInfo.rows
-        console.log(res)
-      })
-    }
+    getProductList(val) {
+      let that = this;
+      let data = {
+        catalog_id: val,
+        page: "1",
+        rows: "10",
+      };
+      productListData(data).then(function (res) {
+        that.tableData = res.data.productPageInfo.rows;
+        console.log(res);
+      });
+    },
   },
   created() {
     this.handeleproducttree();
@@ -102,14 +125,15 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
-
+/deep/.el-button span{
+  font-size: 1.3rem;
+}
 .product {
   height: 100%;
-  padding: 0 360px;
+  width: 62.5%;
+  margin: 0 auto;
   min-height: 77rem;
-  /deep/.el-tree-node__label{
-          font-size: 1rem!important;
-        }
+
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;
@@ -131,20 +155,17 @@ export default {
     }
   }
   &-content {
-    height: 61.57rem;
-    box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.1);
-    border: 1px solid #d6dce7;
+    // height: 61.57rem;
+    // box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.1);
+    border: 1px solid #d8dcdf;
     display: flex;
 
     &-left {
       width: 220px;
       height: 100%;
+      padding-bottom:3rem;
       border-right: 1px solid #d6dce7;
-
       .title {
-        img {
-          vertical-align: middle;
-        }
         height: 4rem;
         line-height: 4rem;
         border-bottom: 1px solid #d6dce7;
@@ -156,13 +177,15 @@ export default {
       .tree {
         margin-top: 0.93rem;
         padding: 0 1rem;
-        
       }
     }
 
     &-right {
       padding: 15px;
       width: calc(100% - 220px);
+      &-box {
+        border: 1px solid #d8dcdf;
+      }
     }
   }
 }

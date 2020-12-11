@@ -14,7 +14,7 @@ import { Message } from 'element-ui'
 // 默认配置
 axios.defaults.timeout = 10000
 axios.defaults.headers['Content-Type'] = 'application/json'
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = false
 
 // 普通请求实例
 const request = axios.create({

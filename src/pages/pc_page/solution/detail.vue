@@ -208,8 +208,8 @@ export default {
 </script>
 <style lang='scss' scoped>
 .solutionInfo {
-  width: 100%;
-  padding: 0 360px;
+    width: 62.5%;
+  margin: 0 auto;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;

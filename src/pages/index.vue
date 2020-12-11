@@ -33,8 +33,10 @@
         </ul>
         <div class="bts">
           <span class="login-btn" @click="handleGoLogin">登录</span>
+          <!-- <span class="login-btn" @click="handleGoLogin"><a href="http://172.18.12.148:8080/ftis/login">登录</a></span> -->
           <span class="gang">|</span>
           <span class="signin-btn" @click="handleGoSignin">注册</span>
+          <!-- <span class="login-btn" @click="handleGoLogin"><a href="http://172.18.12.148:8080/ftis/signin">注册</a></span> -->
         </div>
       </div>
       <!-- <el-input
@@ -159,9 +161,13 @@ export default {
     },
     handleGoSignin() {
       this.$router.push("/signin");
+      let url=this.$store.state.url
+      window.location.href(url+'/signin')
     },
     handleGoLogin() {
       this.$router.push("/login");
+      let url=this.$store.state.url
+      window.location.href(url+'/login')
     },
   },
 };
@@ -203,7 +209,7 @@ export default {
         // margin-left: 5rem;
         margin: 0 auto;
         li {
-          font-size: 1rem;
+          font-size: 1.4rem;
           margin-left: 4rem;
           cursor: pointer;
           padding-bottom: 10px;

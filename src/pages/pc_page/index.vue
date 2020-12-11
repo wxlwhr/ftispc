@@ -8,7 +8,7 @@
             <p class="row2">
               打造金融+科技+场景多维开放生态，连接监管机构、金融机构、科技服务商、场景商户
             </p>
-            <el-button class="btn">立即查看</el-button>
+            <!-- <el-button class="btn">立即查看</el-button> -->
           </div>
           <img
             src="@/assets/homepage_banner.jpg"
@@ -22,52 +22,36 @@
         </el-carousel-item> -->
       </el-carousel>
     </div>
-    <div class="index-tab">
+    <!-- <div class="index-tab">
       <div class="col1">
-        <img
-          src="@/assets/icon1.png"
-          style="width: 3rem; height: 3rem"
-          alt=""
-        />
+        <img src="@/assets/icon1.png" style="width: 3rem; height: 3rem" alt="" />
         <div class="text">
           <p>数字化解决方案</p>
           <p>API能力、中台服务</p>
         </div>
       </div>
       <div class="col1">
-        <img
-          src="@/assets/icon1.png"
-          style="width: 3rem; height: 3rem"
-          alt=""
-        />
+        <img src="@/assets/icon1.png" style="width: 3rem; height: 3rem" alt="" />
         <div class="text">
           <p>数字化解决方案</p>
           <p>API能力、中台服务</p>
         </div>
       </div>
       <div class="col1">
-        <img
-          src="@/assets/icon1.png"
-          style="width: 3rem; height: 3rem"
-          alt=""
-        />
+        <img src="@/assets/icon1.png" style="width: 3rem; height: 3rem" alt="" />
         <div class="text">
           <p>数字化解决方案</p>
           <p>API能力、中台服务</p>
         </div>
       </div>
       <div class="col1">
-        <img
-          src="@/assets/icon1.png"
-          style="width: 3rem; height: 3rem"
-          alt=""
-        />
+        <img src="@/assets/icon1.png" style="width: 3rem; height: 3rem" alt="" />
         <div class="text">
           <p>数字化解决方案</p>
           <p>API能力、中台服务</p>
         </div>
       </div>
-    </div>
+    </div> -->
     <div class="index-product" :style="productBg">
       <div class="index-product-box">
         <div class="row">
@@ -78,7 +62,12 @@
         </div>
         <div class="title">技术产品</div>
         <div class="list">
-          <div class="col" v-for="(item, index) in productList1.slice(0, 4)" :key="index" @click="handleProDetail(item)">
+          <div
+            class="col"
+            v-for="(item, index) in productList1.slice(0, 4)"
+            :key="index"
+            @click="handleProDetail(item)"
+          >
             <div class="little_box">
               <div class="row1">
                 <img
@@ -87,8 +76,11 @@
                   alt=""
                 /><span>{{ item.product_name }}</span>
               </div>
-              <div class="txt">
-                {{ item.product_des }}
+              <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
+                {{ item.product_des.match(/[\u4e00-\u9fa5]/g).join("") }}
+              </div>
+              <div  class="txt" v-else>
+                {{ item.product_des}}
               </div>
             </div>
           </div>
@@ -109,8 +101,11 @@
                   alt=""
                 /><span>{{ item.product_name }}</span>
               </div>
-              <div class="txt">
-                {{ item.product_des }}
+              <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
+                {{ item.product_des.match(/[\u4e00-\u9fa5]/g)}}
+              </div>
+              <div  class="txt" v-else>
+                {{ item.product_des}}
               </div>
             </div>
           </div>
@@ -122,8 +117,7 @@
         <div class="solution-box">
           <p class="title">解决方案</p>
           <p class="content">
-            解决方案解决方案解决方案解决方案解决方案解决方案
-            解决方案解决方案解决方案解决方案解决方案
+            解决方案Solution就是针对某些已经体现出的，或者可以预期的问题、不足、缺陷、需求等等，所提出的一个解决整体问题的方案（建议书、计划表），同时能够确保加以快速有效的执行。
           </p>
         </div>
       </div>
@@ -135,9 +129,9 @@
               :class="tab1 === i ? 'active' : ''"
               v-for="(item, i) in tabdata1"
               :key="i"
-              @click="handleTab1(i)"
+              @click="handleTab1(item, i)"
             >
-              {{ item }}
+              {{ item.catalog_name }}
             </li>
             <span @click="handleGosolution"
               >更多<img src="@/assets/dynamic_arrow_right.png" alt=""
@@ -166,7 +160,9 @@
               @click="handleTab3(item, k)"
             >
               <p>{{ item.catalog_name }}</p>
-              <p>模块描述模块描述模块描述</p>
+              <p>
+                {{ item.catalog_des }}
+              </p>
             </div>
           </div>
         </div>
@@ -176,7 +172,9 @@
       <div class="index-policy-box">
         <div class="row1">
           <span>政策信息</span
-          ><span @click="handleTopolicy">更多<img src="@/assets/arrow_right.png" alt="" /></span>
+          ><span @click="handleTopolicy"
+            >更多<img src="@/assets/arrow_right.png" alt=""
+          /></span>
         </div>
         <div class="row2">
           <div
@@ -185,24 +183,36 @@
             :key="index"
           >
             <p>
-              {{item.catalog.catalogName}}<span
+              {{ item.catalog.catalogName
+              }}<span
                 ><img
+                  class="more-img"
                   src="@/assets/policy_arrow.png"
                   style="width: 0.9375rem; height: 0.875rem"
                   alt=""
+                  @click="handlePolicyDetail(item, index)"
               /></span>
             </p>
             <div class="ul-box">
               <ul class="ul_left">
-                <li v-for="(item,j) in item.policyList" :key="j" @click="handlePolicyDetail(item)">{{item.content_title}}</li>
+                <li
+                  v-for="(item, j) in item.policyList.slice(0, 6)"
+                  :key="j"
+                  @click="handlePolicyDetail(item, index)"
+                >
+                  {{ item.content_title }}
+                </li>
               </ul>
               <ul class="ul_time">
-                <li v-for="(item,j) in item.policyList" :key="j+'1'">{{item.publish_date.slice(5,10)}}</li>
+                <li
+                  v-for="(item, j) in item.policyList.slice(0, 6)"
+                  :key="j + '1'"
+                >
+                  {{ item.publish_date.slice(5, 10) }}
+                </li>
               </ul>
             </div>
           </div>
-
-          
         </div>
       </div>
     </div>
@@ -210,7 +220,9 @@
       <div class="index-dynamic-title">
         <div class="title">
           <span>动态发布</span>
-          <span @click="handleTodynamic">更多<img src="@/assets/arrow_right.png" alt="" /></span>
+          <span @click="handleTodynamic"
+            >更多<img src="@/assets/arrow_right.png" alt=""
+          /></span>
         </div>
       </div>
       <div class="index-dynamic-content" :style="dynamicBg">
@@ -219,7 +231,7 @@
           <div class="box-left" v-for="(item, i) in dtlistLeft" :key="i">
             <p class="row1">{{ item.content_title }}</p>
             <p class="row2">
-              {{ item.content_text }}
+              {{ item.content_text.match(/[\u4e00-\u9fa5]/g).join("") }}
             </p>
             <!-- <p class="row1">文章主题</p>
             <p class="row2">文章内容</p> -->
@@ -261,7 +273,9 @@
         <OrganList :logolist="organLogoList" v-if="organLogoList.length != 0" />
       </div>
       <div class="more_btn">
-          <span class="btn" @click="handleGoOrganList">更多<img src="@/assets/arrow_right.png" alt="" /></span>
+        <span class="btn" @click="handleGoOrganList"
+          >更多<img src="@/assets/arrow_right.png" alt=""
+        /></span>
       </div>
     </div>
   </div>
@@ -271,9 +285,13 @@
 import {
   organList,
   productListData,
+  caselistlevel,
   caselistbyparent,
   dynamicList,
+  dynamicIndexList,
   policyIndex,
+  productTechList,
+  productBusiList,
 } from "@/api/api.js";
 import OrganList from "@/components/organList";
 import img1 from "@/assets/organlogos/logo1.jpg";
@@ -296,9 +314,9 @@ export default {
       currentDate: new Date(),
       organLogoList: [],
       productList1: [],
-      productList2:[],
+      productList2: [],
       solutionTree: [],
-      tabdata1: ["银行业"],
+      tabdata1: [],
       tabdata2: [],
       tabdata3: [],
       tab1: 0,
@@ -363,10 +381,10 @@ export default {
     handleTodynamic() {
       this.$router.push("/dynamic_issue");
     },
-    handleGosolution(){
-      this.$router.push('/solution');
+    handleGosolution() {
+      this.$router.push("/solution");
     },
-    handleGoOrganList(){
+    handleGoOrganList() {
       this.$router.push("/organization");
     },
     // 入驻机构列表申请
@@ -385,65 +403,67 @@ export default {
     // 产品列表1
     async getProductList() {
       let that = this;
-      let data = {
-        page: "1",
-        rows: "4",
-      };
-      await productListData({
-        catalog_id: "2953a34edde84903bb58848fb0e6656b",
-      }).then(function (res) {
-        that.productList1 = res.data.productPageInfo.rows;
+      await productTechList({ size: "4" }).then(function (res) {
+        that.productList1 = res;
         console.log(res);
       });
     },
     // 产品列表2
     async getProductList2() {
       let that = this;
-      let data = {
-        page: "1",
-        rows: "4",
-      };
-      await productListData({
-        catalog_id: "d218c07273814e4886a96b6bbd336196",
+      await productBusiList({
+        size: "4",
       }).then(function (res) {
-        that.productList2 = res.data.productPageInfo.rows;
+        that.productList2 = res;
         console.log(res);
       });
     },
-    // 解决方案列表
-    async getSolutionList() {
+    // 解决方案一级列表 caselistlevel
+    async getCaseLevel() {
       let that = this;
-      let data = {
-        page: "1",
-        rows: "12",
-      };
-      await caseList({
-        catalog_id: "2953a34edde84903bb58848fb0e6656b",
+      await caselistlevel({
+        size: "2",
       }).then(function (res) {
-        // that.productList = res.data.productPageInfo.rows;
+        // res.map((item,index)=>{
+        //   let arr=[]
+        //   if(item.catalog_name.includes("银行业")){
+        //     console.log(item,index)
+        //     res.splice(item,1).push()
+        //     console.log(res)
+        //   }
+        // })
+        for (var i = 0; i < res.length; i++) {
+            if(res[i].catalog_name.includes("银行业")){
+            var a=res.splice(i,1)
+            break;
+          }
+        }
+        a=a.concat(res)
+        // res.unshift(a); 
+        that.tabdata1 = a;
+        if (that.tab1 === 0) {
+          that.getTreeList(a[0].catalog_id);
+        }
         console.log(res);
       });
     },
     // 解决方案tab获取
-    async getTreeList() {
+    async getTreeList(i) {
       let that = this;
       await caselistbyparent({
-        parentCatalog: "51c2ec2c9bdf471195db647c12bb8fe6",
+        parentCatalog: i,
       }).then(function (res) {
         that.tabdata2 = res;
-        // that.treeRender(tree)
+        
         console.log(res);
         that.handleTab2(res[0], 0);
       });
     },
-    treeRender(val) {
-      console.log(val);
-    },
-    handleTab1(i) {
+    handleTab1(item, i) {
       this.tab1 = i;
+      this.getTreeList(item.catalog_id);
     },
     handleTab2(item, j) {
-      console.log(item, j);
       let that = this;
       this.tab2 = j;
       caselistbyparent({ parentCatalog: item.catalog_id }).then(function (res) {
@@ -464,8 +484,8 @@ export default {
     // 动态发布列表
     async dt() {
       let that = this;
-      await dynamicList({}).then(function (res) {
-        that.dtlist = res.data.dynamicPageInfo.rows;
+      await dynamicIndexList({ size: "4" }).then(function (res) {
+        that.dtlist = res.data.dynamicList;
         that.imgListData();
         that.handlechange(0);
         console.log(res);
@@ -484,40 +504,47 @@ export default {
       let src = url + "/attach/binary?attachmentId=";
       // item.imageAttachId
       this.dtlist.map((item, index) => {
-        list.push(src + "b647ff882a644def9e54e614264649bd");
+        list.push(src + item.imageAttachId);
       });
       this.imglist = list;
+      console.log(list);
     },
     // 产品根据Id跳转到详情
-    handleProDetail(i){
-      console.log(i)
-      this.$router.push({path:"/productInfo",query:{id:i.product_id}});
+    handleProDetail(i) {
+      console.log(i);
+      this.$router.push({ path: "/productInfo", query: { id: i.product_id } });
     },
     // 政策信息详情
-    handlePolicyDetail(i){
-      this.$router.push({path:"/policy",query:{id:i}});
-      console.log(i)
+    handlePolicyDetail(i, v) {
+      this.$router.push({
+        path: "/policy",
+        query: { id: i.content_id, tabName: v },
+      });
+      console.log(i, v);
     },
     // 动态发布详情
-    handleDtDetail(i){
-      console.log(i)
-       this.$router.push({path:"/dynamic_issue",query:{id:i}});
-    }
+    handleDtDetail(i) {
+      console.log(i);
+      this.$router.push({
+        path: "/dynamic_issue",
+        query: { id: i.content_id,fatherId:i.catalog_id },
+      });
+    },
   },
   created() {
     this.getOrganList();
     this.getProductList();
-    this.getTreeList();
+    this.getCaseLevel();
     this.policy();
     this.dt();
     // this.handleTab2(this.tabdata2[0])
   },
   mounted() {
-      this.getProductList2()
+    this.getProductList2();
   },
 };
 </script>
-<style lang='scss' scoped>
+<style lang="scss" scoped>
 .index {
   padding: 0;
   width: 100%;
@@ -608,7 +635,7 @@ export default {
       width: 62.5%;
       height: 100%;
       margin: 0 auto;
-      padding-top: 9rem;
+      padding-top: 4rem;
       .row {
         display: flex;
         justify-content: space-between;
@@ -720,6 +747,9 @@ export default {
           &-col {
             cursor: pointer;
             width: 6.25rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 1;
             overflow: hidden;
             margin-right: 8px;
             font-size: 1rem;
@@ -755,7 +785,7 @@ export default {
           position: relative;
           height: 2.25rem;
           &-box {
-            border: 1px solid #cfd2d7;
+            // border: 1px solid #cfd2d7;
             float: left;
             display: flex;
             &-col {
@@ -848,6 +878,7 @@ export default {
               height: 0.875rem;
               float: right;
               padding-right: 2rem;
+              cursor: pointer;
             }
           }
           .ul-box {
@@ -861,8 +892,8 @@ export default {
               li {
                 // width: 20px;
                 font-size: 1rem;
-                height: 2rem;
-                line-height: 2rem;
+                height: 2.2rem;
+                line-height: 2.2rem;
                 text-overflow: ellipsis;
                 overflow: hidden;
                 white-space: nowrap;
@@ -935,6 +966,10 @@ export default {
           }
           .row2 {
             font-size: 0.875rem;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
           }
           .btn {
             cursor: pointer;
@@ -1008,25 +1043,24 @@ export default {
         }
       }
     }
-    .more_btn{
-         height: 8rem;
-          line-height: 8rem;
+    .more_btn {
+      height: 8rem;
+      line-height: 8rem;
+      text-align: center;
+      .btn {
+        cursor: pointer;
         text-align: center;
-        .btn{
-          cursor: pointer;
-          text-align: center;
-          width: 6rem;
-          height: 4rem;
-          line-height: 4rem;
-          color: #2882fe;
-          border: 1px solid #2882fe;
-          padding:4px 10px;
-          img {
-            margin-left: 5px;
-          }
+        width: 6rem;
+        height: 4rem;
+        line-height: 4rem;
+        color: #2882fe;
+        border: 1px solid #2882fe;
+        padding: 4px 10px;
+        img {
+          margin-left: 5px;
         }
-        
       }
+    }
 
     //   卡片
     .dynamic {

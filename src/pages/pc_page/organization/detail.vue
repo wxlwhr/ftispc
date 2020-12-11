@@ -8,7 +8,7 @@
     <div class="organizatioanDetail-drapdown">
       <el-row>
         <el-col :span="3" v-for="(item, index) in arrlist" :key="index">
-          <Dropdown :dropdata="item" :name="index" @handleId="getid" />
+          <Dropdown :dropdata="item" :name="index" @handleId="getid"/>
         </el-col>
       </el-row>
     </div>
@@ -32,7 +32,7 @@
       <span class="organizatioanDetail-title-tit">涉及技术</span>
     </div>
     <div class="organizatioanDetail-technology">
-      <div class="aaa" v-for="(item, index) in technologylist.slice(0,4)" :key="index">
+      <div class="aaa" v-for="(item, index) in imgList3.slice(0, 4)" :key="index">
         <img :src="srclist[index]" alt="" />
         <div class="organ_name">{{ item.tec_name }}</div>
       </div>
@@ -43,8 +43,8 @@
       <span class="organizatioanDetail-title-tit">相关证书</span>
     </div>
     <div class="organizatioanDetail-zhengshu">
-      <div class="img_box" v-for="(item,index) in credentialList" :key="index">
-        <img src="@/assets/4_15.jpg" alt="" style="width: 67.5%; height: 80%" />
+      <div class="img_box" v-for="(item, index) in imgList1" :key="index">
+        <img :src="item" alt="" style="width: 67.5%; height: 80%" />
       </div>
       <!-- <div class="plat_msg">
         <div class="subhead">
@@ -61,8 +61,8 @@
       <span class="organizatioanDetail-title-tit">相关专利</span>
     </div>
     <div class="organizatioanDetail-zhengshu">
-      <div class="img_box"  v-for="(item,index) in patent" :key="index">
-        <img src="@/assets/4_19.jpg" alt="" style="width: 67.5%"/>
+      <div class="img_box" v-for="(item, index) in imgList2" :key="index">
+        <img :src="item" alt="" style="width: 67.5%" />
       </div>
       <!-- <div class="plat_msg">
         <div class="subhead">
@@ -122,7 +122,12 @@
 </template>
 
 <script>
-import { organDetail, productDetail, organProduct } from "@/api/api.js";
+import {
+  organDetail,
+  productDetail,
+  organProduct,
+  organProductDetail,
+} from "@/api/api.js";
 import img1 from "@/assets/rengong.png";
 import img2 from "@/assets/qukuailian.png";
 import img3 from "@/assets/account.png";
@@ -166,8 +171,9 @@ export default {
       srclist: [img1, img2, img3, img4],
       id: "",
       arrlist: "",
-      credentialList:[],
-      patent:[]
+      imgList1: [],
+      imgList2: [],
+      imgList3:[]
     };
   },
 
@@ -182,17 +188,37 @@ export default {
         console.log(res);
       });
     },
-    organValue(val) {},
+    // organValue(val) {},
     async getProductDetail(v) {
       let that = this;
       let data = {
         product_id: v,
       };
-      await productDetail(data).then(function (res) {
+      await organProductDetail(data).then(function (res) {
+        let url = that.$store.state.url;
+        let techImgList = [];
+        let cerImgList = [];
+        let patentImgList = [];  //专利图片
+        let src = url + "/attach/binary?attachmentId=";
+        res.data.cerList.map((item, index) => {
+          // logoFile
+          cerImgList.push(src + item);
+        });
+        that.imgList1 = cerImgList;
+        res.data.cerList.map((item, index) => {
+          // logoFile
+          patentImgList.push(src + item);
+        });
+        that.imgList2=patentImgList
+        res.data.cerList.map((item, index) => {
+          // logoFile
+          techImgList.push(src + item);
+        });
+        that.imgList3=techImgList
         that.product_Infor = res.data.product;
-        that.technologylist = res.data.techList;
-        that.credentialList = res.data.cerList;
-        that.patent=res.data.patentList
+        // that.technologylist = res.data.techList;
+        // that.credentialList = res.data.cerList;
+        // that.patent=res.data.patentList
         console.log(res);
       });
     },
@@ -202,8 +228,11 @@ export default {
         organ_id: this.id,
       };
       await organProduct(data).then(function (res) {
-        that.arrlist = res;
-        console.log(res);
+        let data = res;
+        that.arrlist=data
+        // that.arrlist= res[0].push({select:"1"})
+        console.log(that.arrlist);
+        console.log(res)
       });
     },
     getid(val) {
@@ -216,15 +245,15 @@ export default {
     this.id = id;
     this.getDetail(id);
     console.log(this.$route.query);
-    this.getProductDetail("dadaef6792c1445cbe184269ff829ed1");
+    // this.getProductDetail("dadaef6792c1445cbe184269ff829ed1");
     this.getdropDown();
   },
 };
 </script>
 <style lang="scss" scoped>
 .organizatioanDetail {
-  width: 100%;
-  padding: 0 360px;
+    width: 62.5%;
+  margin: 0 auto;
   &-header {
     margin-top: 2rem;
   }

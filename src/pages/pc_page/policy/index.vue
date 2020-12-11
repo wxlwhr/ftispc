@@ -20,13 +20,17 @@
           </li>
         </ul>
       </div>
-      <div class="policy-box-right" v-if="content_detail===''">
+      <div class="policy-box-right" v-if="content_detail === ''">
         <div class="title">
           {{ right_title }}
         </div>
         <div class="content-list">
           <ul>
-            <li v-for="(item, i) in policyList" :key="i" @click="gotoDetail(item)">
+            <li
+              v-for="(item, i) in policyList"
+              :key="i"
+              @click="gotoDetail(item.content_id)"
+            >
               <span> {{ item.content_title }}</span>
               <span> {{ item.publish_date }}</span>
               <div
@@ -49,53 +53,12 @@
         </div>
       </div>
       <div class="policy-box-right" v-else>
-          <div class="title">
+        <div class="title">
           {{ content_detail.content_title }}
         </div>
-          <div class="content-list">
-            {{content_detail.content_text}}
-            两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文两年来，多家银行在互联网金融平台推出了存款产品，加大揽存力度，拓宽获客渠道，很多消费者也非常便利地享受到了存款服务。此类产品收益高、门槛低，已成为部分中小银行吸收存款、
-阅读全文
-          </div>
+        <div class="content-list" v-html="content_detail.content_text">
+          <!-- {{  }} -->
+        </div>
       </div>
     </div>
   </div>
@@ -112,13 +75,15 @@ export default {
         // { title: "中华人民共和国合同法（修正）", date: "08-10" },
       ],
       tabOption: 0,
-      right_title: "国家法律",
+      right_title: "",
       total: 150,
       page: "1",
       lastPage: "",
       currentPage1: 1,
-      firstTabId:'',
-      content_detail:""
+      firstTabId: "",
+      content_detail: "",
+      tabName: "",
+      nowcatalogId: "",
     };
   },
 
@@ -127,72 +92,85 @@ export default {
   computed: {},
 
   methods: {
-    async getTab() {
+    getTab() {
+      console.log(this.$data);
       let that = this;
-      await policyTab().then(function (res) {
-        that.tabList = res.data.menuList;
-        that.firstTabId=res.data.menuList[0].catalog_id
-        let aaa=res.data.menuList[0].catalog_id
-        that.getList("1",aaa);
+      policyTab().then(function (res) {
+        let data = res.data.menuList;
+        that.firstTabId = res.data.menuList[0].catalogId;
+        that.right_title = res.data.menuList[0].catalogName;
+        console.log(res.data.menuList[0]);
+        that.getList("1", res.data.menuList[0].catalogId);
+        that.tabList = data;
+        data.map((item, index) => {
+          if (item.catalogName === that.tabName) {
+            that.tabOption = index;
+          }
+        });
         console.log(res);
       });
     },
-    async getList(page,id) {
+    async getList(page, id) {
       let that = this;
       let data = {
         page: page,
         rows: "15",
         catalog_id: id,
       };
-      console.log(data);
       await policyList(data).then(function (res) {
         that.policyList = res.data.policyPageInfo.rows;
-        console.log(res.data.policyPageInfo.rows);
+        that.total = res.data.policyPageInfo.records;
+        console.log(res);
       });
     },
+    // 点击左侧菜单栏 切换数据
     handlegetList(i) {
-      this.currentPage1=1
-      this.content_detail=""
+      this.currentPage1 = 1;
+      this.content_detail = "";
+      this.nowcatalogId = i.catalogId;
       console.log(i.catalogId);
-      this.getList("1",i.catalogId);
+      this.getList("1", i.catalogId);
     },
     gotoDetail(i) {
       console.log(i);
-      let id = i.content_id;
+      let id = i;
       let that = this;
       let data = {
         content_id: id,
       };
       console.log(data);
       policyDetail(data).then(function (res) {
-        that.content_detail=res.data.content
+        that.content_detail = res.data.content;
         console.log(res);
       });
     },
     handleCurrentChange(val) {
       console.log(`当前页:${val}`, val);
-      this.getList(`${val}`)
+      this.getList(`${val}`, this.nowcatalogId);
     },
   },
-  created() {
-    let id=this.$route.query.id
-    if(id){
+  async created() {
+    let that = this;
+    let id = this.$route.query.id;
+    let tabName = this.$route.query.tabName;
+    that.tabName = tabName;
+    if (tabName) {
+      this.right_title = tabName;
+    }
+    console.log(that.tabName);
+    if (id) {
       this.gotoDetail(id);
     }
-    this.getTab();
+    that.getTab();
   },
-  mounted(){
-    console.log(this.firstTabId)
-    
-
-  }
+  mounted() {},
 };
 </script>
 <style lang="scss" scoped>
 .policy {
-  width: 100%;
+  width: 62.5%;
   min-height: 77rem;
-  padding: 0 360px;
+  margin:0 auto;
   &-title {
     margin-top: 1.79rem;
     margin-bottom: 1.5rem;
@@ -215,10 +193,10 @@ export default {
   &-box {
     width: 100%;
     display: flex;
-    min-height: 50rem;
+    min-height: 60rem;
     justify-content: space-between;
     padding-bottom: 5rem;
-    position: relative;
+    // position: relative;
     &-left {
       border: 1px solid #d8dcdf;
       border-radius: 2px;
@@ -254,17 +232,24 @@ export default {
       }
       .content-list {
         padding: 0 4.813rem 0 3rem;
+        word-wrap: break-word;
+        word-break: normal;
         ul {
+          padding-bottom: 30px;
           &:first-child {
             list-style: inside;
           }
           li {
+            width: 100%;
             margin-top: 1.375rem;
             span {
               &:first-child {
                 color: #35393f;
+                width: 70%;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                white-space: nowrap;
                 cursor: pointer;
-
                 &:hover {
                   text-decoration: underline;
                   color: #2882fe;
@@ -279,7 +264,7 @@ export default {
             .dashed {
               width: 100%;
               height: 1px;
-              border: 1px dashed #d6dce7;
+              border-bottom: 1px dashed #d6dce7;
               margin-top: 1.875rem;
               margin-bottom: 0.313rem;
             }
@@ -287,9 +272,9 @@ export default {
         }
       }
       .pagination {
-        position: absolute;
-        bottom: 45px;
-        left: 40%;
+        // position: absolute;
+        // bottom: 45px;
+        // left: 40%;
         text-align: center;
         margin: 1.75rem 0;
       }

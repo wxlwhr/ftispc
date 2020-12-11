@@ -1,7 +1,8 @@
 import { request } from '../core/request.js'
 import axios from 'axios'
-const url = 'http://172.18.12.148:8080/ftis'   //测试环境
+// const url = 'http://172.18.12.148:8080/ftis'   //测试环境
 // const url = 'http://192.168.21.14:8080/ftis'   //本地环境
+const url = 'http://192.168.1.170:8080/ftis'   //本地环境
 let localtoken = localStorage.getItem('Authorization');
 // 入驻机构列表
 export function organList(params) {
@@ -18,6 +19,16 @@ export function organDetail(params) {
     console.log('机构详情')
     return request({
         url: url + '/client/organ/intro',
+        method: 'get',
+        params: params,
+        showLoading: 'true'
+    })
+}
+// 机构下的产品详情 /client/organ/disp/product
+export function organProductDetail(params) {
+    console.log('机构下的产品详情')
+    return request({
+        url: url + '/client/organ/disp/product',
         method: 'get',
         params: params,
         showLoading: 'true'
@@ -50,6 +61,26 @@ export function productListData(params) {
         url: url + '/client/page/product/published.ajax',
         method: 'post',
         data: params,
+        showLoading: 'true'
+    })
+}
+// 首页技术产品列表
+export function productTechList(params) {
+    console.log('技术产品列表')
+    return request({
+        url: url + '/client/list/product/tech',
+        method: 'get',
+        params: params,
+        showLoading: 'true'
+    })
+}
+// 首页业务产品列表
+export function productBusiList(params) {
+    console.log('业务产品列表')
+    return request({
+        url: url + '/client/list/product/busi',
+        method: 'get',
+        params: params,
         showLoading: 'true'
     })
 }
@@ -100,6 +131,16 @@ export function caseTree(params) {
     console.log('解决方案tree请求')
     return request({
         url: url + '/tree/casetree',
+        method: 'get',
+        params: params,
+        showLoading: 'true'
+    })
+}
+// 首页解决方案一级列表  
+export function caselistlevel(params) {
+    console.log('首页解决方案一级列表')
+    return request({
+        url: url + '/client/list/case/catalog/level2',
         method: 'get',
         params: params,
         showLoading: 'true'
@@ -192,6 +233,16 @@ export function dynamicTab(params) {
     console.log('动态发布Tab')
     return request({
         url: url + '/client/dynamic/sidemenu',
+        method: 'get',
+        params: params,
+        showLoading: 'true'
+    })
+}
+// 首页动态列表
+export function dynamicIndexList(params) {
+    console.log('首页动态列表')
+    return request({
+        url: url + '/client/list/dynamic.ajax',
         method: 'get',
         params: params,
         showLoading: 'true'

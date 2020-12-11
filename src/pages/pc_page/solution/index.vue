@@ -21,21 +21,33 @@
         </div>
       </div>
       <div class="product-content-right">
-        <el-table :data="tableData" style="width: 100%">
-          <el-table-column prop="case_name" label="解决方案名称" width="auto">
-          </el-table-column>
-          <el-table-column prop="creator_organ_name" label="机构名称" width="auto">
-          </el-table-column>
-          <el-table-column prop="create_date" label="发布时间" width="auto">
-          </el-table-column>
-          <el-table-column label="操作" width="100">
-            <template slot-scope="scope">
-              <el-button @click="handleView(scope.row)" type="text" size="small"
-                >查看</el-button
-              >
-            </template>
-          </el-table-column>
-        </el-table>
+        <div class="product-content-right-box">
+          <el-table :data="tableData" style="width: 100%" highlight-current-row
+            :row-style="{ height: '40px', color: '#000' }"
+            :cell-style="{ padding: '0' }" :header-cell-style="tableHeaderColor">
+            <el-table-column prop="case_name" label="解决方案名称" align="center" width="auto">
+            </el-table-column>
+            <el-table-column
+              prop="creator_organ_name"
+              label="机构名称"
+              width="auto"
+              align="center"
+            >
+            </el-table-column>
+            <el-table-column prop="create_date" label="发布时间" align="center" width="auto">
+            </el-table-column>
+            <el-table-column label="操作" width="100">
+              <template slot-scope="scope">
+                <el-button
+                  @click="handleView(scope.row)"
+                  type="text"
+                  size="small"
+                  >查看</el-button
+                >
+              </template>
+            </el-table-column>
+          </el-table>
+        </div>
       </div>
     </div>
   </div>
@@ -52,8 +64,7 @@ export default {
         children: "children",
         label: "name",
       },
-      tableData: [
-      ],
+      tableData: [],
     };
   },
 
@@ -62,9 +73,14 @@ export default {
   computed: {},
 
   methods: {
+    tableHeaderColor({ row, rowIndex, column, columnIndex }) {
+      if (rowIndex === 0) {
+        return "background-color:#eceff4;color:#31363c;height:36px";
+      }
+    },
     handleView(row) {
       console.log(row);
-      this.$router.push({path:"/solutionInfo",query:{id:row.case_id}});
+      this.$router.push({ path: "/solutionInfo", query: { id: row.case_id } });
     },
     handleNodeClick(data) {
       console.log(data);
@@ -85,7 +101,7 @@ export default {
     getCaseList(val) {
       let that = this;
       let data = {
-        catalog_id: val
+        catalog_id: val,
       };
       caseList(data).then(function (res) {
         that.tableData = res.data.casePageInfo.rows;
@@ -99,9 +115,13 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+/deep/.el-button span{
+  font-size: 1.3rem;
+}
 .product {
   height: 100%;
-  padding: 0 360px;
+  width: 62.5%;
+  margin: 0 auto;
   min-height: 77.25rem;
   &-title {
     margin-top: 1.79rem;
@@ -124,8 +144,8 @@ export default {
     }
   }
   &-content {
-    height: 61.57rem;
-    box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.1);
+    // height: 61.57rem;
+    // box-shadow: 0rem 0rem 1rem 0rem rgba(0, 0, 0, 0.1);
     border: 1px solid #d6dce7;
     display: flex;
 
@@ -135,9 +155,6 @@ export default {
       border-right: 1px solid #d6dce7;
 
       .title {
-        img {
-          vertical-align: middle;
-        }
         height: 4rem;
         line-height: 4rem;
         border-bottom: 1px solid #d6dce7;
@@ -155,7 +172,9 @@ export default {
     &-right {
       padding: 15px;
       width: calc(100% - 220px);
-      font-size: 1rem;
+      &-box {
+        border: 1px solid #d8dcdf;
+      }
     }
   }
 }
