@@ -3,10 +3,8 @@
     <el-row>
       <div class="aaa" v-for="(item, index) in logolist" :key="index">
         <div class="organ_logo">
-          <img
-            :src="srcList[index]"
-            alt=""
-          />
+          <!-- <img :src="src+item.logoFile" alt="" /> -->
+          <img :src="$store.state.url+'/attach/binary?attachmentId='+item.logoFile" alt="" />
         </div>
         <div class="mask">
           <span>{{ item.organName }}</span>
@@ -14,7 +12,7 @@
             id="imgorganlogo"
             src="@/assets/magnifier.png"
             alt=""
-            @click="handleOrganDetail(item,index)"
+            @click="handleOrganDetail(item, index)"
           />
         </div>
       </div>
@@ -30,54 +28,50 @@ export default {
       type: Array,
       default: () => [],
     },
-    type: {
-      type: String,
-      default: "btn",
-    },
   },
   data() {
     return {
       src: "",
-      srcList: [],
+      // srcList: [],
     };
   },
 
   components: {},
 
-  computed: {},
+  computed: {
 
+  },
+
+  watch: {
+    logolist: (newval, oldval) => {
+      console.log(this)
+      console.log(newval, oldval);
+      // this.handledatachange()
+    },
+  },
   methods: {
-    handleOrganDetail(i,j) {
-      this.$router.push({path:"/organizationDetail",query:{id:i.organId}});
-      console.log(i,j);
+    handleOrganDetail(i, j) {
+      this.$router.push({
+        path: "/organizationDetail",
+        query: { id: i.organId },
+      });
+      console.log(i, j);
+    },
+    handledatachange() {
+      let url = this.$store.state.url;
+      let src= url + "/attach/binary?attachmentId=";
+      this.src=src
     },
   },
   created() {
-    console.log(this.logolist)
-    // 有数据之后放开
-    // let url=this.$store.state.url
-    // let list=[]
-    // let src=url+"/attach/binary?attachmentId="
-    // this.logolist.map((item,index)=>{
-    //   list.push(src+item.logoFile)
-    // })
-    // this.srcList=list
-    // 临时写的死数据
-    let url = this.$store.state.url;
-    let list = [];
-    let src = url + "/attach/binary?attachmentId=";
-    this.logolist.map((item, index) => {
-      // logoFile
-      list.push(src + item.logoFile);
-    });
-    this.srcList = list;
-    // console.log(this.logolist);
+    console.log(this.logolist);
+    this.handledatachange()
+
   },
-  mounted() {
+  mounted() {},
+
+  updated() {
   },
-  updated(){
-    console.log(this.logolist)
-  }
 };
 </script>
 <style lang='scss' scoped>
@@ -94,11 +88,10 @@ export default {
       position: relative;
       border: 1px solid #cfd2d7;
       .organ_logo {
-        width:90%;
-        height: 90%;
+        width: 99.9%;
+        height: 99.9%;
         position: relative;
-        top: 5%;
-        margin:auto;
+        margin: auto;
         cursor: pointer;
         img {
           width: 100%;

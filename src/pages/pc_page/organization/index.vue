@@ -18,7 +18,7 @@
         {{ item.label }}
       </div>
     </div>
-    <OrganList :logolist="list" type="pagination" v-if="list.length != 0" />
+    <OrganList :logolist="list" v-if="list.length != 0" />
     <div class="page-tab">
       <el-pagination
         background

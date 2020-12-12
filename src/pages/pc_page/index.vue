@@ -76,12 +76,12 @@
                   alt=""
                 /><span>{{ item.product_name }}</span>
               </div>
-              <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
+              <!-- <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
                 {{ item.product_des.match(/[\u4e00-\u9fa5]/g).join("") }}
-              </div>
-              <div  class="txt" v-else>
+              </div> -->
+              <!-- <div  class="txt">
                 {{ item.product_des}}
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -101,12 +101,12 @@
                   alt=""
                 /><span>{{ item.product_name }}</span>
               </div>
-              <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
+              <!-- <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
                 {{ item.product_des.match(/[\u4e00-\u9fa5]/g)}}
-              </div>
-              <div  class="txt" v-else>
+              </div> -->
+              <!-- <div  class="txt">
                 {{ item.product_des}}
-              </div>
+              </div> -->
             </div>
           </div>
         </div>
@@ -230,9 +230,9 @@
           <!-- <div class="box-left"> -->
           <div class="box-left" v-for="(item, i) in dtlistLeft" :key="i">
             <p class="row1">{{ item.content_title }}</p>
-            <p class="row2">
+            <!-- <p class="row2">
               {{ item.content_text.match(/[\u4e00-\u9fa5]/g).join("") }}
-            </p>
+            </p> -->
             <!-- <p class="row1">文章主题</p>
             <p class="row2">文章内容</p> -->
             <div class="btn" @click="handleDtDetail(item)">
@@ -746,7 +746,7 @@ export default {
           line-height: 2rem;
           &-col {
             cursor: pointer;
-            width: 6.25rem;
+            width: 10rem;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
@@ -961,7 +961,8 @@ export default {
           width: 50%;
           color: #fff;
           .row1 {
-            font-size: 1.2rem;
+            height: 5rem;
+            font-size: 1.5rem;
             margin: 2rem 0;
           }
           .row2 {

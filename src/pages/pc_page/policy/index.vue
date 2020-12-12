@@ -224,6 +224,8 @@ export default {
       border: 1px solid #d8dcdf;
       border-radius: 3px;
       width: 78%;
+        position: relative;
+
       .title {
         height: 5rem;
         line-height: 5rem;
@@ -231,7 +233,7 @@ export default {
         text-align: center;
       }
       .content-list {
-        padding: 0 4.813rem 0 3rem;
+        padding: 0 3rem 3rem 3rem;
         word-wrap: break-word;
         word-break: normal;
         ul {
@@ -272,11 +274,11 @@ export default {
         }
       }
       .pagination {
-        // position: absolute;
-        // bottom: 45px;
-        // left: 40%;
-        text-align: center;
-        margin: 1.75rem 0;
+        position: absolute;
+        bottom: 45px;
+        left: 40%;
+        // text-align: center;
+        // margin: 1.75rem 0;
       }
     }
   }

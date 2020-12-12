@@ -37,7 +37,9 @@ export default {
   components: {},
 
   computed: {},
+  watch:{
 
+  },
   methods: {
       handleCommand(command) {
           console.log(command)

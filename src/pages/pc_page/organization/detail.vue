@@ -34,7 +34,7 @@
     <div class="organizatioanDetail-technology">
       <div class="aaa" v-for="(item, index) in imgList3.slice(0, 4)" :key="index">
         <img :src="srclist[index]" alt="" />
-        <div class="organ_name">{{ item.tec_name }}</div>
+        <div class="organ_name">{{ techName[index] }}</div>
       </div>
     </div>
     <!-- 证书 -->
@@ -173,7 +173,8 @@ export default {
       arrlist: "",
       imgList1: [],
       imgList2: [],
-      imgList3:[]
+      imgList3:[],
+      techName:[],
     };
   },
 
@@ -205,14 +206,15 @@ export default {
           cerImgList.push(src + item);
         });
         that.imgList1 = cerImgList;
-        res.data.cerList.map((item, index) => {
+        res.data.patentList.map((item, index) => {
           // logoFile
           patentImgList.push(src + item);
         });
         that.imgList2=patentImgList
-        res.data.cerList.map((item, index) => {
+        res.data.techList.map((item, index) => {
           // logoFile
-          techImgList.push(src + item);
+          techImgList.push(src + item.techPic);
+          that.techName.push(item.techName)
         });
         that.imgList3=techImgList
         that.product_Infor = res.data.product;
@@ -229,7 +231,9 @@ export default {
       };
       await organProduct(data).then(function (res) {
         let data = res;
+
         that.arrlist=data
+        
         // that.arrlist= res[0].push({select:"1"})
         console.log(that.arrlist);
         console.log(res)
