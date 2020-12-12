@@ -5,13 +5,31 @@
         <div class="ql-snow ql-editor" v-html="organ_Infor"></div>
       </div>
     </div>
-    <div class="organizatioanDetail-drapdown">
-      <el-row>
-        <el-col :span="3" v-for="(item, index) in arrlist" :key="index">
-          <Dropdown :dropdata="item" :name="index" @handleId="getid"/>
-        </el-col>
-      </el-row>
-    </div>
+    <el-tabs
+      v-model="activeName"
+      @tab-click="handleClick"
+      class="organizatioanDetail-tabs"
+    >
+      <el-tab-pane
+        :label="index"
+        :name="index"
+        v-for="(item, index) in arrlist"
+        :key="index"
+      >
+        <span slot="label">{{ index }}<i class="el-icon-arrow-down"></i></span>
+        <div class="product-list">
+          <div
+            class="list-i"
+            :class="tabOption === index ? 'active' : ''"
+            v-for="(item, index) in item"
+            :key="index"
+            @click="getid(item,index)"
+          >
+            {{ item.label }}
+          </div>
+        </div>
+      </el-tab-pane>
+    </el-tabs>
     <div class="organizatioanDetail-title">
       <span class="organizatioanDetail-title-tag"></span>
       <span class="organizatioanDetail-title-tit">信息披露</span>
@@ -32,7 +50,11 @@
       <span class="organizatioanDetail-title-tit">涉及技术</span>
     </div>
     <div class="organizatioanDetail-technology">
-      <div class="aaa" v-for="(item, index) in imgList3.slice(0, 4)" :key="index">
+      <div
+        class="aaa"
+        v-for="(item, index) in imgList3.slice(0, 4)"
+        :key="index"
+      >
         <img :src="srclist[index]" alt="" />
         <div class="organ_name">{{ techName[index] }}</div>
       </div>
@@ -43,7 +65,7 @@
       <span class="organizatioanDetail-title-tit">相关证书</span>
     </div>
     <div class="organizatioanDetail-zhengshu">
-      <div class="img_box" v-for="(item, index) in imgList1" :key="index">
+      <div class="img_box" v-for="(item, index) in imgList1.slice(0,3)" :key="index">
         <img :src="item" alt="" style="width: 67.5%; height: 80%" />
       </div>
       <!-- <div class="plat_msg">
@@ -61,7 +83,7 @@
       <span class="organizatioanDetail-title-tit">相关专利</span>
     </div>
     <div class="organizatioanDetail-zhengshu">
-      <div class="img_box" v-for="(item, index) in imgList2" :key="index">
+      <div class="img_box" v-for="(item, index) in imgList2.slice(0,3)" :key="index">
         <img :src="item" alt="" style="width: 67.5%" />
       </div>
       <!-- <div class="plat_msg">
@@ -142,20 +164,6 @@ export default {
   computed: {},
   data() {
     return {
-      platform: [
-        {
-          label: "开放平台1",
-          value: "1",
-        },
-        {
-          label: "开放平台2",
-          value: "2",
-        },
-        {
-          label: "开放平台3",
-          value: "3",
-        },
-      ],
       selectplat: "",
       src1: "",
       technologylist: [],
@@ -173,12 +181,23 @@ export default {
       arrlist: "",
       imgList1: [],
       imgList2: [],
-      imgList3:[],
-      techName:[],
+      imgList3: [],
+      techName: [],
+      activeName: "",
+      tabOption: 0,
     };
   },
 
   methods: {
+    handleClick(tab, event) {
+      // console.log(this.activeName)
+      // console.log(tab.label)
+      // if(this.activeName!=tab.label){
+      //   console.log('22222')
+      //   this.tabOption=""
+      // }
+      console.log(tab, event);
+    },
     async getDetail(id) {
       let that = this;
       let data = {
@@ -199,7 +218,7 @@ export default {
         let url = that.$store.state.url;
         let techImgList = [];
         let cerImgList = [];
-        let patentImgList = [];  //专利图片
+        let patentImgList = []; //专利图片
         let src = url + "/attach/binary?attachmentId=";
         res.data.cerList.map((item, index) => {
           // logoFile
@@ -210,17 +229,14 @@ export default {
           // logoFile
           patentImgList.push(src + item);
         });
-        that.imgList2=patentImgList
+        that.imgList2 = patentImgList;
         res.data.techList.map((item, index) => {
           // logoFile
           techImgList.push(src + item.techPic);
-          that.techName.push(item.techName)
+          that.techName.push(item.techName);
         });
-        that.imgList3=techImgList
+        that.imgList3 = techImgList;
         that.product_Infor = res.data.product;
-        // that.technologylist = res.data.techList;
-        // that.credentialList = res.data.cerList;
-        // that.patent=res.data.patentList
         console.log(res);
       });
     },
@@ -231,39 +247,35 @@ export default {
       };
       await organProduct(data).then(function (res) {
         let data = res;
-
-        that.arrlist=data
-        
-        // that.arrlist= res[0].push({select:"1"})
-        console.log(that.arrlist);
-        console.log(res)
+        that.arrlist = data;
+        that.activeName = Object.keys(res)[0];
+        that.getid(Object.values(res)[0][0],0);
+        console.log(res);
       });
     },
-    getid(val) {
-      console.log(val);
-      this.getProductDetail(val);
+    getid(val,i) {
+      this.tabOption=i
+      this.getProductDetail(val.value);
     },
   },
   created() {
     let id = this.$route.query.id;
     this.id = id;
     this.getDetail(id);
-    console.log(this.$route.query);
-    // this.getProductDetail("dadaef6792c1445cbe184269ff829ed1");
     this.getdropDown();
   },
 };
 </script>
 <style lang="scss" scoped>
 .organizatioanDetail {
-    width: 62.5%;
+  width: 62.5%;
   margin: 0 auto;
   &-header {
     margin-top: 2rem;
   }
   &-drapdown {
     margin: 2rem 0;
-    border-bottom: 1px solid #d8dcdf;
+    // border-bottom: 1px solid #d8dcdf;
     .el-row {
       height: 3.4375rem;
       line-height: 3.4375rem;
@@ -273,6 +285,30 @@ export default {
         text-overflow: ellipsis;
         text-overflow: ellipsis;
         white-space: nowrap;
+      }
+    }
+  }
+  &-tabs {
+    .product-list {
+      display: flex;
+      flex-wrap: wrap;
+      .list-i {
+        font-size: 1.2rem;
+        margin:0 1rem 1rem 0;
+        padding: 2px 10px;
+        cursor: pointer;
+        border: 1px solid #000;
+        color: #000;
+        border-radius: 30px;
+      }
+      .list-i:hover {
+        color: #e8393c;
+        border: 1px solid #e8393c;
+      }
+      .active {
+        border: 1px solid #2882fe;
+        color: #2882fe;
+        border-radius: 30px;
       }
     }
   }
