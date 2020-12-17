@@ -55,7 +55,7 @@
         v-for="(item, index) in imgList3.slice(0, 4)"
         :key="index"
       >
-        <img :src="srclist[index]" alt="" />
+        <img :src="imgList3[index]" alt="" />
         <div class="organ_name">{{ techName[index] }}</div>
       </div>
     </div>
@@ -150,10 +150,6 @@ import {
   organProduct,
   organProductDetail,
 } from "@/api/api.js";
-import img1 from "@/assets/rengong.png";
-import img2 from "@/assets/qukuailian.png";
-import img3 from "@/assets/account.png";
-import img4 from "@/assets/bigdata.png";
 import Dropdown from "../../../components/dropdown";
 export default {
   name: "OrganizatioanDetail",
@@ -176,7 +172,7 @@ export default {
       organ_Infor: "",
       list1: [],
       product_Infor: "",
-      srclist: [img1, img2, img3, img4],
+      srclist: [],
       id: "",
       arrlist: "",
       imgList1: [],
@@ -236,6 +232,7 @@ export default {
           that.techName.push(item.techName);
         });
         that.imgList3 = techImgList;
+        console.log(that.imgList3)
         that.product_Infor = res.data.product;
         console.log(res);
       });

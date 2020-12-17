@@ -10,24 +10,24 @@ export default [{
     component: () =>
       import(/* webpackChunkName: "pc" */ '@/pages/pc_page/product'),
   },
-  {
-    path: '/productInfo',
-    name: 'ProductInfo',
-    component: () =>
-      import(/* webpackChunkName: "pc" */ '@/pages/pc_page/product/detail'),
-  },
+  // {
+  //   path: '/productInfo',
+  //   name: 'ProductInfo',
+  //   component: () =>
+  //     import(/* webpackChunkName: "pc" */ '@/pages/pc_page/product/detail'),
+  // },
   {
     path: '/solution',
     name: 'Solution',
     component: () =>
       import(/* webpackChunkName: "pc" */ '@/pages/pc_page/solution'),
   },
-  {
-    path: '/solutionInfo',
-    name: 'SolutionInfo',
-    component: () =>
-      import(/* webpackChunkName: "pc" */ '@/pages/pc_page/solution/detail'),
-  },
+  // {
+  //   path: '/solutionInfo',
+  //   name: 'SolutionInfo',
+  //   component: () =>
+  //     import(/* webpackChunkName: "pc" */ '@/pages/pc_page/solution/detail'),
+  // },
   {
     path: '/organization',
     name: 'Organization',

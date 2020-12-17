@@ -1,5 +1,13 @@
 <template>
+<div class="productInfo-box">
+  <div class="top-bg" :style="productBg">
+      <p>
+        {{product_Infor.product_name}}
+      </p>
+  </div>
+
   <div class="productInfo">
+
     <div class="productInfo-title">
       <span class="productInfo-title-tag"></span>
       <span class="productInfo-title-tit">产品概述</span>
@@ -68,7 +76,7 @@
         <span>条评价</span>
       </div>
       <div class="productInfo-evaluate-content">
-        <div style="color: #35393f; margin-bottom: 10px; font-weight: bold">
+        <div style="color: #35393f; margin-bottom: 10px;font-size:1.1rem; font-weight: bold">
           发表评价
         </div>
         <el-input
@@ -130,6 +138,7 @@
       </span>
     </el-dialog>
   </div>
+  </div>
 </template>
 
 <script>
@@ -149,6 +158,12 @@ export default {
       product_Infor: "", //产品详情
       num: "",
       productcommentList: [],
+      productBg: {
+        background:
+          " url(" +
+          require("@/assets/top-bg.jpg") +
+          ") no-repeat scroll center center / 100% ",
+      },
     };
   },
   computed: {},
@@ -241,6 +256,15 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
+.top-bg{
+  height: 15rem;
+  p{
+    font-size: 3rem;
+    color: #fff;
+    margin-left: 18.17%;
+    line-height: 15rem;
+  }
+}
 .productInfo {
   width: 62.5%;
   margin: 0 auto;
@@ -269,6 +293,7 @@ export default {
       padding: 0 0.834rem;
       > div {
         height: 60px;
+        font-size: 1.2rem;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -338,7 +363,7 @@ export default {
             }
           }
           p:nth-child(2) {
-            font-size: 1rem;
+            font-size: 1.2rem;
             color: #3d464e;
           }
         }

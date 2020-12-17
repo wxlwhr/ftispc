@@ -35,7 +35,7 @@
                 <div class="title">{{ item.content_title }}</div>
                 <div class="date">{{ item.publish_date }}</div>
                 <div class="desc">
-                  {{ item.content_text.match(/[\u4e00-\u9fa5]/g).join("") }}
+                  {{ item.content_intro}}
                 </div>
                 <div
                   style="color: #2882fe; cursor: pointer; font-size: 1.3rem"
@@ -200,7 +200,7 @@ export default {
       .tab-ul {
         cursor: pointer;
         li {
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: #3c3d3f;
           border-bottom: 1px solid #d8dcdf;
           padding-left: 7%;

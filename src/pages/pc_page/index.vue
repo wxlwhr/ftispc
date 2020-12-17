@@ -76,9 +76,9 @@
                   alt=""
                 /><span>{{ item.product_name }}</span>
               </div>
-              <!-- <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
-                {{ item.product_des.match(/[\u4e00-\u9fa5]/g).join("") }}
-              </div> -->
+              <div class="txt">
+                {{ item.product_intro}}
+              </div>
               <!-- <div  class="txt">
                 {{ item.product_des}}
               </div> -->
@@ -104,9 +104,9 @@
               <!-- <div class="txt" v-if="item.product_des!== null && item.product_des !== ''">
                 {{ item.product_des.match(/[\u4e00-\u9fa5]/g)}}
               </div> -->
-              <!-- <div  class="txt">
-                {{ item.product_des}}
-              </div> -->
+              <div  class="txt">
+                {{ item.product_intro}}
+              </div>
             </div>
           </div>
         </div>
@@ -230,9 +230,9 @@
           <!-- <div class="box-left"> -->
           <div class="box-left" v-for="(item, i) in dtlistLeft" :key="i">
             <p class="row1">{{ item.content_title }}</p>
-            <!-- <p class="row2">
-              {{ item.content_text.match(/[\u4e00-\u9fa5]/g).join("") }}
-            </p> -->
+            <p class="row2">
+              {{ item.content_intro}}
+            </p>
             <!-- <p class="row1">文章主题</p>
             <p class="row2">文章内容</p> -->
             <div class="btn" @click="handleDtDetail(item)">
@@ -294,17 +294,13 @@ import {
   productBusiList,
 } from "@/api/api.js";
 import OrganList from "@/components/organList";
-import img1 from "@/assets/organlogos/logo1.jpg";
-import img2 from "@/assets/organlogos/logo2.jpg";
-import img3 from "@/assets/organlogos/logo3.jpg";
-import img4 from "@/assets/organlogos/logo4.jpg";
-import img5 from "@/assets/organlogos/logo5.jpg";
-import img6 from "@/assets/organlogos/logo6.jpg";
-import img7 from "@/assets/organlogos/logo7.jpg";
-import img8 from "@/assets/organlogos/logo8.jpg";
-import img9 from "@/assets/organlogos/logo9.jpg";
+
 export default {
   name: "Index",
+  beforeRouteEnter (to, from, next) {
+    console.log(to,from)
+    next()
+  },
   data() {
     return {
       plat_infor:
@@ -433,13 +429,13 @@ export default {
         //   }
         // })
         for (var i = 0; i < res.length; i++) {
-            if(res[i].catalog_name.includes("银行业")){
-            var a=res.splice(i,1)
+          if (res[i].catalog_name.includes("银行业")) {
+            var a = res.splice(i, 1);
             break;
           }
         }
-        a=a.concat(res)
-        // res.unshift(a); 
+        a = a.concat(res);
+        // res.unshift(a);
         that.tabdata1 = a;
         if (that.tab1 === 0) {
           that.getTreeList(a[0].catalog_id);
@@ -454,7 +450,7 @@ export default {
         parentCatalog: i,
       }).then(function (res) {
         that.tabdata2 = res;
-        
+
         console.log(res);
         that.handleTab2(res[0], 0);
       });
@@ -512,7 +508,11 @@ export default {
     // 产品根据Id跳转到详情
     handleProDetail(i) {
       console.log(i);
-      this.$router.push({ path: "/productInfo", query: { id: i.product_id } });
+      // this.$router.push({ path: "/productInfo", query: { id: i.product_id } });
+      let url1=this.$store.state.url2
+      // let url1='http://localhost:8080'
+      var url = url1+'/#/productInfo?id='+ i.product_id;
+      window.open(url);
     },
     // 政策信息详情
     handlePolicyDetail(i, v) {
@@ -527,7 +527,7 @@ export default {
       console.log(i);
       this.$router.push({
         path: "/dynamic_issue",
-        query: { id: i.content_id,fatherId:i.catalog_id },
+        query: { id: i.content_id, fatherId: i.catalog_id },
       });
     },
   },
@@ -551,12 +551,13 @@ export default {
   height: 100%;
   margin: 0 auto;
   &-banner {
+    height: 26.875rem;
     .el-carousel__item {
       .system-infor {
         width: 36.625rem;
         position: absolute;
         top: 8.5rem;
-        left: 30rem;
+        left: 26rem;
         p {
           color: #fff;
         }
@@ -641,10 +642,11 @@ export default {
         justify-content: space-between;
         line-height: 3rem;
         p {
-          font-size: 3rem;
+          font-size: 2.5rem;
         }
         span {
           cursor: pointer;
+          font-size: 1.2rem;
           text-align: center;
           width: 6rem;
           height: 3rem;
@@ -686,13 +688,14 @@ export default {
               }
               span {
                 margin-left: 2.8rem;
+                font-size: 1.25rem;
               }
             }
             .txt {
               width: 70%;
               margin-top: 4px;
               margin-left: 4rem;
-              font-size: 0.6rem;
+              font-size: 1rem;
               display: -webkit-box;
               -webkit-box-orient: vertical;
               -webkit-line-clamp: 2;
@@ -718,7 +721,7 @@ export default {
       .solution-box {
         margin-left: 50%;
         .title {
-          font-size: 3rem;
+          font-size: 2.5rem;
         }
         .content {
           margin-top: 10px;
@@ -746,13 +749,13 @@ export default {
           line-height: 2rem;
           &-col {
             cursor: pointer;
-            width: 10rem;
+            width: 9rem;
             display: -webkit-box;
             -webkit-box-orient: vertical;
             -webkit-line-clamp: 1;
             overflow: hidden;
             margin-right: 8px;
-            font-size: 1rem;
+            font-size: 1.1rem;
             height: 2.2rem;
             line-height: 2.2rem;
             color: #fff;
@@ -764,8 +767,8 @@ export default {
             cursor: pointer;
             text-align: center;
             width: 6rem;
-            height: 3rem;
-            line-height: 3rem;
+            height: 2.5rem;
+            line-height: 2.5rem;
             color: #fff;
             border: 1px solid #fff;
             img {
@@ -774,7 +777,7 @@ export default {
             }
           }
           .active {
-            font-size: 1.375rem;
+            font-size: 1.2rem;
             height: 2.2rem;
             line-height: 2.2rem;
             border-bottom: 1px solid #fff;
@@ -793,7 +796,7 @@ export default {
               height: 2.25rem;
               line-height: 2.25rem;
               padding: 0 10px;
-              font-size: 1rem;
+              font-size: 1.1rem;
               color: #b3c5ff;
             }
             .active {
@@ -844,14 +847,14 @@ export default {
         display: flex;
         justify-content: space-between;
         span:nth-child(1) {
-          font-size: 3rem;
+          font-size: 2.5rem;
         }
         span:nth-child(2) {
           cursor: pointer;
           text-align: center;
           width: 6rem;
-          height: 3rem;
-          line-height: 3rem;
+          height: 2.5rem;
+          line-height: 2.5rem;
           color: #2882fe;
           border: 1px solid #2882fe;
           img {
@@ -891,7 +894,7 @@ export default {
               margin-bottom: 1rem;
               li {
                 // width: 20px;
-                font-size: 1rem;
+                font-size: 1.05rem;
                 height: 2.2rem;
                 line-height: 2.2rem;
                 text-overflow: ellipsis;
@@ -931,17 +934,17 @@ export default {
       margin: 0 auto;
       .title {
         display: flex;
-        line-height: 3rem;
+        line-height: 2.5rem;
         padding: 2rem 0;
         span:nth-child(1) {
-          font-size: 3rem;
+          font-size: 2.5rem;
         }
         span:nth-child(2) {
           cursor: pointer;
           text-align: center;
           width: 6rem;
-          height: 3rem;
-          line-height: 3rem;
+          height: 2.5rem;
+          line-height: 2.5rem;
           color: #2882fe;
           border: 1px solid #2882fe;
           margin-left: 3rem;
@@ -961,8 +964,8 @@ export default {
           width: 50%;
           color: #fff;
           .row1 {
-            height: 5rem;
-            font-size: 1.5rem;
+            height: 2rem;
+            font-size: 1.3rem;
             margin: 2rem 0;
           }
           .row2 {
@@ -1018,7 +1021,7 @@ export default {
       padding-top: 2rem;
       width: 62.5%;
       margin: 0 auto;
-      font-size: 3rem;
+      font-size: 2.5rem;
     }
     .plat_infor {
       display: flex;
@@ -1051,9 +1054,9 @@ export default {
       .btn {
         cursor: pointer;
         text-align: center;
-        width: 6rem;
-        height: 4rem;
-        line-height: 4rem;
+        width: 8rem;
+        height: 2.5rem;
+        line-height: 2.5rem;
         color: #2882fe;
         border: 1px solid #2882fe;
         padding: 4px 10px;

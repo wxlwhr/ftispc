@@ -1,4 +1,10 @@
 <template>
+<div class="productInfo-box">
+  <div class="top-bg" :style="productBg">
+      <p>
+        {{case_Infor.product_name}}
+      </p>
+  </div>
   <div class="solutionInfo">
     <div class="solutionInfo-title">
       <span class="solutionInfo-title-tag"></span>
@@ -42,7 +48,7 @@
         <span>条评价</span>
       </div>
       <div class="solutionInfo-evaluate-content">
-        <div style="color: #35393f; margin-bottom: 10px;font-weight: bold;">发表评价</div>
+        <div style="color: #35393f; margin-bottom: 10px; font-size:1.1rem;font-weight: bold;">发表评价</div>
         <el-input
           type="textarea"
           :rows="2"
@@ -97,6 +103,7 @@
       </span>
     </el-dialog>
   </div>
+  </div>
 </template>
 
 <script>
@@ -112,6 +119,12 @@ export default {
       casecommentList:[],
       dialogVisible: false,
       textarea: "",
+      productBg: {
+        background:
+          " url(" +
+          require("@/assets/top-bg.jpg") +
+          ") no-repeat scroll center center / 100% ",
+      },
     };
   },
 
@@ -207,6 +220,15 @@ export default {
 };
 </script>
 <style lang='scss' scoped>
+.top-bg{
+  height: 15rem;
+  p{
+    font-size: 3rem;
+    color: #fff;
+    margin-left: 18.17%;
+    line-height: 15rem;
+  }
+}
 .solutionInfo {
     width: 62.5%;
   margin: 0 auto;
@@ -236,6 +258,7 @@ export default {
       > div {
         height: 60px;
         display: flex;
+        font-size: 1.2rem;
         justify-content: space-between;
         align-items: center;
         background-color: #ffffff;

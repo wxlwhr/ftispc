@@ -83,12 +83,17 @@ export default {
         return "background-color:#eceff4;color:#31363c;height:36px;font-family:Microsoft YaHei;padding:5px 0";
       }
     },
+    // 点击查看，跳转到详情
     handleView(row) {
       console.log(row);
-      this.$router.push({
-        path: "/productInfo",
-        query: { id: row.product_id },
-      });
+      // this.$router.push({
+      //   path: "/productInfo",
+      //   query: { id: row.product_id },
+      // });
+      let url1=this.$store.state.url2
+      // let url1='http://localhost:8080'
+      var url = url1+'/#/productInfo?id=' + row.product_id;
+      window.open(url);
     },
     handleNodeClick(data) {
       console.log(data);
@@ -126,7 +131,7 @@ export default {
 </script>
 <style lang='scss' scoped>
 /deep/.el-button span{
-  font-size: 1.3rem;
+  font-size: 1.2rem;
 }
 .product {
   height: 100%;

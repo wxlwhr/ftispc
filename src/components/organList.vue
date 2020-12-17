@@ -119,7 +119,7 @@ export default {
     width: 100%;
     height: 100%;
     opacity: 0;
-    font-size: 1rem;
+    font-size: 1.2rem;
     background: #2882fe;
     color: #fff;
     span {

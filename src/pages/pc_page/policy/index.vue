@@ -46,7 +46,7 @@
               :total="total"
               @current-change="handleCurrentChange"
               :current-page.sync="currentPage1"
-              :page-size="24"
+              :page-size="15"
             >
             </el-pagination>
           </div>
@@ -99,7 +99,7 @@ export default {
         let data = res.data.menuList;
         that.firstTabId = res.data.menuList[0].catalogId;
         that.right_title = res.data.menuList[0].catalogName;
-        console.log(res.data.menuList[0]);
+        that.nowcatalogId=res.data.menuList[0].catalogId
         that.getList("1", res.data.menuList[0].catalogId);
         that.tabList = data;
         data.map((item, index) => {
@@ -146,6 +146,7 @@ export default {
     },
     handleCurrentChange(val) {
       console.log(`当前页:${val}`, val);
+      console.log(this.nowcatalogId)
       this.getList(`${val}`, this.nowcatalogId);
     },
   },
@@ -204,7 +205,7 @@ export default {
       .tab-ul {
         cursor: pointer;
         li {
-          font-size: 1rem;
+          font-size: 1.1rem;
           color: #3c3d3f;
           border-bottom: 1px solid #d8dcdf;
           padding-left: 7%;
@@ -234,10 +235,11 @@ export default {
       }
       .content-list {
         padding: 0 3rem 3rem 3rem;
+        font-size: 1.1rem;
         word-wrap: break-word;
         word-break: normal;
         ul {
-          padding-bottom: 30px;
+          padding-bottom: 60px;
           &:first-child {
             list-style: inside;
           }
@@ -247,6 +249,7 @@ export default {
             span {
               &:first-child {
                 color: #35393f;
+                font-size: 1.1rem;
                 width: 70%;
                 overflow: hidden;
                 text-overflow: ellipsis;
@@ -258,6 +261,8 @@ export default {
                 }
               }
               &:nth-child(2) {
+                font-size: 1.1rem;
+
                 float: right;
                 color: #6f7884;
               }

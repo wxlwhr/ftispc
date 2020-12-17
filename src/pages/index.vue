@@ -17,7 +17,7 @@
     <div class="home-tabs">
       <div class="tab-content">
         <div class="logo-box">
-          <img src="@/assets/logo.png" alt="" />
+          <img src="@/assets/logo.png" alt="" @click="handleBackIndex"/>
           中国互联网金融协会
         </div>
         <ul>
@@ -31,12 +31,15 @@
             <div class="line"></div>
           </li>
         </ul>
-        <div class="bts">
+        <div class="bts" v-if="loginstatus==='1'">
           <span class="login-btn" @click="handleGoLogin">登录</span>
-          <!-- <span class="login-btn" @click="handleGoLogin"><a href="http://172.18.12.148:8080/ftis/login">登录</a></span> -->
           <span class="gang">|</span>
-          <span class="signin-btn" @click="handleGoSignin">注册</span>
-          <!-- <span class="login-btn" @click="handleGoLogin"><a href="http://172.18.12.148:8080/ftis/signin">注册</a></span> -->
+          <span class="login-btn" @click="handleGoSignin">注册</span>
+          <span class="gang">|</span>
+          <span class="login-btn" @click="handleGoAdmin">工作台</span>
+        </div>
+        <div class="bts" v-else>
+          <span class="login-btn" @click="handleGoAdmin">进入工作台</span>
         </div>
       </div>
       <!-- <el-input
@@ -46,24 +49,18 @@
       >
       </el-input> -->
     </div>
-    <!-- 产品详情顶部banner -->
-    <div v-show="activeKey === 1 && path === '/productInfo'" class="productInfo-topImg">
-      <img src="@/assets/2_02.jpg" alt="" />
-    </div>
-    <div v-show="activeKey === 2 && path === '/solutionInfo'" class="productInfo-topImg">
-      <img src="@/assets/solutionImg.jpg" alt="" />
-    </div>
     <div class="home-view">
       <router-view />
     </div>
     <div class="home-footer">
-      ©2019 中国互联网金融协会中国互联网金融服务平台金融科技服务能力共享系统版权所有
+      ©2020 中国互联网金融协会中国互联网金融服务平台金融科技服务能力共享系统版权所有 本网站支持IPv6网络访问
     </div>
   </div>
 </template>
 
 <script>
 export default {
+  
   data() {
     return {
       tabs: [
@@ -93,6 +90,7 @@ export default {
         backgroundImage: "url(" + require("../assets/homepage_top.jpg") + ")",
       },
       searchValue: "",
+      loginstatus:"1"
     };
   },
   watch: {
@@ -105,9 +103,18 @@ export default {
   computed: {},
   created() {
     this.activeTab();
+    if(localStorage.getItem("Authorization")){
+      this.loginstatus='2'
+    }
   },
-  updated() {},
+  updated() {
+
+  },
   methods: {
+    // 点击logo返回首页
+    handleBackIndex(){
+      this.$router.push("/index")
+    },
     activeTab() {
       //   监听路由变化
       const path = this.$route.path;
@@ -160,15 +167,21 @@ export default {
       });
     },
     handleGoSignin() {
-      this.$router.push("/signin");
-      let url=this.$store.state.url
-      window.location.href(url+'/signin')
+      // this.$router.push("/signin");
+      let url=this.$store.state.url2
+      window.location.href=url+'/ftisfront/#/signin'
     },
     handleGoLogin() {
-      this.$router.push("/login");
-      let url=this.$store.state.url
-      window.location.href(url+'/login')
+      let url=this.$store.state.url2
+      // let url="http://localhost:8081"
+      console.log(url)
+      window.location.href=url+"/ftisfront/#/login?fromURL=1"
     },
+    handleGoAdmin(){
+      let url=this.$store.state.url2
+      // let url="http://localhost:8081"
+      window.location.href=url+"/ftisfront/#/home"
+    }
   },
 };
 </script>
@@ -178,17 +191,18 @@ export default {
   height: 100%;
   &-tabs {
     width: 100%;
+     box-shadow: 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
     .tab-content {
       width: 62.5%;
       margin: 0 auto;
       height: 6rem;
       background-color: #ffffff;
-      box-shadow: 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
+      // box-shadow: 0rem 1rem 1rem -1rem rgba(0, 0, 0, 0.1);
       display: flex;
       // justify-content: space-between;
       align-items: center;
       .logo-box {
-        font-size: 2rem;
+        font-size: 1.7rem;
         color: #2983fe;
         font-weight: 600;
         height: 6rem;
@@ -198,6 +212,7 @@ export default {
         img {
           align-items: center;
           margin-right: 10px;
+          cursor: pointer;
         }
       }
       ul {
@@ -209,8 +224,8 @@ export default {
         // margin-left: 5rem;
         margin: 0 auto;
         li {
-          font-size: 1.4rem;
-          margin-left: 4rem;
+          font-size: 1.2rem;
+          margin-left: 1.8rem;
           cursor: pointer;
           padding-bottom: 10px;
           position: relative;
@@ -242,14 +257,11 @@ export default {
       }
       .bts {
         // margin-left: 27rem;
+        font-size: 1.1rem;
         .gang {
-          margin: 0 5px;
+          margin: 0 .3125rem;
         }
-        .login-btn:hover {
-          cursor: pointer;
-          color: #2983fe;
-        }
-        .signin-btn:hover {
+        .login-btn:hover{
           cursor: pointer;
           color: #2983fe;
         }
@@ -288,13 +300,6 @@ export default {
     }
   }
 
-  .productInfo-topImg {
-    width: 100%;
-    img {
-      width: 100%;
-      height: 100%;
-    }
-  }
   // &-view {
   // padding: 0 360px;
   // margin: 0 auto;

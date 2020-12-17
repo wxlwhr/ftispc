@@ -80,7 +80,11 @@ export default {
     },
     handleView(row) {
       console.log(row);
-      this.$router.push({ path: "/solutionInfo", query: { id: row.case_id } });
+      // this.$router.push({ path: "/solutionInfo", query: { id: row.case_id } });
+      let url1=this.$store.state.url2
+      // let url1='http://localhost:8080'
+      var url = url1+'/#/solutionInfo?id=' + row.product_id;
+      window.open(url);
     },
     handleNodeClick(data) {
       console.log(data);

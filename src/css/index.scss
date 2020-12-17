@@ -1,18 +1,22 @@
-@media screen and (min-width: 700px) {
-  html, body {
-      font-size: 12px!important;
+@media screen and (min-width: 1024px) {
+  html {
+    font-size: 8px;
   }
 }
-
-@media screen and (min-width: 1000px) {
-  html, body {
-      font-size: 12px!important;
+@media screen and (min-width: 1100px) {
+  html {
+    font-size: 10px;
   }
 }
-
-@media screen and (min-width: 1340px) {
-  html, body {
-      font-size: 12px!important;
+/* @media (min-width: 1280px) { html{font-size: 22px;} } */
+@media screen and (min-width: 1280px) {
+  html {
+    font-size: 10px;
+  }
+}
+@media screen and (min-width: 1366px) {
+  html {
+    font-size: 12px;
   }
 }
 
@@ -27,15 +31,15 @@
       font-size: 16px!important;
   }
 }
-html{
-  height: 100%;
-  font-size:62.5% !important;
-}
-body {
-  font-size:12px;font-size:1.2rem ;
-  height: 100%;
-  font-size: 14px;
-}
+// html{
+//   height: 100%;
+//   font-size:62.5% !important;
+// }
+// body {
+//   font-size:12px;font-size:1.2rem ;
+//   height: 100%;
+//   font-size: 14px;
+// }
 html,
 body,
 div,
@@ -72,8 +76,6 @@ nav {
   padding: 0;
   margin: 0;
   border: 0;
-  font-size:14px;
-  font-size:1.4rem;
   box-sizing: border-box;
 }
 
@@ -85,7 +87,7 @@ ul,ol{
 }
 
 .el-tree-node__label{
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 .el-tree-node:focus > .el-tree-node__content {
   background-color:#2983fe;
@@ -108,7 +110,7 @@ ul,ol{
 //   font-size: 18px;
 // }
 .el-table .cell{
-  font-size: 1.3rem;
+  font-size: 1.1rem;
 }
 // .el-button span{
 //   font-size: 1.2rem;
